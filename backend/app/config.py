@@ -24,12 +24,18 @@ class Settings(BaseSettings):
     # Logging
     LOG_FORMAT: str = "json"  # json or text
 
-    # Database
-    DATABASE_URL: str = "postgresql://user:password@localhost:5432/knowledge_agent"
+    # Supabase Configuration
+    SUPABASE_URL: str = ""
+    SUPABASE_KEY: str = ""
+    DATABASE_URL: str = ""  # Supabase PostgreSQL connection string
 
     # Vector Store
     VECTOR_STORE_PATH: str = "./data/vector_store"
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+
+    # Text Processing
+    CHUNK_SIZE: int = 512
+    CHUNK_OVERLAP: int = 50
 
     class Config:
         env_file = ".env"

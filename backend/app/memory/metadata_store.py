@@ -1,11 +1,11 @@
 """
-Metadata store using PostgreSQL.
-Manages document metadata including source, tags, and timestamps.
+Metadata store using Supabase (PostgreSQL).
+Manages document metadata including source, tags, domain, difficulty, and timestamps.
 """
 
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-from sqlalchemy import create_engine, Column, String, DateTime, Integer, JSON, Index
+from sqlalchemy import create_engine, Column, String, DateTime, Integer, JSON, Index, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import uuid
@@ -27,6 +27,10 @@ class DocumentMetadata(Base):
     source = Column(String(255), nullable=False, index=True)
     content_hash = Column(String(64), nullable=False, unique=True, index=True)
     tags = Column(JSON, nullable=True)
+    topics = Column(JSON, nullable=True)
+    domain = Column(String(100), nullable=True, index=True)
+    difficulty_level = Column(String(50), nullable=True)
+    key_terms = Column(JSON, nullable=True)
     metadata = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -35,6 +39,8 @@ class DocumentMetadata(Base):
     __table_args__ = (
         Index("idx_source_created", "source", "created_at"),
         Index("idx_embedding_id", "embedding_id"),
+        Index("idx_domain", "domain"),
+        Index("idx_difficulty", "difficulty_level"),
     )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,6 +49,10 @@ class DocumentMetadata(Base):
             "id": self.id,
             "source": self.source,
             "tags": self.tags or [],
+            "topics": self.topics or [],
+            "domain": self.domain,
+            "difficulty_level": self.difficulty_level,
+            "key_terms": self.key_terms or [],
             "metadata": self.metadata or {},
             "created_at": self.created_at.isoformat(),
             "updated_at": self.updated_at.isoformat(),
@@ -53,7 +63,7 @@ class DocumentMetadata(Base):
 class MetadataStore:
     """
     Metadata store for managing document information.
-    Persists metadata to PostgreSQL.
+    Persists metadata to Supabase (PostgreSQL).
     """
 
     def __init__(self, database_url: Optional[str] = None):
@@ -61,14 +71,14 @@ class MetadataStore:
         Initialize metadata store.
 
         Args:
-            database_url: PostgreSQL connection URL. If None, uses config setting.
+            database_url: Supabase PostgreSQL connection URL. If None, uses config setting.
         """
         settings = get_settings()
         self.database_url = database_url or settings.DATABASE_URL
         self.engine = create_engine(self.database_url, pool_pre_ping=True)
         self.SessionLocal = sessionmaker(bind=self.engine)
 
-        logger.info(f"Initializing metadata store: {self.database_url}")
+        logger.info(f"Initializing metadata store (Supabase): {self.database_url[:50]}...")
 
     def init_db(self) -> None:
         """
@@ -88,6 +98,10 @@ class MetadataStore:
         content_hash: str,
         embedding_id: int,
         tags: Optional[List[str]] = None,
+        topics: Optional[List[str]] = None,
+        domain: Optional[str] = None,
+        difficulty_level: Optional[str] = None,
+        key_terms: Optional[List[str]] = None,
         metadata: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
@@ -98,6 +112,10 @@ class MetadataStore:
             content_hash: SHA-256 hash of document content
             embedding_id: ID of corresponding vector in store
             tags: Optional list of tags
+            topics: Optional list of topics
+            domain: Optional domain classification
+            difficulty_level: Optional difficulty level
+            key_terms: Optional extracted key terms
             metadata: Optional additional metadata
 
         Returns:
@@ -109,9 +127,11 @@ class MetadataStore:
         session = self.SessionLocal()
         try:
             # Check if document already exists
-            existing = session.query(DocumentMetadata).filter_by(
-                content_hash=content_hash
-            ).first()
+            existing = (
+                session.query(DocumentMetadata)
+                .filter_by(content_hash=content_hash)
+                .first()
+            )
             if existing:
                 logger.warning(f"Document already exists: {content_hash}")
                 raise ValueError(f"Document with hash {content_hash} already exists")
@@ -121,6 +141,10 @@ class MetadataStore:
                 content_hash=content_hash,
                 embedding_id=embedding_id,
                 tags=tags,
+                topics=topics,
+                domain=domain,
+                difficulty_level=difficulty_level,
+                key_terms=key_terms,
                 metadata=metadata,
             )
             session.add(doc)
@@ -182,9 +206,11 @@ class MetadataStore:
         """
         session = self.SessionLocal()
         try:
-            doc = session.query(DocumentMetadata).filter_by(
-                content_hash=content_hash
-            ).first()
+            doc = (
+                session.query(DocumentMetadata)
+                .filter_by(content_hash=content_hash)
+                .first()
+            )
             return doc.to_dict() if doc else None
         finally:
             session.close()

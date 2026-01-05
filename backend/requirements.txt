@@ -12,3 +12,12 @@ sentence-transformers==2.2.2
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9
 alembic==1.13.1
+
+# Text processing and NLP
+nltk==3.8.1
+spacy==3.7.2
+langchain==0.1.0
+tiktoken==0.5.2
+
+# Supabase client
+supabase==2.3.3
