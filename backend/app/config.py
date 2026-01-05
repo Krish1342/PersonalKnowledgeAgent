@@ -24,6 +24,13 @@ class Settings(BaseSettings):
     # Logging
     LOG_FORMAT: str = "json"  # json or text
 
+    # Database
+    DATABASE_URL: str = "postgresql://user:password@localhost:5432/knowledge_agent"
+
+    # Vector Store
+    VECTOR_STORE_PATH: str = "./data/vector_store"
+    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+
     class Config:
         env_file = ".env"
         case_sensitive = True
