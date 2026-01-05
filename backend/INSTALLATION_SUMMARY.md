@@ -5,6 +5,7 @@
 ### Core Components
 
 1. **[app/utils/chunking.py](app/utils/chunking.py)** (450 lines)
+
    - `SemanticChunker` class for intelligent text splitting
    - `Chunk` dataclass with metadata tracking
    - Semantic boundary detection (paragraph → sentence → word)
@@ -12,6 +13,7 @@
    - Configurable chunk size and overlap
 
 2. **[app/utils/tagging.py](app/utils/tagging.py)** (400 lines)
+
    - `ContentTagger` class for auto-metadata generation
    - `ContentMetadata` dataclass
    - Topic detection via pattern matching
@@ -19,7 +21,8 @@
    - Difficulty assessment via heuristic scoring
    - Key term extraction via frequency analysis
 
-3. **[app/memory/__init__.py](app/memory/__init__.py)** - Enhanced
+3. **[app/memory/**init**.py](app/memory/__init__.py)** - Enhanced
+
    - `process_documents()` method for pipeline
    - Integration of chunker and tagger
    - Enhanced `add_documents()` with auto-processing flags
@@ -34,10 +37,12 @@
 ### Configuration & Dependencies
 
 5. **requirements.txt** - Updated
+
    - Added: nltk, spacy, langchain, tiktoken, supabase
    - Total dependencies: 13 packages
 
 6. **config.py** - Updated
+
    - Added Supabase configuration (SUPABASE_URL, SUPABASE_KEY)
    - Added text processing settings (CHUNK_SIZE, CHUNK_OVERLAP)
    - Database now supports Supabase
@@ -49,6 +54,7 @@
 ### Documentation
 
 8. **[PREPROCESSING.md](PREPROCESSING.md)** (350 lines)
+
    - Comprehensive usage guide for chunking and tagging
    - Pipeline explanation
    - Database schema details
@@ -56,6 +62,7 @@
    - Example workflows
 
 9. **[SETUP.md](SETUP.md)** (300 lines)
+
    - Step-by-step installation guide
    - Supabase configuration instructions
    - Database initialization
@@ -63,6 +70,7 @@
    - Performance tuning guide
 
 10. **[ARCHITECTURE.md](ARCHITECTURE.md)** (450 lines)
+
     - System architecture diagrams
     - Data flow pipeline
     - Component details with algorithms
@@ -71,6 +79,7 @@
     - Security checklist
 
 11. **[EXAMPLES.py](EXAMPLES.py)** (350 lines)
+
     - 8 practical usage examples
     - Basic chunking
     - Content tagging
@@ -88,6 +97,7 @@
 ## Key Features Implemented
 
 ### Semantic-Aware Chunking ✓
+
 - [x] Respects paragraph boundaries
 - [x] Preserves sentence integrity
 - [x] Maintains heading and section info
@@ -95,6 +105,7 @@
 - [x] Tracks chunk position and context
 
 ### Intelligent Tagging ✓
+
 - [x] Auto-extract topics (8 categories)
 - [x] Domain classification (6 domains)
 - [x] Difficulty assessment (3 levels)
@@ -102,6 +113,7 @@
 - [x] No external API calls (fast, local)
 
 ### Database Evolution ✓
+
 - [x] Migrated from basic PostgreSQL to Supabase-ready
 - [x] Extended schema with metadata fields
 - [x] Added strategic indexes for filtering
@@ -109,6 +121,7 @@
 - [x] JSONB support for flexible metadata
 
 ### Integration ✓
+
 - [x] Unified MemoryManager with full pipeline
 - [x] Auto-chunking option
 - [x] Auto-tagging option
@@ -182,6 +195,7 @@ for result in results:
 ## Database Changes Summary
 
 ### Before (Basic)
+
 ```
 documents (
   id, source, content_hash, tags, metadata,
@@ -190,31 +204,33 @@ documents (
 ```
 
 ### After (Enhanced)
+
 ```
 documents (
   id, source, content_hash,
   tags, topics, domain, difficulty_level, key_terms,
   metadata,
   created_at, updated_at, embedding_id
-  
+
   [Indexes: domain, difficulty_level, source+created_at, embedding_id]
 )
 ```
 
 ## Performance Metrics
 
-| Operation | Complexity | Time (typical) |
-|-----------|-----------|---|
-| Chunk 1000 chars | O(n) | < 1ms |
-| Tag 1000 chars | O(n) | < 5ms |
-| Embed 1000 chars | O(d) | 10ms |
-| Database insert | O(1) | < 5ms |
-| Search query | O(log n + d) | 50-100ms |
-| **Full pipeline** | O(n log n + d) | ~70ms |
+| Operation         | Complexity     | Time (typical) |
+| ----------------- | -------------- | -------------- |
+| Chunk 1000 chars  | O(n)           | < 1ms          |
+| Tag 1000 chars    | O(n)           | < 5ms          |
+| Embed 1000 chars  | O(d)           | 10ms           |
+| Database insert   | O(1)           | < 5ms          |
+| Search query      | O(log n + d)   | 50-100ms       |
+| **Full pipeline** | O(n log n + d) | ~70ms          |
 
 ## Supabase Integration
 
 ### Key Changes from PostgreSQL
+
 1. Connection string format (Supabase-specific)
 2. Configuration via environment variables
 3. Supabase dashboard for monitoring
@@ -222,6 +238,7 @@ documents (
 5. Built-in replication and backups
 
 ### Configuration
+
 ```env
 SUPABASE_URL=https://project.supabase.co
 SUPABASE_KEY=anon-key
@@ -240,17 +257,20 @@ The application uses standard SQLAlchemy, so Supabase is a drop-in replacement.
 ✅ **Examples**: 8 practical code examples  
 ✅ **Typing**: Full type hints throughout  
 ✅ **Logging**: Comprehensive logging at all levels  
-✅ **Error Handling**: Proper exception handling and validation  
+✅ **Error Handling**: Proper exception handling and validation
 
 ## What's Next
 
 ### Immediate Next Steps (Optional)
+
 1. Create API endpoints for document ingestion:
+
    - `POST /documents/ingest` - Add documents
    - `GET /documents/{id}` - Retrieve document
    - `POST /search` - Semantic search
 
 2. Add web UI for:
+
    - Document upload
    - Search interface
    - Result browsing with metadata
@@ -261,6 +281,7 @@ The application uses standard SQLAlchemy, so Supabase is a drop-in replacement.
    - Metadata-aware filtering
 
 ### Advanced Features (Later)
+
 1. **Reranking**: Use metadata to rerank results
 2. **Filtering**: Advanced queries (domain+difficulty+topic)
 3. **Batch Processing**: Async document ingestion
@@ -271,6 +292,7 @@ The application uses standard SQLAlchemy, so Supabase is a drop-in replacement.
 ## Installation & Testing
 
 Quick start (from scratch):
+
 ```bash
 cd backend
 

@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.utils.logging import setup_logging, get_logger
-from app.api import health
+from app.api import health, ingest
 
 logger = get_logger(__name__)
 
@@ -59,6 +59,7 @@ def create_app() -> FastAPI:
 
     # Include routers
     app.include_router(health.router)
+    app.include_router(ingest.router)
 
     # Root endpoint
     @app.get("/")

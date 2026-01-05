@@ -37,6 +37,10 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 512
     CHUNK_OVERLAP: int = 50
 
+    # Groq API Configuration
+    GROQ_API_KEY: str = ""
+    GROQ_MODEL: str = "mixtral-8x7b-32768"
+
     class Config:
         env_file = ".env"
         case_sensitive = True

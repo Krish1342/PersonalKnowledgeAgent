@@ -3,13 +3,16 @@
 ## Files Created/Modified
 
 ### New Files
+
 1. **[app/utils/chunking.py](app/utils/chunking.py)** - Semantic-aware text chunking
+
    - `SemanticChunker`: Chunks text while preserving structure
    - Respects paragraph, sentence, and heading boundaries
    - Configurable chunk size and overlap
    - Returns `Chunk` objects with metadata (heading, section, position)
 
 2. **[app/utils/tagging.py](app/utils/tagging.py)** - Auto-generated content metadata
+
    - `ContentTagger`: Analyzes and tags content automatically
    - Extracts topics (code, api, database, security, etc.)
    - Detects domain (ML, backend, frontend, devops, cloud)
@@ -27,15 +30,18 @@
 ### Modified Files
 
 1. **requirements.txt**
+
    - Added: `nltk`, `spacy`, `langchain`, `tiktoken`, `supabase`
    - For text processing, NLP, and Supabase client
 
 2. **config.py**
+
    - Added `SUPABASE_URL` and `SUPABASE_KEY`
    - Added `DATABASE_URL` (now supports Supabase)
    - Added `CHUNK_SIZE` and `CHUNK_OVERLAP` settings
 
 3. **app/memory/metadata_store.py**
+
    - Updated docstring: PostgreSQL → Supabase
    - Extended `DocumentMetadata` schema:
      - `topics`: JSONB for auto-generated topics
@@ -46,11 +52,12 @@
    - Added database indexes on domain and difficulty_level
 
 4. **.env and .env.example**
+
    - Added Supabase configuration fields
    - Added text processing settings
    - Updated comments for Supabase
 
-5. **app/memory/__init__.py** (MemoryManager)
+5. **app/memory/**init**.py** (MemoryManager)
    - Added `chunker` and `tagger` dependencies
    - New `process_documents()` method for chunking/tagging pipeline
    - Enhanced `add_documents()` with:
@@ -62,6 +69,7 @@
 ## Key Features
 
 ### Semantic Chunking ✓
+
 - Respects paragraph boundaries (double newlines)
 - Maintains sentence integrity
 - Preserves section headings
@@ -69,29 +77,36 @@
 - Tracks chunk position and sequence
 
 ### Auto-Generated Metadata ✓
+
 **Topics** (pattern-based):
+
 - code, configuration, api, database, security, performance, mathematics, best-practices
 
 **Domain** (keyword-based):
+
 - machine-learning, data-science, backend-development, frontend-development, devops, cloud
 
 **Difficulty** (scored heuristics):
+
 - Analyzes advanced/beginner indicators
 - Considers text complexity and technical density
 - Three levels: beginner, intermediate, advanced
 
 **Key Terms** (frequency-based):
+
 - Top 10 terms extracted per chunk
 - Filtered stop words
 - Useful for search and discovery
 
 ### Database Changes ✓
+
 - PostgreSQL schema compatible with Supabase
 - New indexed columns for efficient filtering
 - JSONB support for flexible metadata
 - Maintains backward compatibility
 
 ### Supabase Integration ✓
+
 - Replaced hardcoded PostgreSQL with Supabase config
 - Works with Supabase's managed PostgreSQL
 - Can use Supabase client library for additional features
@@ -130,6 +145,7 @@ for result in results:
 ## Configuration
 
 **In .env:**
+
 ```env
 # Supabase
 SUPABASE_URL=https://your-project.supabase.co

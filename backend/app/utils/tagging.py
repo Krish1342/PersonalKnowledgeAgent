@@ -137,10 +137,44 @@ class ContentTagger:
         """
         # Remove common words and split into terms
         stop_words = {
-            "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for",
-            "of", "with", "by", "from", "is", "are", "be", "have", "has", "do",
-            "does", "did", "can", "could", "will", "would", "should", "may",
-            "this", "that", "these", "those", "i", "you", "he", "she", "it",
+            "the",
+            "a",
+            "an",
+            "and",
+            "or",
+            "but",
+            "in",
+            "on",
+            "at",
+            "to",
+            "for",
+            "of",
+            "with",
+            "by",
+            "from",
+            "is",
+            "are",
+            "be",
+            "have",
+            "has",
+            "do",
+            "does",
+            "did",
+            "can",
+            "could",
+            "will",
+            "would",
+            "should",
+            "may",
+            "this",
+            "that",
+            "these",
+            "those",
+            "i",
+            "you",
+            "he",
+            "she",
+            "it",
         }
 
         # Extract words (alphanumeric + hyphens)
@@ -199,9 +233,7 @@ class ContentTagger:
 
         # Consider text length and complexity
         words = text.split()
-        avg_word_length = (
-            sum(len(w) for w in words) / len(words) if words else 0
-        )
+        avg_word_length = sum(len(w) for w in words) / len(words) if words else 0
 
         # Longer words suggest more advanced content
         if avg_word_length > 6:
@@ -254,7 +286,9 @@ class ContentTagger:
             topics.add("configuration")
 
         # API related
-        if re.search(r"(endpoint|request|response|header|payload)", text, re.IGNORECASE):
+        if re.search(
+            r"(endpoint|request|response|header|payload)", text, re.IGNORECASE
+        ):
             topics.add("api")
 
         # Database related
@@ -262,11 +296,19 @@ class ContentTagger:
             topics.add("database")
 
         # Security related
-        if re.search(r"(security|encryption|password|authentication|authorization)", text, re.IGNORECASE):
+        if re.search(
+            r"(security|encryption|password|authentication|authorization)",
+            text,
+            re.IGNORECASE,
+        ):
             topics.add("security")
 
         # Performance related
-        if re.search(r"(performance|optimization|benchmark|latency|throughput)", text, re.IGNORECASE):
+        if re.search(
+            r"(performance|optimization|benchmark|latency|throughput)",
+            text,
+            re.IGNORECASE,
+        ):
             topics.add("performance")
 
         # Best practices

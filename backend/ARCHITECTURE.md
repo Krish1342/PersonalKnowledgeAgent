@@ -87,19 +87,20 @@ OUTPUT: Searchable Knowledge Base
 **Purpose:** Intelligent text splitting that preserves document structure
 
 **Algorithm:**
+
 ```
 for each section:
   current_position = 0
   while current_position < section_length:
     target_end = current_position + CHUNK_SIZE
-    
+
     # Try to find boundary (paragraph > sentence > word)
     split_point = find_semantic_boundary(
       text,
       current_position,
       target_end
     )
-    
+
     if split_point > 0:
       create_chunk(text[current_position:split_point])
       current_position = split_point - OVERLAP
@@ -108,6 +109,7 @@ for each section:
 ```
 
 **Key Features:**
+
 - Respects paragraph breaks (double newlines)
 - Maintains sentence endings
 - Preserves headings and sections
@@ -122,6 +124,7 @@ for each section:
 **Purpose:** Auto-generate metadata without external API calls
 
 **Topics Detection (Pattern Matching):**
+
 - `code`: Detects code blocks (``` or indented)
 - `api`: Matches API/endpoint patterns
 - `database`: Finds database-related keywords
@@ -132,6 +135,7 @@ for each section:
 - `best-practices`: Detects practice recommendations
 
 **Domain Classification (Keyword Matching):**
+
 ```
 domain_keywords = {
     "machine-learning": [neural, learning, model, tensor, ...],
@@ -150,6 +154,7 @@ score_domain(text):
 ```
 
 **Difficulty Assessment (Scoring System):**
+
 ```
 score = 0
 
@@ -182,17 +187,18 @@ else:
 **Purpose:** Efficient semantic search via embeddings
 
 **Technology Stack:**
+
 - **Embeddings:** Sentence-Transformers (all-MiniLM-L6-v2)
   - 384-dimensional vectors
   - ~80MB model size
   - Fast encoding (~100 docs/sec)
-  
 - **Index:** FAISS IndexIDMap
   - L2 Euclidean distance
   - ~O(log n) search with indexing
   - Supports ~billions of vectors
 
 **Storage Structure:**
+
 ```
 ./data/vector_store/
 ├── faiss.index          # FAISS binary index
@@ -200,6 +206,7 @@ else:
 ```
 
 **Search Process:**
+
 ```
 1. Encode query with Sentence-Transformer
 2. Search FAISS index for k nearest neighbors
@@ -209,7 +216,8 @@ else:
 ```
 
 **Time Complexity:**
-- Add: O(m * d) where m = batch size, d = embedding dim
+
+- Add: O(m \* d) where m = batch size, d = embedding dim
 - Search: O(d + log n) where n = index size, d = embedding dim
 - Delete: O(k) where k = items to delete
 
@@ -218,6 +226,7 @@ else:
 **Purpose:** Persistent metadata and filtering
 
 **Database Schema (Supabase PostgreSQL):**
+
 ```sql
 documents {
   id: UUID (primary key)
@@ -236,21 +245,23 @@ documents {
 ```
 
 **Index Strategy:**
+
 ```
 - idx_source_created: (source, created_at)
   → Fast lookup by source with time range
-  
+
 - idx_domain: (domain)
   → Filter by technical domain
-  
+
 - idx_difficulty: (difficulty_level)
   → Find beginner/advanced content
-  
+
 - idx_embedding_id: (embedding_id)
   → Quick metadata lookup from vector search
 ```
 
 **Deduplication:**
+
 - Content hash ensures no duplicate content
 - Embedding ID links to single vector
 - Unique constraints prevent redundancy
@@ -268,6 +279,7 @@ Active Configuration
 ```
 
 Example:
+
 ```python
 # Default: CHUNK_SIZE = 512
 # .env: CHUNK_SIZE = 1024
@@ -278,6 +290,7 @@ Example:
 ## Integration Points
 
 ### API Integration (Future)
+
 ```python
 @app.post("/documents")
 async def ingest_document(request: DocumentRequest):
@@ -300,6 +313,7 @@ async def search(query: str, k: int = 5):
 ```
 
 ### LangGraph Integration (Future)
+
 ```python
 from langgraph.graph import StateGraph
 from app.memory import MemoryManager
@@ -316,16 +330,17 @@ graph.add_node("retrieve", memory_tool)
 
 ## Performance Characteristics
 
-| Operation | Complexity | Time (1M docs) |
-|-----------|-----------|---|
-| Chunk 1000 chars | O(n) | < 1ms |
-| Tag 1000 chars | O(n) | < 5ms |
-| Embed 1000 chars | O(d) | 10ms |
-| FAISS search | O(log n + d) | 50ms |
-| DB filter | O(log n) | 10ms |
-| **Total pipeline** | O(n log n + d) | ~75ms |
+| Operation          | Complexity     | Time (1M docs) |
+| ------------------ | -------------- | -------------- |
+| Chunk 1000 chars   | O(n)           | < 1ms          |
+| Tag 1000 chars     | O(n)           | < 5ms          |
+| Embed 1000 chars   | O(d)           | 10ms           |
+| FAISS search       | O(log n + d)   | 50ms           |
+| DB filter          | O(log n)       | 10ms           |
+| **Total pipeline** | O(n log n + d) | ~75ms          |
 
 Where:
+
 - n = corpus size
 - d = embedding dimension (384)
 
@@ -345,6 +360,7 @@ Production Environment:
 ```
 
 Notes:
+
 - FAISS index is read-heavy → can cache in memory
 - Metadata queries → benefit from PostgreSQL indexing
 - Embeddings → can be distributed across replicas
@@ -353,16 +369,19 @@ Notes:
 ## Scalability Considerations
 
 **Horizontal Scaling:**
+
 - Each API replica has own in-memory model (sentence-transformer)
 - FAISS index can be shared or replicated
 - Database queries scale with PostgreSQL replication
 
 **Vertical Scaling:**
+
 - Increase CHUNK_SIZE for fewer vectors
 - Use GPU for embeddings (faiss-gpu)
 - Optimize database with more resources
 
 **Data Scaling:**
+
 - FAISS supports billions of vectors
 - PostgreSQL proven for large tables
 - Supabase auto-scales storage

@@ -74,7 +74,9 @@ class SemanticChunker:
         if match:
             heading = match.group(1) or match.group(2) or match.group(3)
             # Remove heading from text
-            text = re.sub(heading_pattern, "", text, count=1, flags=re.MULTILINE).lstrip()
+            text = re.sub(
+                heading_pattern, "", text, count=1, flags=re.MULTILINE
+            ).lstrip()
             return heading.strip(), text
         return None, text
 
@@ -190,7 +192,9 @@ class SemanticChunker:
             while pos < len(section_body):
                 # Determine chunk boundaries
                 chunk_end = min(pos + self.chunk_size, len(section_body))
-                split_point = self._find_split_point(section_body[pos:chunk_end], self.chunk_size)
+                split_point = self._find_split_point(
+                    section_body[pos:chunk_end], self.chunk_size
+                )
 
                 chunk_text = section_body[pos : pos + split_point].strip()
 

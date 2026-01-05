@@ -19,5 +19,16 @@ spacy==3.7.2
 langchain==0.1.0
 tiktoken==0.5.2
 
+# LangGraph for agents
+langgraph==0.0.29
+langsmith==0.1.0
+
+# Groq API
+groq==0.4.2
+
+# Document processing
+PyPDF2==3.0.1
+python-docx==0.8.11
+
 # Supabase client
 supabase==2.3.3

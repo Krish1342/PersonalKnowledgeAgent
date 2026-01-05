@@ -14,6 +14,7 @@ uvicorn app.main:app --reload
 ## Basic Usage
 
 ### Add Documents
+
 ```python
 from app.memory import MemoryManager
 
@@ -29,6 +30,7 @@ doc_ids = manager.add_documents(
 ```
 
 ### Search Documents
+
 ```python
 results = manager.similarity_search(
     query="Search query",
@@ -44,6 +46,7 @@ for result in results:
 ```
 
 ### Get Statistics
+
 ```python
 stats = manager.get_memory_stats()
 print(f"Documents: {stats['total_documents']}")
@@ -54,6 +57,7 @@ print(f"Storage: {stats['index_size_mb']:.2f} MB")
 ## Configuration
 
 ### Key .env Variables
+
 ```env
 DATABASE_URL=postgresql://...       # Supabase connection
 CHUNK_SIZE=512                      # Chars per chunk
@@ -65,6 +69,7 @@ VECTOR_STORE_PATH=./data/vector_store  # Storage location
 ## API Quick Reference
 
 ### Chunking
+
 ```python
 from app.utils.chunking import create_chunker
 
@@ -76,6 +81,7 @@ for chunk in chunks:
 ```
 
 ### Tagging
+
 ```python
 from app.utils.tagging import create_tagger
 
@@ -91,6 +97,7 @@ print(f"Terms: {metadata.key_terms}")
 ## Common Tasks
 
 ### Filter by Domain
+
 ```python
 # In database directly
 from sqlalchemy.orm import sessionmaker
@@ -103,6 +110,7 @@ docs = session.query(DocumentMetadata).filter_by(
 ```
 
 ### Filter by Difficulty
+
 ```python
 beginner = session.query(DocumentMetadata).filter_by(
     difficulty_level="beginner"
@@ -110,12 +118,14 @@ beginner = session.query(DocumentMetadata).filter_by(
 ```
 
 ### Delete by Source
+
 ```python
 result = manager.delete_by_source("old_source")
 print(f"Deleted {result['documents_deleted']} documents")
 ```
 
 ### Batch Processing
+
 ```python
 documents = [
     open("doc1.md").read(),
@@ -132,27 +142,27 @@ manager.add_documents(
 
 ## Topics Available
 
-| Topic | Detection | Use Case |
-|-------|-----------|----------|
-| code | \`\`\` blocks | Programming content |
-| api | endpoint, request, response | API documentation |
-| database | query, schema, table | Database docs |
-| security | encryption, password, auth | Security guides |
-| performance | optimization, latency | Performance guides |
-| configuration | config, settings, parameters | Setup docs |
-| mathematics | equations, proofs | Academic content |
-| best-practices | best practice, recommendation | Guidelines |
+| Topic          | Detection                     | Use Case            |
+| -------------- | ----------------------------- | ------------------- |
+| code           | \`\`\` blocks                 | Programming content |
+| api            | endpoint, request, response   | API documentation   |
+| database       | query, schema, table          | Database docs       |
+| security       | encryption, password, auth    | Security guides     |
+| performance    | optimization, latency         | Performance guides  |
+| configuration  | config, settings, parameters  | Setup docs          |
+| mathematics    | equations, proofs             | Academic content    |
+| best-practices | best practice, recommendation | Guidelines          |
 
 ## Domains Available
 
-| Domain | Keywords | Example |
-|--------|----------|---------|
-| machine-learning | neural, model, tensor | AI/ML papers |
-| data-science | statistics, analysis, visualization | Data docs |
-| backend-development | API, database, server | Backend guides |
-| frontend-development | React, JavaScript, component | Web docs |
-| devops | Docker, Kubernetes, CI/CD | DevOps guides |
-| cloud | AWS, Azure, GCP | Cloud docs |
+| Domain               | Keywords                            | Example        |
+| -------------------- | ----------------------------------- | -------------- |
+| machine-learning     | neural, model, tensor               | AI/ML papers   |
+| data-science         | statistics, analysis, visualization | Data docs      |
+| backend-development  | API, database, server               | Backend guides |
+| frontend-development | React, JavaScript, component        | Web docs       |
+| devops               | Docker, Kubernetes, CI/CD           | DevOps guides  |
+| cloud                | AWS, Azure, GCP                     | Cloud docs     |
 
 ## Difficulty Scoring
 
@@ -163,6 +173,7 @@ Score ≤ 0        → beginner
 ```
 
 **Increases score:**
+
 - Proof, theorem, mathematical (+2)
 - Complex, optimization (+1.5)
 - Architecture, design pattern (+1)
@@ -170,6 +181,7 @@ Score ≤ 0        → beginner
 - High technical density (>30% long words)
 
 **Decreases score:**
+
 - Introduction, getting started, basics (-2)
 - Simple, tutorial (-1)
 - Example (-0.5)
@@ -177,6 +189,7 @@ Score ≤ 0        → beginner
 ## Performance Tips
 
 ### Speed Up
+
 ```python
 # Use larger chunks
 chunker = create_chunker(chunk_size=1024)
@@ -189,6 +202,7 @@ manager.add_documents(..., auto_tag=False)
 ```
 
 ### Optimize Search
+
 ```python
 # Use threshold to filter poor matches
 results = manager.similarity_search(
@@ -199,6 +213,7 @@ results = manager.similarity_search(
 ```
 
 ### Manage Storage
+
 ```python
 # Check storage usage
 stats = manager.get_memory_stats()
@@ -211,12 +226,14 @@ manager.delete_by_source("obsolete_source")
 ## Troubleshooting
 
 ### Connection Error
+
 ```python
 # Check DATABASE_URL format
 # Should be: postgresql://user:pass@host:5432/db
 ```
 
 ### FAISS Error
+
 ```python
 # Reinitialize if corrupted
 import shutil
@@ -225,6 +242,7 @@ MemoryManager().init_db()
 ```
 
 ### Embedding Model
+
 ```python
 # If download fails, pre-download:
 from sentence_transformers import SentenceTransformer
@@ -233,17 +251,18 @@ SentenceTransformer('all-MiniLM-L6-v2')
 
 ## Documentation Links
 
-| Document | Purpose |
-|----------|---------|
-| [SETUP.md](SETUP.md) | Installation & setup |
-| [PREPROCESSING.md](PREPROCESSING.md) | Detailed usage guide |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Technical design |
-| [EXAMPLES.py](EXAMPLES.py) | Code examples |
-| [CHECKLIST.md](CHECKLIST.md) | Implementation checklist |
+| Document                             | Purpose                  |
+| ------------------------------------ | ------------------------ |
+| [SETUP.md](SETUP.md)                 | Installation & setup     |
+| [PREPROCESSING.md](PREPROCESSING.md) | Detailed usage guide     |
+| [ARCHITECTURE.md](ARCHITECTURE.md)   | Technical design         |
+| [EXAMPLES.py](EXAMPLES.py)           | Code examples            |
+| [CHECKLIST.md](CHECKLIST.md)         | Implementation checklist |
 
 ## Environment Templates
 
 ### Development
+
 ```env
 ENVIRONMENT=development
 DEBUG=true
@@ -254,6 +273,7 @@ CHUNK_OVERLAP=50
 ```
 
 ### Production
+
 ```env
 ENVIRONMENT=production
 DEBUG=false
@@ -266,6 +286,7 @@ CHUNK_OVERLAP=100
 ## Testing
 
 ### Quick Test
+
 ```python
 from app.memory import MemoryManager
 

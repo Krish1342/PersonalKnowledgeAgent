@@ -16,6 +16,7 @@ pip install -r requirements.txt
 ```
 
 The following new packages are added:
+
 - **nltk**: Natural language toolkit
 - **spacy**: NLP library
 - **langchain**: LLM framework (for future integration)
@@ -32,6 +33,7 @@ The following new packages are added:
 4. Copy the connection string (PostgreSQL format)
 
 Update `.env`:
+
 ```env
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your-anon-key
@@ -41,6 +43,7 @@ DATABASE_URL=postgresql://postgres:password@your-project.supabase.co:5432/postgr
 #### Option B: Local Development (PostgreSQL)
 
 If using local PostgreSQL:
+
 ```env
 DATABASE_URL=postgresql://postgres:password@localhost:5432/knowledge_agent
 ```
@@ -55,6 +58,7 @@ manager.init_db()  # Creates tables automatically
 ```
 
 Or in Python:
+
 ```bash
 python -c "from app.memory import MemoryManager; MemoryManager().init_db()"
 ```
@@ -167,22 +171,23 @@ for result in results:
 
 The system creates a `documents` table with:
 
-| Column | Type | Purpose |
-|--------|------|---------|
-| id | UUID | Primary key |
-| source | VARCHAR(255) | Document source |
-| content_hash | VARCHAR(64) | Content deduplication |
-| tags | JSONB | Manual tags |
-| topics | JSONB | Auto-generated topics |
-| domain | VARCHAR(100) | Auto-detected domain |
-| difficulty_level | VARCHAR(50) | Auto-assessed difficulty |
-| key_terms | JSONB | Extracted keywords |
-| metadata | JSONB | Additional metadata |
-| created_at | TIMESTAMP | Creation timestamp |
-| updated_at | TIMESTAMP | Last update |
-| embedding_id | INTEGER | Vector store reference |
+| Column           | Type         | Purpose                  |
+| ---------------- | ------------ | ------------------------ |
+| id               | UUID         | Primary key              |
+| source           | VARCHAR(255) | Document source          |
+| content_hash     | VARCHAR(64)  | Content deduplication    |
+| tags             | JSONB        | Manual tags              |
+| topics           | JSONB        | Auto-generated topics    |
+| domain           | VARCHAR(100) | Auto-detected domain     |
+| difficulty_level | VARCHAR(50)  | Auto-assessed difficulty |
+| key_terms        | JSONB        | Extracted keywords       |
+| metadata         | JSONB        | Additional metadata      |
+| created_at       | TIMESTAMP    | Creation timestamp       |
+| updated_at       | TIMESTAMP    | Last update              |
+| embedding_id     | INTEGER      | Vector store reference   |
 
 **Indexes:**
+
 - `idx_domain` - For domain filtering
 - `idx_difficulty` - For difficulty filtering
 - `idx_source_created` - For temporal queries
@@ -193,6 +198,7 @@ The system creates a `documents` table with:
 ### Issue: "No module named 'faiss'"
 
 Solution:
+
 ```bash
 pip install faiss-cpu  # For CPU
 # or
@@ -202,11 +208,13 @@ pip install faiss-gpu  # For GPU (requires CUDA)
 ### Issue: "Connection refused" for database
 
 Check your DATABASE_URL and ensure:
+
 1. PostgreSQL/Supabase is running
 2. Credentials are correct
 3. Database exists
 
 Test connection:
+
 ```bash
 psql "postgresql://user:password@host:5432/database"
 ```
@@ -216,6 +224,7 @@ psql "postgresql://user:password@host:5432/database"
 The `all-MiniLM-L6-v2` model (~80MB) downloads on first use.
 
 For offline environments, pre-download:
+
 ```python
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -224,6 +233,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 ### Issue: FAISS index corruption
 
 Delete and recreate:
+
 ```bash
 rm -rf ./data/vector_store/*
 python -c "from app.memory import MemoryManager; MemoryManager().init_db()"
@@ -232,21 +242,25 @@ python -c "from app.memory import MemoryManager; MemoryManager().init_db()"
 ## Performance Tuning
 
 ### Chunking Speed
+
 - Smaller chunks = faster processing but more vectors
 - Larger chunks = fewer vectors but less granular search
 - Default 512 chars is balanced for most use cases
 
 ### Tagging Speed
+
 - Tagging uses heuristics (very fast)
 - No external API calls needed
 - Can be disabled with `auto_tag=False`
 
 ### Embedding Speed
+
 - Sentence-Transformers: ~100 chunks/second (single CPU)
 - FAISS search: O(log n) with indexing
 - For millions of documents, consider GPU acceleration
 
 ### Database Optimization
+
 - Indexes on domain and difficulty enable fast filtering
 - JSONB fields are efficient for flexible metadata
 - Supabase auto-manages connection pooling
@@ -266,6 +280,7 @@ print(f"Sources: {stats['sources']}")
 ### Database Monitoring
 
 Via Supabase Dashboard:
+
 1. Go to Home → Database → Tables
 2. Check `documents` table size and row count
 3. Monitor query performance
@@ -273,6 +288,7 @@ Via Supabase Dashboard:
 ### Log Analysis
 
 Enable JSON logs for production:
+
 ```env
 LOG_FORMAT=json
 ```
@@ -282,17 +298,21 @@ Parse with log aggregation tools (ELK, Datadog, etc.)
 ## Backup Strategy
 
 ### FAISS Index Backup
+
 ```bash
 cp -r ./data/vector_store /backup/vector_store_$(date +%Y%m%d)
 ```
 
 ### Database Backup
+
 Via Supabase Dashboard:
+
 1. Settings → Backups
 2. Configure automated backups
 3. Download on-demand backups
 
 ### Complete Backup Script
+
 ```bash
 #!/bin/bash
 BACKUP_DIR="/backup/knowledge_agent_$(date +%Y%m%d_%H%M%S)"
@@ -328,6 +348,7 @@ echo "Backup complete: $BACKUP_DIR"
 ## Support
 
 For issues:
+
 1. Check [PREPROCESSING.md](PREPROCESSING.md) for detailed docs
 2. Review [EXAMPLES.py](EXAMPLES.py) for usage patterns
 3. Check logs: `tail -f app.log`

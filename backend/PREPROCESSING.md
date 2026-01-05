@@ -7,13 +7,16 @@ and automatic metadata generation for knowledge base documents.
 """
 
 # SEMANTIC-AWARE CHUNKING
+
 # ======================
 
 ## Overview
+
 The SemanticChunker respects document structure while creating meaningful chunks.
 It preserves context by:
+
 - Recognizing paragraph boundaries
-- Maintaining sentence integrity  
+- Maintaining sentence integrity
 - Preserving section headings
 - Supporting overlap between chunks
 
@@ -46,6 +49,7 @@ all_chunks = chunker.chunk_documents(
 ## Chunk Structure
 
 Each Chunk contains:
+
 - `text`: The actual chunk content
 - `start_char`: Character position in original document
 - `end_char`: End character position
@@ -54,12 +58,14 @@ Each Chunk contains:
 - `chunk_index`: Index in chunk sequence
 - `total_chunks`: Total chunks from document
 
-
 # AUTO-GENERATED METADATA (TAGGING)
+
 # ==================================
 
 ## Overview
+
 ContentTagger automatically extracts:
+
 - **Topics**: What the content is about (code, api, database, security, etc.)
 - **Domain**: Technical domain (ml, backend, frontend, devops, cloud)
 - **Difficulty Level**: Content complexity (beginner, intermediate, advanced)
@@ -68,7 +74,9 @@ ContentTagger automatically extracts:
 ## Tagging Strategy
 
 ### Topic Detection
+
 Uses pattern matching to identify:
+
 - Code blocks and programming content
 - API and endpoint discussions
 - Database operations
@@ -78,7 +86,9 @@ Uses pattern matching to identify:
 - Mathematical/theoretical content
 
 ### Domain Classification
+
 Keywords-based detection across:
+
 - Machine Learning (neural networks, deep learning, models)
 - Data Science (statistics, visualization, analysis)
 - Backend Development (APIs, databases, servers)
@@ -87,7 +97,9 @@ Keywords-based detection across:
 - Cloud Services (AWS, Azure, GCP)
 
 ### Difficulty Scoring
+
 Weighted heuristics consider:
+
 - **Advanced indicators**: proof, theorem, complex, optimization (+weights)
 - **Beginner indicators**: introduction, tutorial, basics (-weights)
 - **Text complexity**: Average word length, technical density
@@ -128,8 +140,8 @@ class ContentMetadata:
     content_length: int            # Character count
 ```
 
-
 # INTEGRATED PIPELINE
+
 # ====================
 
 ## MemoryManager Processing
@@ -181,8 +193,8 @@ Raw Documents
 Queryable Knowledge Base
 ```
 
-
 # DATABASE SCHEMA (SUPABASE)
+
 # ===========================
 
 The documents table includes new fields:
@@ -211,6 +223,7 @@ CREATE TABLE documents (
 ## Supabase Configuration
 
 Set in `.env`:
+
 ```
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your-anon-key
@@ -220,8 +233,8 @@ DATABASE_URL=postgresql://postgres:password@your-project.supabase.co:5432/postgr
 The backend uses standard SQLAlchemy with PostgreSQL, so it works seamlessly
 with Supabase's PostgreSQL database.
 
-
 # CONFIGURATION
+
 # ==============
 
 In config.py:
@@ -235,8 +248,8 @@ SUPABASE_KEY = "..."
 DATABASE_URL = "postgresql://..."
 ```
 
-
 # EXAMPLE: COMPLETE WORKFLOW
+
 # ============================
 
 ```python
@@ -284,20 +297,23 @@ print(f"Total documents: {stats['total_documents']}")
 print(f"Sources: {stats['sources']}")
 ```
 
-
 # PERFORMANCE NOTES
+
 # ==================
 
 - **Chunking**: O(n) where n = document length
+
   - Respects boundaries for semantic meaning
   - Minimal overhead compared to fixed-size splits
 
 - **Tagging**: O(n) for pattern matching
+
   - No external model calls (fast heuristics)
   - Domain classification: 6 domain checks
   - Topic extraction: regex-based patterns
 
 - **Embedding**: O(m) where m = number of chunks
+
   - Uses efficient sentence-transformers
   - FAISS provides ~O(log n) search
 

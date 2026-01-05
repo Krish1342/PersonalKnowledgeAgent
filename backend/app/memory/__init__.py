@@ -169,7 +169,9 @@ class MemoryManager:
                     tags=tags,
                     topics=chunk_meta.topics if chunk_meta else None,
                     domain=chunk_meta.domain if chunk_meta else None,
-                    difficulty_level=chunk_meta.difficulty_level if chunk_meta else None,
+                    difficulty_level=(
+                        chunk_meta.difficulty_level if chunk_meta else None
+                    ),
                     key_terms=chunk_meta.key_terms if chunk_meta else None,
                     metadata=doc_meta,
                 )

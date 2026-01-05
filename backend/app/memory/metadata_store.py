@@ -5,7 +5,16 @@ Manages document metadata including source, tags, domain, difficulty, and timest
 
 from typing import Optional, List, Dict, Any
 from datetime import datetime
-from sqlalchemy import create_engine, Column, String, DateTime, Integer, JSON, Index, Text
+from sqlalchemy import (
+    create_engine,
+    Column,
+    String,
+    DateTime,
+    Integer,
+    JSON,
+    Index,
+    Text,
+)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 import uuid
@@ -78,7 +87,9 @@ class MetadataStore:
         self.engine = create_engine(self.database_url, pool_pre_ping=True)
         self.SessionLocal = sessionmaker(bind=self.engine)
 
-        logger.info(f"Initializing metadata store (Supabase): {self.database_url[:50]}...")
+        logger.info(
+            f"Initializing metadata store (Supabase): {self.database_url[:50]}..."
+        )
 
     def init_db(self) -> None:
         """
