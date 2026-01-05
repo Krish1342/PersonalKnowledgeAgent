@@ -7,27 +7,32 @@ A production-ready knowledge management system with intelligent document ingesti
 ## 📚 Documentation Structure
 
 ### Quick Start
+
 1. **[README.md](./README.md)** - 🎯 Project summary and quick start
 2. **[INGESTION_COMPLETE.md](./backend/INGESTION_COMPLETE.md)** - ✅ Implementation status
 
 ### Core Documentation
 
 #### Ingestion System
+
 - **[docs/INGESTION_AGENT.md](./backend/docs/INGESTION_AGENT.md)** - Architecture and usage guide
 - **[docs/INGESTION_SYSTEM.md](./backend/docs/INGESTION_SYSTEM.md)** - Complete system overview
 - **[docs/API.md](./backend/docs/API.md)** - REST endpoint reference
 
 #### Setup & Deployment
+
 - **[docs/SETUP.md](./backend/docs/SETUP.md)** - Installation and configuration
 - **[docs/DEPLOYMENT.md](./backend/docs/DEPLOYMENT.md)** - Deployment and usage guide
 - **[VERIFICATION.md](./backend/VERIFICATION.md)** - Verification and checklist
 
 #### Technical Details
+
 - **[docs/IMPLEMENTATION.md](./backend/docs/IMPLEMENTATION.md)** - Implementation details
 - **[docs/MEMORY.md](./backend/docs/MEMORY.md)** - Memory system (vector store + metadata)
 - **[docs/PREPROCESSING.md](./backend/docs/PREPROCESSING.md)** - Chunking and tagging
 
 ### Code Examples
+
 - **[examples/ingestion_example.py](./backend/examples/ingestion_example.py)** - 3 runnable examples
 - **[tests/test_ingestion_agent.py](./backend/tests/test_ingestion_agent.py)** - Unit tests
 
@@ -96,6 +101,7 @@ PersonalKnowledgeAgent/
 ## 🎯 What's Included
 
 ### Core Features
+
 - ✅ Document ingestion (PDF, DOCX, Markdown, Text)
 - ✅ Semantic chunking with boundary preservation
 - ✅ Groq AI-powered content enrichment
@@ -106,6 +112,7 @@ PersonalKnowledgeAgent/
 - ✅ Error handling and fallbacks
 
 ### Documentation
+
 - ✅ Architecture overview with diagrams
 - ✅ API reference with examples
 - ✅ Usage guides (Python and REST)
@@ -115,6 +122,7 @@ PersonalKnowledgeAgent/
 - ✅ Performance metrics
 
 ### Code Quality
+
 - ✅ 950+ lines of production code
 - ✅ 15+ unit tests
 - ✅ 3 runnable examples
@@ -208,16 +216,16 @@ curl -X POST http://localhost:8000/documents/ingest \
 
 ## 📊 Implementation Status
 
-| Component | Status | Files | Lines |
-|-----------|--------|-------|-------|
-| Core Agent | ✅ Complete | 1 | 670+ |
-| REST API | ✅ Complete | 1 | 280+ |
-| Configuration | ✅ Complete | 3 | 50+ |
-| Memory Layer | ✅ Complete | 2 | 400+ |
-| Preprocessing | ✅ Complete | 2 | 300+ |
-| Documentation | ✅ Complete | 8 | 3000+ |
-| Examples | ✅ Complete | 1 | 150+ |
-| Tests | ✅ Complete | 1 | 250+ |
+| Component     | Status      | Files | Lines |
+| ------------- | ----------- | ----- | ----- |
+| Core Agent    | ✅ Complete | 1     | 670+  |
+| REST API      | ✅ Complete | 1     | 280+  |
+| Configuration | ✅ Complete | 3     | 50+   |
+| Memory Layer  | ✅ Complete | 2     | 400+  |
+| Preprocessing | ✅ Complete | 2     | 300+  |
+| Documentation | ✅ Complete | 8     | 3000+ |
+| Examples      | ✅ Complete | 1     | 150+  |
+| Tests         | ✅ Complete | 1     | 250+  |
 
 **Total**: 950+ lines of production code + 3000+ lines of documentation
 
@@ -225,12 +233,12 @@ curl -X POST http://localhost:8000/documents/ingest \
 
 ### Endpoints
 
-| Endpoint | Method | Purpose |
-|----------|--------|---------|
-| `/documents/ingest` | POST | Ingest text/markdown |
-| `/documents/ingest/upload` | POST | Upload files |
-| `/documents/ingest/batch` | POST | Batch processing |
-| `/documents/ingest/status` | GET | Check status |
+| Endpoint                   | Method | Purpose              |
+| -------------------------- | ------ | -------------------- |
+| `/documents/ingest`        | POST   | Ingest text/markdown |
+| `/documents/ingest/upload` | POST   | Upload files         |
+| `/documents/ingest/batch`  | POST   | Batch processing     |
+| `/documents/ingest/status` | GET    | Check status         |
 
 ### Response Format
 
@@ -334,13 +342,13 @@ See [docs/DEPLOYMENT.md](./backend/docs/DEPLOYMENT.md) for details.
 
 Expected performance on standard hardware:
 
-| Operation | Speed |
-|-----------|-------|
-| PDF extraction | ~100-500 tokens/sec |
-| Semantic chunking | < 100ms per 10KB |
-| Embedding generation | 10-50ms per chunk |
-| Groq enrichment | 1-3 sec per chunk |
-| Storage operations | < 100ms per chunk |
+| Operation            | Speed               |
+| -------------------- | ------------------- |
+| PDF extraction       | ~100-500 tokens/sec |
+| Semantic chunking    | < 100ms per 10KB    |
+| Embedding generation | 10-50ms per chunk   |
+| Groq enrichment      | 1-3 sec per chunk   |
+| Storage operations   | < 100ms per chunk   |
 
 ## 🔒 Security Features
 

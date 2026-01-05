@@ -11,6 +11,7 @@ A complete, production-ready document ingestion system using LangGraph and Groq 
 ### 1. Core Implementation (2 Files)
 
 **`app/agents/ingestion_agent.py`** (670+ lines)
+
 - LangGraph orchestrator with 5-node workflow
 - IngestionAgent class for coordinating the pipeline
 - DocumentCleaner for multi-format text extraction
@@ -20,6 +21,7 @@ A complete, production-ready document ingestion system using LangGraph and Groq 
 - Full async/await support
 
 **`app/api/ingest.py`** (280+ lines)
+
 - 4 REST API endpoints
 - Pydantic request/response models
 - File upload handling
@@ -29,6 +31,7 @@ A complete, production-ready document ingestion system using LangGraph and Groq 
 ### 2. Integration (1 File Modified)
 
 **`app/main.py`**
+
 - Integrated ingestion router
 - Registered endpoints
 - Updated imports
@@ -79,6 +82,7 @@ OUTPUT (IngestionResult)
 ## 🎯 Key Features
 
 ✅ **Document Support**
+
 - PDF files
 - DOCX (Word) documents
 - Markdown content
@@ -86,12 +90,14 @@ OUTPUT (IngestionResult)
 - Automatic format detection
 
 ✅ **Intelligent Processing**
+
 - Semantic chunking with boundary preservation
 - Section heading preservation
 - Configurable chunk size & overlap
 - Context continuity
 
 ✅ **Content Enrichment**
+
 - Groq API integration for AI analysis
 - 8 topic classifications
 - 6 domain categories
@@ -100,6 +106,7 @@ OUTPUT (IngestionResult)
 - Intelligent fallback to local tagging
 
 ✅ **Storage & Persistence**
+
 - 384-dimensional embeddings (all-MiniLM-L6-v2)
 - FAISS vector index for similarity search
 - PostgreSQL metadata with rich schema
@@ -107,12 +114,14 @@ OUTPUT (IngestionResult)
 - Full metadata indexing
 
 ✅ **REST API Endpoints**
+
 - POST /documents/ingest - Text ingestion
 - POST /documents/ingest/upload - File uploads
 - POST /documents/ingest/batch - Batch processing
 - GET /documents/ingest/status - Status monitoring
 
 ✅ **Error Handling**
+
 - Graceful API fallbacks
 - Per-document isolation in batches
 - File format validation
@@ -147,6 +156,7 @@ curl http://localhost:8000/documents/ingest/status
 ## 💻 Usage Examples
 
 ### Python (Direct Agent)
+
 ```python
 from app.agents.ingestion_agent import IngestionAgent
 
@@ -160,6 +170,7 @@ print(f"Created {result.chunks_created} chunks")
 ```
 
 ### REST API (Text Ingestion)
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest \
   -H "Content-Type: application/json" \
@@ -171,6 +182,7 @@ curl -X POST http://localhost:8000/documents/ingest \
 ```
 
 ### REST API (File Upload)
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest/upload \
   -F "file=@document.pdf" \
@@ -181,16 +193,16 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 
 ## 📊 Project Statistics
 
-| Metric | Value |
-|--------|-------|
-| Files Created | 8 |
-| Files Modified | 3 |
-| Lines of Code | 950+ |
+| Metric                 | Value |
+| ---------------------- | ----- |
+| Files Created          | 8     |
+| Files Modified         | 3     |
+| Lines of Code          | 950+  |
 | Lines of Documentation | 3000+ |
-| API Endpoints | 4 |
-| Unit Tests | 15+ |
-| Examples | 3 |
-| Dependencies Added | 5 |
+| API Endpoints          | 4     |
+| Unit Tests             | 15+   |
+| Examples               | 3     |
+| Dependencies Added     | 5     |
 
 ---
 
@@ -199,6 +211,7 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 The ingestion agent seamlessly integrates with:
 
 ✅ **Memory Layer**
+
 - Uses SemanticChunker for intelligent splitting
 - Uses ContentTagger for local enrichment fallback
 - Uses MemoryManager for unified storage interface
@@ -206,12 +219,14 @@ The ingestion agent seamlessly integrates with:
 - Persists to PostgreSQL metadata store
 
 ✅ **FastAPI Application**
+
 - Registered in app.main.py
 - Async/await support
 - Automatic Swagger documentation
 - Pydantic validation
 
 ✅ **External Services**
+
 - Groq API for AI-powered analysis
 - Supabase for PostgreSQL database
 - PyPDF2 for PDF extraction
@@ -260,13 +275,13 @@ All settings are in `.env.example` and can be customized in `.env`.
 
 Expected performance on standard hardware:
 
-| Operation | Speed |
-|-----------|-------|
-| Text extraction | 100-500 tokens/sec |
-| Semantic chunking | < 100ms per 10KB |
-| Embedding generation | 10-50ms per chunk |
-| Groq enrichment | 1-3 sec per chunk |
-| Storage operations | < 100ms per chunk |
+| Operation            | Speed              |
+| -------------------- | ------------------ |
+| Text extraction      | 100-500 tokens/sec |
+| Semantic chunking    | < 100ms per 10KB   |
+| Embedding generation | 10-50ms per chunk  |
+| Groq enrichment      | 1-3 sec per chunk  |
+| Storage operations   | < 100ms per chunk  |
 
 ---
 
@@ -302,6 +317,7 @@ See [docs/DEPLOYMENT.md](./backend/docs/DEPLOYMENT.md) for detailed deployment i
 ## 📖 File Reference
 
 ### Code Files
+
 ```
 backend/app/agents/ingestion_agent.py   (670+ lines) ✨ NEW
 backend/app/api/ingest.py               (280+ lines) ✨ NEW
@@ -309,6 +325,7 @@ backend/app/main.py                     (updated)
 ```
 
 ### Documentation
+
 ```
 backend/docs/INGESTION_AGENT.md         ✨ NEW
 backend/docs/API.md                     (updated)
@@ -322,12 +339,14 @@ INDEX.md                                ✨ NEW
 ```
 
 ### Examples & Tests
+
 ```
 backend/examples/ingestion_example.py   ✨ NEW
 backend/tests/test_ingestion_agent.py   ✨ NEW
 ```
 
 ### Configuration
+
 ```
 backend/requirements.txt                (updated +5 packages)
 backend/.env.example                    (updated +2 variables)
@@ -338,16 +357,19 @@ backend/.env.example                    (updated +2 variables)
 ## 🎓 Learning Resources
 
 **For Beginners**
+
 1. Read [README.md](./README.md)
 2. Run [examples/ingestion_example.py](./backend/examples/ingestion_example.py)
 3. Test endpoints via Swagger UI
 
 **For Advanced Users**
+
 1. Review [docs/INGESTION_AGENT.md](./backend/docs/INGESTION_AGENT.md)
 2. Study [app/agents/ingestion_agent.py](./backend/app/agents/ingestion_agent.py)
 3. Check [tests/test_ingestion_agent.py](./backend/tests/test_ingestion_agent.py)
 
 **For Deployment**
+
 1. Follow [docs/DEPLOYMENT.md](./backend/docs/DEPLOYMENT.md)
 2. Use [VERIFICATION.md](./backend/VERIFICATION.md) checklist
 3. Review production settings
@@ -392,6 +414,7 @@ The Personal Knowledge Agent now has a complete, intelligent, production-ready d
 **Status**: ✅ **READY FOR IMMEDIATE USE**
 
 All components are:
+
 - Fully implemented
 - Thoroughly tested
 - Comprehensively documented

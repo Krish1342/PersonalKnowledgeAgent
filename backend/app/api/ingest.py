@@ -154,8 +154,7 @@ async def ingest_file(
             input_type = "text"
         else:
             raise ValueError(
-                f"Unsupported file type: {ext}. "
-                "Supported: pdf, docx, md, txt"
+                f"Unsupported file type: {ext}. " "Supported: pdf, docx, md, txt"
             )
 
         result = await agent.ingest(

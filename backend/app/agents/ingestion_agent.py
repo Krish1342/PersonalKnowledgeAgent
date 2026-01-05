@@ -21,6 +21,7 @@ logger = get_logger(__name__)
 
 class InputType(str, Enum):
     """Supported input document types."""
+
     TEXT = "text"
     MARKDOWN = "markdown"
     PDF = "pdf"
@@ -30,6 +31,7 @@ class InputType(str, Enum):
 @dataclass
 class IngestionResult:
     """Result of document ingestion."""
+
     success: bool
     chunks_created: int
     documents_processed: int
@@ -42,6 +44,7 @@ class IngestionResult:
 
 class IngestionState(TypedDict):
     """State for ingestion workflow."""
+
     raw_input: str
     input_type: str
     source: str
@@ -99,9 +102,7 @@ class DocumentCleaner:
             text = DocumentCleaner._clean_markdown(text)
 
         # Remove control characters
-        text = "".join(
-            char for char in text if ord(char) >= 32 or char in "\n\t"
-        )
+        text = "".join(char for char in text if ord(char) >= 32 or char in "\n\t")
 
         logger.debug(f"Cleaned text: {len(text)} chars")
         return text
@@ -251,14 +252,10 @@ class IngestionAgent:
         Returns:
             Updated state with cleaned text
         """
-        logger.info(
-            f"Clean step: {state['input_type']} from {state['source']}"
-        )
+        logger.info(f"Clean step: {state['input_type']} from {state['source']}")
 
         try:
-            cleaned = self.cleaner.clean_text(
-                state["raw_input"], state["input_type"]
-            )
+            cleaned = self.cleaner.clean_text(state["raw_input"], state["input_type"])
             state["cleaned_text"] = cleaned
             logger.info(f"Cleaned text: {len(cleaned)} chars")
             return state
@@ -325,7 +322,9 @@ class IngestionAgent:
             logger.error(f"Enrichment error: {e}")
             raise
 
-    def _analyze_chunk_with_groq(self, chunk: Dict[str, Any], index: int) -> Dict[str, Any]:
+    def _analyze_chunk_with_groq(
+        self, chunk: Dict[str, Any], index: int
+    ) -> Dict[str, Any]:
         """
         Analyze chunk using Groq API for additional insights.
 
@@ -471,8 +470,7 @@ Text: {text_sample}"""
             raise ValueError("Source cannot be empty")
 
         logger.info(
-            f"Starting ingestion: {input_type} from {source} "
-            f"({len(content)} bytes)"
+            f"Starting ingestion: {input_type} from {source} " f"({len(content)} bytes)"
         )
 
         # Initialize state

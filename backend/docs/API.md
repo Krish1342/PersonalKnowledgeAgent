@@ -24,11 +24,11 @@ Ingest plain text or markdown content.
 
 #### Parameters
 
-| Parameter | Type | Description | Example |
-|-----------|------|-------------|---------|
-| `content` | string | Document content | "# Heading\n\nContent here" |
-| `source` | string | Source identifier | "my_document.md" |
-| `input_type` | string | Content type: text, markdown, pdf, docx | "markdown" |
+| Parameter    | Type   | Description                             | Example                     |
+| ------------ | ------ | --------------------------------------- | --------------------------- |
+| `content`    | string | Document content                        | "# Heading\n\nContent here" |
+| `source`     | string | Source identifier                       | "my_document.md"            |
+| `input_type` | string | Content type: text, markdown, pdf, docx | "markdown"                  |
 
 #### Response (200 OK)
 
@@ -41,13 +41,20 @@ Ingest plain text or markdown content.
   "vector_embeddings_stored": true,
   "message": "Successfully ingested 1 document with 5 chunks",
   "errors": [],
-  "document_ids": ["doc_123abc", "doc_124def", "doc_125ghi", "doc_126jkl", "doc_127mno"]
+  "document_ids": [
+    "doc_123abc",
+    "doc_124def",
+    "doc_125ghi",
+    "doc_126jkl",
+    "doc_127mno"
+  ]
 }
 ```
 
 #### Error Responses
 
 **400 Bad Request** - Invalid input
+
 ```json
 {
   "detail": "Invalid request: Content cannot be empty"
@@ -55,6 +62,7 @@ Ingest plain text or markdown content.
 ```
 
 **500 Internal Server Error** - Processing failure
+
 ```json
 {
   "detail": "Ingestion failed: Vector store error"
@@ -64,6 +72,7 @@ Ingest plain text or markdown content.
 #### Examples
 
 **cURL**
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest \
   -H "Content-Type: application/json" \
@@ -75,6 +84,7 @@ curl -X POST http://localhost:8000/documents/ingest \
 ```
 
 **Python**
+
 ```python
 import requests
 
@@ -92,15 +102,16 @@ print(f"Chunks created: {result['chunks_created']}")
 ```
 
 **JavaScript**
+
 ```javascript
-const response = await fetch('http://localhost:8000/documents/ingest', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+const response = await fetch("http://localhost:8000/documents/ingest", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    content: 'Your content here',
-    source: 'document.md',
-    input_type: 'markdown'
-  })
+    content: "Your content here",
+    source: "document.md",
+    input_type: "markdown",
+  }),
 });
 
 const result = await response.json();
@@ -117,10 +128,10 @@ Upload and ingest a document file.
 
 **Multipart Form Data**
 
-| Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `file` | file | Document file (PDF, DOCX, Markdown, Text) | Yes |
-| `source` | string | Source identifier (defaults to filename) | No |
+| Field    | Type   | Description                               | Required |
+| -------- | ------ | ----------------------------------------- | -------- |
+| `file`   | file   | Document file (PDF, DOCX, Markdown, Text) | Yes      |
+| `source` | string | Source identifier (defaults to filename)  | No       |
 
 #### Supported Formats
 
@@ -147,6 +158,7 @@ Upload and ingest a document file.
 #### Error Responses
 
 **400 Bad Request** - Unsupported file type
+
 ```json
 {
   "detail": "Invalid request: Unsupported file type: docx. Supported: pdf, docx, md, txt"
@@ -154,6 +166,7 @@ Upload and ingest a document file.
 ```
 
 **400 Bad Request** - Empty file
+
 ```json
 {
   "detail": "Invalid request: File is empty"
@@ -161,6 +174,7 @@ Upload and ingest a document file.
 ```
 
 **500 Internal Server Error** - Processing failure
+
 ```json
 {
   "detail": "File ingestion failed: PDF extraction error"
@@ -170,6 +184,7 @@ Upload and ingest a document file.
 #### Examples
 
 **cURL**
+
 ```bash
 # Upload PDF
 curl -X POST http://localhost:8000/documents/ingest/upload \
@@ -182,6 +197,7 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 ```
 
 **Python**
+
 ```python
 import requests
 
@@ -199,14 +215,15 @@ print(f"Chunks: {result['chunks_created']}")
 ```
 
 **JavaScript (FormData)**
+
 ```javascript
 const formData = new FormData();
-formData.append('file', fileInput.files[0]);
-formData.append('source', 'my_document');
+formData.append("file", fileInput.files[0]);
+formData.append("source", "my_document");
 
-const response = await fetch('http://localhost:8000/documents/ingest/upload', {
-  method: 'POST',
-  body: formData
+const response = await fetch("http://localhost:8000/documents/ingest/upload", {
+  method: "POST",
+  body: formData,
 });
 
 const result = await response.json();
@@ -265,6 +282,7 @@ Array of ingestion results, one per document:
 #### Examples
 
 **cURL**
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest/batch \
   -H "Content-Type: application/json" \
@@ -285,6 +303,7 @@ curl -X POST http://localhost:8000/documents/ingest/batch \
 ```
 
 **Python**
+
 ```python
 import requests
 
@@ -339,11 +358,13 @@ Check if the ingestion agent is ready.
 #### Examples
 
 **cURL**
+
 ```bash
 curl http://localhost:8000/documents/ingest/status
 ```
 
 **Python**
+
 ```python
 import requests
 
@@ -362,14 +383,14 @@ Standard response format for all ingestion endpoints.
 
 ```typescript
 interface IngestResponse {
-  success: boolean;              // Operation succeeded
-  chunks_created: number;        // Number of chunks created
-  documents_processed: number;   // Number of documents processed
-  metadata_stored: boolean;      // Metadata persistence successful
+  success: boolean; // Operation succeeded
+  chunks_created: number; // Number of chunks created
+  documents_processed: number; // Number of documents processed
+  metadata_stored: boolean; // Metadata persistence successful
   vector_embeddings_stored: boolean; // Embeddings stored successfully
-  message: string;               // Human-readable status message
-  errors: string[];              // Error messages if any
-  document_ids: string[];        // IDs of created documents
+  message: string; // Human-readable status message
+  errors: string[]; // Error messages if any
+  document_ids: string[]; // IDs of created documents
 }
 ```
 
@@ -379,9 +400,9 @@ Request format for `/documents/ingest`
 
 ```typescript
 interface IngestRequest {
-  content: string;               // Document content
-  source: string;                // Source identifier
-  input_type?: string;           // Type: text, markdown, pdf, docx
+  content: string; // Document content
+  source: string; // Source identifier
+  input_type?: string; // Type: text, markdown, pdf, docx
 }
 ```
 
@@ -391,7 +412,7 @@ Request format for `/documents/ingest/batch`
 
 ```typescript
 interface BatchIngestRequest {
-  documents: IngestRequest[];    // Array of documents to ingest
+  documents: IngestRequest[]; // Array of documents to ingest
 }
 ```
 
@@ -399,11 +420,11 @@ interface BatchIngestRequest {
 
 ## Status Codes
 
-| Code | Meaning | When |
-|------|---------|------|
-| 200 | OK | Successful ingestion |
-| 400 | Bad Request | Invalid input, unsupported format |
-| 500 | Internal Server Error | Processing failure, API unavailable |
+| Code | Meaning               | When                                |
+| ---- | --------------------- | ----------------------------------- |
+| 200  | OK                    | Successful ingestion                |
+| 400  | Bad Request           | Invalid input, unsupported format   |
+| 500  | Internal Server Error | Processing failure, API unavailable |
 
 ---
 
@@ -430,6 +451,7 @@ else:
 ### Large Documents
 
 For documents larger than 1MB:
+
 1. Split into smaller files before uploading
 2. Use batch endpoint for multiple files
 3. Or use Python SDK directly for streaming
@@ -467,7 +489,7 @@ for i in range(0, len(documents), batch_size):
         'http://localhost:8000/documents/ingest/batch',
         json={'documents': batch}
     ).json()
-    
+
     # Handle results...
 ```
 
@@ -476,6 +498,7 @@ for i in range(0, len(documents), batch_size):
 ## Rate Limiting
 
 No rate limits are currently implemented, but consider:
+
 - Default chunking: 512 tokens per chunk
 - Embedding generation: ~100-500 tokens/sec
 - Groq API: Subject to Groq's rate limits

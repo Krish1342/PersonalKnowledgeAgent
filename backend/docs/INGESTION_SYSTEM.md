@@ -56,6 +56,7 @@ pip install -r requirements.txt
 ```
 
 Key packages:
+
 - langgraph==0.0.29
 - groq==0.4.2
 - PyPDF2==3.0.1
@@ -153,18 +154,18 @@ import asyncio
 
 async def main():
     agent = IngestionAgent()
-    
+
     # Ingest text
     result = await agent.ingest(
         content="Your document content",
         source="document.md",
         input_type="markdown"
     )
-    
+
     print(f"Success: {result.success}")
     print(f"Chunks: {result.chunks_created}")
     print(f"IDs: {result.document_ids}")
-    
+
     # Ingest file
     result = await agent.ingest_from_file(
         file_path="/path/to/document.pdf"
@@ -181,6 +182,7 @@ asyncio.run(main())
 **Output**: Cleaned, normalized text
 
 Processing:
+
 - PDF: Extracts text using PyPDF2
 - DOCX: Extracts text using python-docx
 - Markdown: Removes YAML frontmatter and HTML comments
@@ -193,6 +195,7 @@ Processing:
 **Output**: Semantic chunks with metadata
 
 Processing:
+
 - Uses SemanticChunker from preprocessing module
 - Chunk size: 512 tokens (configurable)
 - Overlap: 50 tokens for continuity
@@ -204,6 +207,7 @@ Processing:
 **Output**: Enriched chunks with tags and analysis
 
 Processing:
+
 - Calls Groq API for intelligent analysis
 - Analyzes each chunk for:
   - **Topics**: code, api, database, security, performance, configuration, mathematics, best-practices
@@ -218,6 +222,7 @@ Processing:
 **Output**: Stored embeddings and metadata
 
 Processing:
+
 - Generates 384-dimensional embeddings (all-MiniLM-L6-v2)
 - Stores embeddings in FAISS vector index
 - Stores metadata in Supabase PostgreSQL:
@@ -232,6 +237,7 @@ Processing:
 **Output**: Ingestion summary
 
 Processing:
+
 - Aggregates statistics
 - Collects all document IDs
 - Creates IngestionResult with:
@@ -275,6 +281,7 @@ GROQ_MODEL=mixtral-8x7b-32768 # Model selection
 ```
 
 Available models:
+
 - `mixtral-8x7b-32768` (default)
 - `llama2-70b-4096`
 - `llama3-8b-8192`
@@ -292,16 +299,19 @@ SUPABASE_KEY=...                       # Authentication
 The system includes comprehensive error handling:
 
 ### Recoverable Errors
+
 - Groq API timeout → Falls back to local tagging
 - Single chunk failure → Continues with other chunks
 - File format detection → Tries multiple parsers
 
 ### Unrecoverable Errors
+
 - Empty document → Returns error in result
 - Invalid file format → Returns 400 Bad Request
 - Storage failure → Returns error in result
 
 All errors are:
+
 - Logged with full context
 - Returned in response `errors` field
 - Tracked for monitoring
@@ -326,6 +336,7 @@ All errors are:
 ## File Size Limits
 
 Recommended limits (configurable):
+
 - PDF: < 50MB
 - DOCX: < 10MB
 - Text/Markdown: < 100MB
@@ -341,17 +352,17 @@ from app.agents.ingestion_agent import IngestionAgent
 
 async def ingest_docs():
     agent = IngestionAgent()
-    
+
     # Read markdown file
     with open('technical_guide.md', 'r') as f:
         content = f.read()
-    
+
     result = await agent.ingest(
         content=content,
         source="technical_guide.md",
         input_type="markdown"
     )
-    
+
     if result.success:
         print(f"✓ Ingested {result.chunks_created} chunks")
         for doc_id in result.document_ids:
@@ -371,13 +382,13 @@ from app.agents.ingestion_agent import IngestionAgent
 
 async def batch_ingest():
     agent = IngestionAgent()
-    
+
     pdf_files = glob.glob("documents/*.pdf")
-    
+
     for pdf_file in pdf_files:
         print(f"Processing {pdf_file}...")
         result = await agent.ingest_from_file(pdf_file)
-        
+
         if result.success:
             print(f"  ✓ {result.chunks_created} chunks")
         else:
@@ -394,7 +405,7 @@ import time
 
 def ingest_with_retry(content, source, max_retries=3):
     """Ingest with exponential backoff retry."""
-    
+
     for attempt in range(max_retries):
         try:
             response = requests.post(
@@ -406,19 +417,19 @@ def ingest_with_retry(content, source, max_retries=3):
                 },
                 timeout=30
             )
-            
+
             if response.status_code == 200:
                 return response.json()
             elif attempt < max_retries - 1:
                 wait = 2 ** attempt
                 print(f"Retrying after {wait}s...")
                 time.sleep(wait)
-                
+
         except requests.ConnectionError:
             if attempt < max_retries - 1:
                 wait = 2 ** attempt
                 time.sleep(wait)
-    
+
     raise Exception("Ingestion failed after retries")
 
 result = ingest_with_retry("# My Content", "source.md")
@@ -430,6 +441,7 @@ print(f"Chunks: {result['chunks_created']}")
 ### Issue: Groq API fails silently
 
 **Solution**: Check API key and ensure quota available
+
 ```bash
 export GROQ_API_KEY=gsk_your_key
 # Test: curl https://api.groq.com/v1/models
@@ -438,6 +450,7 @@ export GROQ_API_KEY=gsk_your_key
 ### Issue: PDF extraction produces garbled text
 
 **Solution**: Try alternative PDF parser or manually convert
+
 ```python
 # Some PDFs need preprocessing
 from PyPDF2 import PdfReader
@@ -448,6 +461,7 @@ pdf = PdfReader("file.pdf")
 ### Issue: Vector store grows too large
 
 **Solution**: Implement cleanup or use smaller embedding models
+
 ```bash
 # Clear old embeddings
 rm -rf ./data/vector_store/
@@ -458,9 +472,10 @@ EMBEDDING_MODEL=all-MiniLM-L6-v2
 ### Issue: Metadata queries slow
 
 **Solution**: Add database indexes or partition tables
+
 ```sql
 -- Check Supabase performance
-SELECT * FROM pg_stat_statements 
+SELECT * FROM pg_stat_statements
 ORDER BY mean_exec_time DESC;
 ```
 
@@ -484,6 +499,7 @@ python examples/ingestion_example.py
 Full API reference available at [API.md](./API.md)
 
 Key endpoints:
+
 - `POST /documents/ingest` - Ingest text
 - `POST /documents/ingest/upload` - Upload file
 - `POST /documents/ingest/batch` - Batch processing
@@ -500,6 +516,7 @@ Key endpoints:
 ## Support
 
 For issues or questions:
+
 1. Check logs: `logs/app.log`
 2. Review error responses
 3. Test with simple content first

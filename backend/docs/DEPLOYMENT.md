@@ -60,6 +60,7 @@ python scripts/init_db.py
 ```
 
 This creates:
+
 - Vector store directory
 - FAISS index files
 - PostgreSQL tables in Supabase
@@ -184,6 +185,7 @@ curl -X POST http://localhost:8000/documents/ingest \
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -240,6 +242,7 @@ curl -X POST http://localhost:8000/documents/ingest/batch \
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -264,6 +267,7 @@ curl http://localhost:8000/documents/ingest/status
 ```
 
 **Response:**
+
 ```json
 {
   "status": "ready",
@@ -283,14 +287,14 @@ import asyncio
 async def main():
     # Create agent
     agent = IngestionAgent()
-    
+
     # Ingest text
     result = await agent.ingest(
         content="# My Document\n\nContent here",
         source="document.md",
         input_type="markdown"
     )
-    
+
     print(f"Status: {'✓' if result.success else '✗'}")
     print(f"Chunks: {result.chunks_created}")
     print(f"Document IDs: {result.document_ids}")
@@ -303,13 +307,13 @@ asyncio.run(main())
 ```python
 async def ingest_files():
     agent = IngestionAgent()
-    
+
     # Ingest from file
     result = await agent.ingest_from_file(
         file_path="/path/to/document.pdf",
         source="research_paper"
     )
-    
+
     if result.success:
         print(f"✓ Created {result.chunks_created} chunks")
     else:
@@ -323,7 +327,7 @@ asyncio.run(ingest_files())
 ```python
 async def batch_ingest():
     agent = IngestionAgent()
-    
+
     documents = [
         {
             "content": "Content 1",
@@ -336,7 +340,7 @@ async def batch_ingest():
             "input_type": "markdown"
         }
     ]
-    
+
     for doc in documents:
         result = await agent.ingest(**doc)
         print(f"{'✓' if result.success else '✗'} {doc['source']}")
@@ -346,12 +350,12 @@ asyncio.run(batch_ingest())
 
 ## Supported Document Types
 
-| Type | Extension | Parser |
-|------|-----------|--------|
-| Plain Text | .txt | Direct read |
-| Markdown | .md | Direct read |
-| PDF | .pdf | PyPDF2 |
-| Word | .docx | python-docx |
+| Type       | Extension | Parser      |
+| ---------- | --------- | ----------- |
+| Plain Text | .txt      | Direct read |
+| Markdown   | .md       | Direct read |
+| PDF        | .pdf      | PyPDF2      |
+| Word       | .docx     | python-docx |
 
 ## Configuration Reference
 
@@ -372,6 +376,7 @@ GROQ_MODEL=mixtral-8x7b-32768        # LLM model to use
 ```
 
 Available models:
+
 - `mixtral-8x7b-32768` (recommended)
 - `llama2-70b-4096`
 - `llama3-8b-8192`
@@ -419,6 +424,7 @@ curl http://localhost:8000/health
 **Error**: `groq.error.RateLimitError`
 
 **Solution**:
+
 ```bash
 # Check API key
 echo $GROQ_API_KEY
@@ -432,6 +438,7 @@ echo $GROQ_API_KEY
 **Error**: `Failed to extract text from PDF`
 
 **Solution**:
+
 ```python
 # Check if PDF is corrupted or scanned
 from PyPDF2 import PdfReader
@@ -447,6 +454,7 @@ for page in reader.pages:
 **Error**: `No such file or directory: ./data/vector_store`
 
 **Solution**:
+
 ```bash
 # Run initialization script
 python scripts/init_db.py
@@ -460,6 +468,7 @@ mkdir -p ./data/vector_store
 **Error**: `Failed to connect to Supabase`
 
 **Solution**:
+
 ```bash
 # Verify credentials
 echo "SUPABASE_URL=$SUPABASE_URL"
@@ -568,12 +577,12 @@ grep "chunks_created" logs/app.log | jq '.chunks_created' | stats
 
 Expected performance on standard hardware:
 
-| Operation | Time |
-|-----------|------|
-| Text extraction (1KB) | < 10ms |
-| Semantic chunking | < 100ms per 10KB |
-| Embedding generation | 10-50ms per chunk |
-| Groq enrichment | 1-3 sec per chunk |
+| Operation                    | Time              |
+| ---------------------------- | ----------------- |
+| Text extraction (1KB)        | < 10ms            |
+| Semantic chunking            | < 100ms per 10KB  |
+| Embedding generation         | 10-50ms per chunk |
+| Groq enrichment              | 1-3 sec per chunk |
 | Storage (FAISS + PostgreSQL) | < 100ms per chunk |
 
 ## Advanced Usage
@@ -616,7 +625,7 @@ result = graph.invoke({
 ```python
 async def ingest_with_retry(content, source, max_retries=3):
     agent = IngestionAgent()
-    
+
     for attempt in range(max_retries):
         try:
             result = await agent.ingest(
@@ -624,16 +633,16 @@ async def ingest_with_retry(content, source, max_retries=3):
                 source=source,
                 input_type="markdown"
             )
-            
+
             if result.success:
                 return result
-                
+
         except Exception as e:
             if attempt == max_retries - 1:
                 raise
-            
+
             await asyncio.sleep(2 ** attempt)
-    
+
     return result
 ```
 

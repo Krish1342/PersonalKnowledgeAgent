@@ -9,18 +9,21 @@ Full LangGraph-based document ingestion pipeline implemented and integrated into
 A production-ready ingestion system that:
 
 1. **Accepts Multiple Input Formats**
+
    - PDF documents (via PyPDF2)
    - DOCX files (via python-docx)
    - Markdown content
    - Plain text
 
 2. **Processes Documents Intelligently**
+
    - Extracts and normalizes text
    - Performs semantic chunking with boundary preservation
    - Analyzes content using Groq API
    - Generates intelligent metadata
 
 3. **Stores Comprehensively**
+
    - Creates 384-dimensional embeddings
    - Persists embeddings in FAISS vector index
    - Stores rich metadata in PostgreSQL
@@ -35,13 +38,16 @@ A production-ready ingestion system that:
 ## Files Created
 
 ### Core Implementation (3 files)
+
 - `app/agents/ingestion_agent.py` (670+ lines)
+
   - IngestionAgent orchestrator
   - DocumentCleaner for text extraction
   - LangGraph 5-node workflow
   - Full async/await support
 
 - `app/api/ingest.py` (280+ lines)
+
   - REST endpoint implementations
   - Pydantic request/response models
   - File upload handling
@@ -52,6 +58,7 @@ A production-ready ingestion system that:
   - Updated imports
 
 ### Documentation (5 files)
+
 - `docs/INGESTION_AGENT.md` - Architecture and usage
 - `docs/API.md` - REST endpoint reference
 - `docs/INGESTION_SYSTEM.md` - Complete system overview
@@ -59,10 +66,12 @@ A production-ready ingestion system that:
 - `docs/DEPLOYMENT.md` - Deployment and usage guide
 
 ### Examples & Tests (2 files)
+
 - `examples/ingestion_example.py` - 3 runnable examples
 - `tests/test_ingestion_agent.py` - 15+ unit tests
 
 ### Configuration Updates
+
 - `requirements.txt` - 5 new dependencies
 - `.env` and `.env.example` - 2 new variables
 
@@ -98,6 +107,7 @@ START
 ## API Endpoints
 
 ### 1. Text Ingestion
+
 ```
 POST /documents/ingest
 Content-Type: application/json
@@ -107,6 +117,7 @@ Response: { success, chunks_created, documents_processed, ... }
 ```
 
 ### 2. File Upload
+
 ```
 POST /documents/ingest/upload
 Content-Type: multipart/form-data
@@ -116,6 +127,7 @@ Response: { success, chunks_created, documents_processed, ... }
 ```
 
 ### 3. Batch Processing
+
 ```
 POST /documents/ingest/batch
 Content-Type: application/json
@@ -125,6 +137,7 @@ Response: [{ success, chunks_created, ... }, ...]
 ```
 
 ### 4. Status Check
+
 ```
 GET /documents/ingest/status
 
@@ -151,17 +164,20 @@ All endpoints return consistent format:
 ## Features Implemented
 
 ✅ **Document Processing**
+
 - Multi-format extraction (PDF, DOCX, MD, TXT)
 - Text normalization and cleaning
 - BOM removal, whitespace normalization
 
 ✅ **Semantic Chunking**
+
 - Boundary-aware splitting
 - Heading preservation
 - Configurable size and overlap
 - Context continuity
 
 ✅ **Content Enrichment**
+
 - Groq API integration for analysis
 - Topic extraction and classification
 - Domain categorization
@@ -170,6 +186,7 @@ All endpoints return consistent format:
 - Local fallback support
 
 ✅ **Storage**
+
 - FAISS vector index persistence
 - Supabase PostgreSQL integration
 - 384-dimensional embeddings
@@ -177,6 +194,7 @@ All endpoints return consistent format:
 - Document ID management
 
 ✅ **REST API**
+
 - Text ingestion
 - File upload with format detection
 - Batch processing
@@ -184,6 +202,7 @@ All endpoints return consistent format:
 - Comprehensive error handling
 
 ✅ **Error Handling**
+
 - Graceful API fallback
 - Per-document isolation in batches
 - File format validation
@@ -191,6 +210,7 @@ All endpoints return consistent format:
 - Comprehensive error reporting
 
 ✅ **Documentation**
+
 - Architecture overview
 - Usage examples
 - API reference
@@ -200,12 +220,14 @@ All endpoints return consistent format:
 ## Configuration
 
 ### Groq API
+
 ```bash
 GROQ_API_KEY=gsk_xxxxxxxxxxxx
 GROQ_MODEL=mixtral-8x7b-32768
 ```
 
 ### Storage
+
 ```bash
 VECTOR_STORE_PATH=./data/vector_store
 SUPABASE_URL=https://xxxxx.supabase.co
@@ -213,6 +235,7 @@ SUPABASE_KEY=xxxxx
 ```
 
 ### Chunking
+
 ```bash
 CHUNK_SIZE=512
 CHUNK_OVERLAP=50
@@ -221,6 +244,7 @@ CHUNK_OVERLAP=50
 ## Usage Examples
 
 ### Python Direct Usage
+
 ```python
 from app.agents.ingestion_agent import IngestionAgent
 
@@ -233,6 +257,7 @@ result = await agent.ingest(
 ```
 
 ### REST API
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest \
   -H "Content-Type: application/json" \
@@ -244,6 +269,7 @@ curl -X POST http://localhost:8000/documents/ingest \
 ```
 
 ### File Upload
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest/upload \
   -F "file=@document.pdf" \
@@ -261,20 +287,24 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 ## Integration Points
 
 ✅ **Memory Layer**
+
 - Uses SemanticChunker for splitting
 - Uses ContentTagger for local enrichment
 - Uses MemoryManager for storage
 
 ✅ **FastAPI**
+
 - Registered in app.main.py
 - Async/await support
 - Automatic API documentation
 
 ✅ **External APIs**
+
 - Groq API for intelligent analysis
 - Fallback to local processing
 
 ✅ **Storage Systems**
+
 - FAISS for vector persistence
 - PostgreSQL for metadata
 - Disk storage for indices
@@ -282,11 +312,13 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 ## Testing
 
 Run tests:
+
 ```bash
 pytest tests/test_ingestion_agent.py -v
 ```
 
 Run examples:
+
 ```bash
 python examples/ingestion_example.py
 ```
@@ -294,6 +326,7 @@ python examples/ingestion_example.py
 ## Deployment Ready
 
 The implementation is:
+
 - ✅ Fully tested and functional
 - ✅ Production-grade error handling
 - ✅ Comprehensive documentation
@@ -304,36 +337,41 @@ The implementation is:
 ## File Summary
 
 ### Code Files (3)
-| File | Lines | Purpose |
-|------|-------|---------|
-| `app/agents/ingestion_agent.py` | 670+ | Core orchestration |
-| `app/api/ingest.py` | 280+ | REST endpoints |
-| `app/main.py` | Updated | Router integration |
+
+| File                            | Lines   | Purpose            |
+| ------------------------------- | ------- | ------------------ |
+| `app/agents/ingestion_agent.py` | 670+    | Core orchestration |
+| `app/api/ingest.py`             | 280+    | REST endpoints     |
+| `app/main.py`                   | Updated | Router integration |
 
 ### Documentation Files (5)
-| File | Purpose |
-|------|---------|
-| `docs/INGESTION_AGENT.md` | Architecture guide |
-| `docs/API.md` | Endpoint reference |
-| `docs/INGESTION_SYSTEM.md` | System overview |
-| `docs/IMPLEMENTATION.md` | Implementation checklist |
-| `docs/DEPLOYMENT.md` | Deployment guide |
+
+| File                       | Purpose                  |
+| -------------------------- | ------------------------ |
+| `docs/INGESTION_AGENT.md`  | Architecture guide       |
+| `docs/API.md`              | Endpoint reference       |
+| `docs/INGESTION_SYSTEM.md` | System overview          |
+| `docs/IMPLEMENTATION.md`   | Implementation checklist |
+| `docs/DEPLOYMENT.md`       | Deployment guide         |
 
 ### Example & Test Files (2)
-| File | Purpose |
-|------|---------|
+
+| File                            | Purpose           |
+| ------------------------------- | ----------------- |
 | `examples/ingestion_example.py` | Runnable examples |
-| `tests/test_ingestion_agent.py` | Unit tests |
+| `tests/test_ingestion_agent.py` | Unit tests        |
 
 ### Configuration Updates
-| File | Changes |
-|------|---------|
-| `requirements.txt` | +5 packages |
+
+| File                    | Changes      |
+| ----------------------- | ------------ |
+| `requirements.txt`      | +5 packages  |
 | `.env` / `.env.example` | +2 variables |
 
 ## Next Steps (Optional)
 
 Future enhancements:
+
 - [ ] Streaming ingestion for large files
 - [ ] Progress tracking/webhooks
 - [ ] Document versioning
@@ -373,6 +411,7 @@ curl http://localhost:8000/documents/ingest/status
 ## Support
 
 For issues:
+
 1. Check logs at `logs/app.log`
 2. Review API response errors
 3. Check environment variables

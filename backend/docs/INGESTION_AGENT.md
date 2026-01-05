@@ -13,21 +13,25 @@ START → CLEAN → SPLIT → ENRICH → STORE → FINALIZE → END
 ### Pipeline Stages
 
 1. **CLEAN**: Text normalization and format-specific extraction
+
    - Handles PDFs, DOCX files, Markdown, and plain text
    - Removes BOM characters and excess whitespace
    - Cleans Markdown-specific syntax
 
 2. **SPLIT**: Semantic chunking with boundary preservation
+
    - Splits content into manageable chunks (default: 512 tokens)
    - Preserves section headings and context
    - Implements overlap for continuity
 
 3. **ENRICH**: Groq-based intelligent analysis
+
    - Uses Groq API to analyze chunk content
    - Assigns topics, domains, and difficulty levels
    - Falls back to local tagging if API unavailable
 
 4. **STORE**: Vector and metadata persistence
+
    - Generates embeddings for each chunk
    - Stores in FAISS vector index
    - Persists metadata to Supabase PostgreSQL
@@ -62,6 +66,7 @@ result = await agent.ingest_from_file(
 ### REST API Endpoints
 
 #### Ingest Text
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest \
   -H "Content-Type: application/json" \
@@ -73,6 +78,7 @@ curl -X POST http://localhost:8000/documents/ingest \
 ```
 
 #### Upload File
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest/upload \
   -F "file=@document.pdf" \
@@ -80,6 +86,7 @@ curl -X POST http://localhost:8000/documents/ingest/upload \
 ```
 
 #### Batch Ingestion
+
 ```bash
 curl -X POST http://localhost:8000/documents/ingest/batch \
   -H "Content-Type: application/json" \
@@ -100,6 +107,7 @@ curl -X POST http://localhost:8000/documents/ingest/batch \
 ```
 
 #### Check Status
+
 ```bash
 curl http://localhost:8000/documents/ingest/status
 ```
@@ -144,21 +152,23 @@ SUPABASE_KEY=xxxxx
 
 ## Supported Input Types
 
-| Type | Description | Extensions |
-|------|-------------|-----------|
-| `text` | Plain text documents | .txt |
-| `markdown` | Markdown formatted content | .md |
-| `pdf` | PDF documents | .pdf |
-| `docx` | Microsoft Word documents | .docx |
+| Type       | Description                | Extensions |
+| ---------- | -------------------------- | ---------- |
+| `text`     | Plain text documents       | .txt       |
+| `markdown` | Markdown formatted content | .md        |
+| `pdf`      | PDF documents              | .pdf       |
+| `docx`     | Microsoft Word documents   | .docx      |
 
 ## File Extraction
 
 ### PDF Extraction
+
 - Uses PyPDF2 for text extraction
 - Handles multi-page documents
 - Graceful error handling per page
 
 ### DOCX Extraction
+
 - Uses python-docx for Word document parsing
 - Preserves paragraph structure
 - Handles tables and formatting
@@ -168,6 +178,7 @@ SUPABASE_KEY=xxxxx
 The enrichment stage uses Groq API to analyze chunks and determine:
 
 ### Topics
+
 - code
 - api
 - database
@@ -178,6 +189,7 @@ The enrichment stage uses Groq API to analyze chunks and determine:
 - best-practices
 
 ### Domains
+
 - machine-learning
 - data-science
 - backend-development
@@ -186,11 +198,13 @@ The enrichment stage uses Groq API to analyze chunks and determine:
 - cloud
 
 ### Difficulty Levels
+
 - beginner
 - intermediate
 - advanced
 
 ### Key Terms
+
 - Top 10 terms extracted per chunk
 
 ## Error Handling
@@ -219,24 +233,24 @@ from app.agents.ingestion_agent import IngestionAgent
 
 async def main():
     agent = IngestionAgent()
-    
+
     # Step 1: Prepare content
     content = """
     # Machine Learning
-    
+
     Key concepts:
     - Supervised Learning
     - Unsupervised Learning
     - Reinforcement Learning
     """
-    
+
     # Step 2: Ingest
     result = await agent.ingest(
         content=content,
         source="ml_intro.md",
         input_type="markdown"
     )
-    
+
     # Step 3: Handle result
     if result.success:
         print(f"✓ Created {result.chunks_created} chunks")
@@ -265,6 +279,7 @@ See [MEMORY.md](../docs/MEMORY.md) for vector and metadata store details.
 ### Custom Groq Models
 
 Update `GROQ_MODEL` in environment to use different models:
+
 - `mixtral-8x7b-32768` (default)
 - `llama2-70b-4096`
 - `llama3-8b-8192`
@@ -300,21 +315,25 @@ if result.errors:
 ## Troubleshooting
 
 ### Groq API Failures
+
 - Check `GROQ_API_KEY` is set correctly
 - Verify API key has quota remaining
 - Agent falls back to local tagging if API unavailable
 
 ### File Upload Errors
+
 - Ensure file format is supported (.pdf, .docx, .md, .txt)
 - Check file is not corrupted
 - Verify file size is reasonable (< 50MB recommended)
 
 ### Vector Store Issues
+
 - Ensure `VECTOR_STORE_PATH` directory exists and is writable
 - Check disk space for index storage
 - Delete `./data/vector_store/` to rebuild index
 
 ### Metadata Store Issues
+
 - Verify Supabase connection string
 - Check database has required tables (created on init_db())
 - Ensure user has write permissions

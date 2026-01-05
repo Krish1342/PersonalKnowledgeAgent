@@ -75,14 +75,12 @@ class TestIngestionAgent:
     async def test_ingest_simple_text(self):
         """Test ingesting simple text content."""
         agent = IngestionAgent()
-        
+
         content = "This is a test document about machine learning."
         result = await agent.ingest(
-            content=content,
-            source="test.txt",
-            input_type="text"
+            content=content, source="test.txt", input_type="text"
         )
-        
+
         assert isinstance(result, IngestionResult)
         assert result.success is not None
         assert result.chunks_created >= 0
@@ -92,7 +90,7 @@ class TestIngestionAgent:
     async def test_ingest_markdown(self):
         """Test ingesting markdown content."""
         agent = IngestionAgent()
-        
+
         content = """
 # Test Document
         
@@ -103,25 +101,21 @@ This is a test with **bold** and *italic*.
 More content here.
 """
         result = await agent.ingest(
-            content=content,
-            source="test.md",
-            input_type="markdown"
+            content=content, source="test.md", input_type="markdown"
         )
-        
+
         assert isinstance(result, IngestionResult)
 
     @pytest.mark.asyncio
     async def test_ingest_empty_content(self):
         """Test ingesting empty content."""
         agent = IngestionAgent()
-        
+
         content = ""
         result = await agent.ingest(
-            content=content,
-            source="empty.txt",
-            input_type="text"
+            content=content, source="empty.txt", input_type="text"
         )
-        
+
         # Should handle gracefully
         assert isinstance(result, IngestionResult)
 
@@ -129,11 +123,9 @@ More content here.
     async def test_ingest_from_file_not_found(self):
         """Test ingesting from non-existent file."""
         agent = IngestionAgent()
-        
-        result = await agent.ingest_from_file(
-            file_path="/nonexistent/path/file.pdf"
-        )
-        
+
+        result = await agent.ingest_from_file(file_path="/nonexistent/path/file.pdf")
+
         assert result.success is False
         assert len(result.errors) > 0
 
@@ -142,28 +134,28 @@ More content here.
         """Test that the LangGraph graph executes."""
         agent = IngestionAgent()
         graph = agent._build_graph()
-        
+
         # Check that graph is compiled
         assert graph is not None
-        assert hasattr(graph, 'invoke')
+        assert hasattr(graph, "invoke")
 
     @pytest.mark.asyncio
     async def test_long_document_chunking(self):
         """Test that long documents are properly chunked."""
         agent = IngestionAgent()
-        
+
         # Create a long document
-        content = "\n".join([
-            f"Paragraph {i}: This is a test paragraph with some content."
-            for i in range(50)
-        ])
-        
-        result = await agent.ingest(
-            content=content,
-            source="long_doc.txt",
-            input_type="text"
+        content = "\n".join(
+            [
+                f"Paragraph {i}: This is a test paragraph with some content."
+                for i in range(50)
+            ]
         )
-        
+
+        result = await agent.ingest(
+            content=content, source="long_doc.txt", input_type="text"
+        )
+
         # Should create multiple chunks
         if result.success:
             assert result.chunks_created > 0
@@ -172,28 +164,24 @@ More content here.
     async def test_special_characters_handling(self):
         """Test handling of special characters."""
         agent = IngestionAgent()
-        
+
         content = "Test with émojis 🚀, spëcial çhars, and Ünicode."
         result = await agent.ingest(
-            content=content,
-            source="special.txt",
-            input_type="text"
+            content=content, source="special.txt", input_type="text"
         )
-        
+
         assert isinstance(result, IngestionResult)
 
     @pytest.mark.asyncio
     async def test_result_contains_document_ids(self):
         """Test that result contains document IDs."""
         agent = IngestionAgent()
-        
+
         content = "Test document for IDs."
         result = await agent.ingest(
-            content=content,
-            source="test_ids.txt",
-            input_type="text"
+            content=content, source="test_ids.txt", input_type="text"
         )
-        
+
         if result.success:
             # Should have document IDs if successful
             assert isinstance(result.document_ids, list)
@@ -212,9 +200,9 @@ class TestIngestionResult:
             vector_embeddings_stored=True,
             message="Test message",
             errors=[],
-            document_ids=["id1", "id2"]
+            document_ids=["id1", "id2"],
         )
-        
+
         assert result.success is True
         assert result.chunks_created == 5
         assert result.documents_processed == 1
@@ -230,9 +218,9 @@ class TestIngestionResult:
             vector_embeddings_stored=False,
             message="Failed to ingest",
             errors=["Error 1", "Error 2"],
-            document_ids=[]
+            document_ids=[],
         )
-        
+
         assert result.success is False
         assert len(result.errors) == 2
 
@@ -246,7 +234,7 @@ class TestIngestionIntegration:
     async def test_end_to_end_ingestion(self):
         """Test complete ingestion workflow."""
         agent = IngestionAgent()
-        
+
         content = """
 # Integration Test Document
         
@@ -270,13 +258,11 @@ def hello():
         
 This concludes the test.
 """
-        
+
         result = await agent.ingest(
-            content=content,
-            source="integration_test.md",
-            input_type="markdown"
+            content=content, source="integration_test.md", input_type="markdown"
         )
-        
+
         # Verify complete flow
         assert isinstance(result, IngestionResult)
         if result.success:
@@ -287,11 +273,11 @@ This concludes the test.
 if __name__ == "__main__":
     # Run basic tests
     import sys
-    
+
     async def run_tests():
         """Run async tests."""
         print("Running ingestion agent tests...\n")
-        
+
         # Test cleaner
         print("Testing DocumentCleaner...")
         cleaner = TestDocumentCleaner()
@@ -299,14 +285,14 @@ if __name__ == "__main__":
         cleaner.test_clean_text_normalizes_whitespace()
         cleaner.test_clean_markdown_removes_frontmatter()
         print("✓ DocumentCleaner tests passed\n")
-        
+
         # Test result
         print("Testing IngestionResult...")
         result_test = TestIngestionResult()
         result_test.test_result_creation()
         result_test.test_result_with_errors()
         print("✓ IngestionResult tests passed\n")
-        
+
         # Test agent
         print("Testing IngestionAgent...")
         agent_test = TestIngestionAgent()
@@ -314,7 +300,7 @@ if __name__ == "__main__":
         await agent_test.test_ingest_markdown()
         await agent_test.test_special_characters_handling()
         print("✓ IngestionAgent tests passed\n")
-        
+
         print("✓ All tests completed!")
-    
+
     asyncio.run(run_tests())
