@@ -10,14 +10,14 @@ from app.utils.chunking import TextChunker, ChunkingConfig
 def ingestion_agent(state: AgentState) -> Dict[str, Any]:
     """
     Ingestion agent node.
-    
+
     Processes raw text input into:
     1. Vector store (semantic chunks with embeddings)
     2. Episodic store (memory log with metadata)
-    
+
     Args:
         state: Current agent state containing 'raw_input' and optional 'source'.
-        
+
     Returns:
         State updates with 'chunks_ingested' count or 'error'.
     """

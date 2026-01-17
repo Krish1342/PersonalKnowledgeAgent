@@ -71,7 +71,7 @@ async def get_memory(
 ) -> MemoryResponse:
     """
     Retrieve episodic memory history.
-    
+
     Returns memory logs with metadata about when and why knowledge was learned.
     """
     try:
@@ -133,10 +133,7 @@ async def get_memory_stats() -> MemoryStatsResponse:
         total = store.count()
 
         # Get count per source
-        source_counts = {
-            source: store.count(source=source)
-            for source in sources
-        }
+        source_counts = {source: store.count(source=source) for source in sources}
 
         return MemoryStatsResponse(
             total_memories=total,

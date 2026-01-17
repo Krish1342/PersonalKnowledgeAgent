@@ -42,7 +42,7 @@ class IngestResponse(BaseModel):
 async def ingest_content(request: IngestRequest) -> IngestResponse:
     """
     Ingest content into the knowledge base.
-    
+
     Triggers the ingestion agent workflow which:
     1. Chunks the content with semantic overlap
     2. Generates embeddings and stores in vector DB

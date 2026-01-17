@@ -24,10 +24,10 @@ MAX_RETRIES = 2
 def _should_retry(state: AgentState) -> Literal["retrieve", "end"]:
     """
     Conditional edge function: determine if retrieval should be retried.
-    
+
     Args:
         state: Current agent state.
-        
+
     Returns:
         "retrieve" if score < threshold and retries remain, else "end".
     """
@@ -48,9 +48,9 @@ def _increment_retry(state: AgentState) -> dict:
 def create_query_graph() -> StateGraph:
     """
     Create and compile the query workflow graph.
-    
+
     Workflow: Plan -> Retrieve -> Reason -> Critique -> (conditional retry or End)
-    
+
     Returns:
         Compiled LangGraph StateGraph.
     """
@@ -94,9 +94,9 @@ def create_query_graph() -> StateGraph:
 def create_ingestion_graph() -> StateGraph:
     """
     Create and compile the ingestion workflow graph.
-    
+
     Workflow: Ingest -> End
-    
+
     Returns:
         Compiled LangGraph StateGraph.
     """
@@ -126,7 +126,7 @@ _ingestion_graph = None
 def get_query_graph() -> StateGraph:
     """
     Get the singleton query graph instance.
-    
+
     Returns:
         Compiled query graph.
     """
@@ -139,7 +139,7 @@ def get_query_graph() -> StateGraph:
 def get_ingestion_graph() -> StateGraph:
     """
     Get the singleton ingestion graph instance.
-    
+
     Returns:
         Compiled ingestion graph.
     """

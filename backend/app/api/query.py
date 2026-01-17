@@ -53,7 +53,7 @@ class QueryResponse(BaseModel):
 async def query_knowledge_base(request: QueryRequest) -> QueryResponse:
     """
     Query the knowledge base with a question.
-    
+
     Triggers the full LangGraph workflow:
     1. Plan: Optimize the query for retrieval
     2. Retrieve: Find relevant context from vector store
@@ -91,7 +91,9 @@ async def query_knowledge_base(request: QueryRequest) -> QueryResponse:
                     status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     detail=error,
                 )
-            answer = "Unable to generate an answer. Please try rephrasing your question."
+            answer = (
+                "Unable to generate an answer. Please try rephrasing your question."
+            )
 
         # Format context items
         context_items = [

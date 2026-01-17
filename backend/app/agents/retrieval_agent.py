@@ -9,13 +9,13 @@ from app.memory.vector_store import VectorStore
 def retrieval_agent(state: AgentState) -> Dict[str, Any]:
     """
     Retrieval agent node.
-    
+
     Queries the vector store based on the plan or latest user message.
     Returns relevant context chunks for the reasoning agent.
-    
+
     Args:
         state: Current agent state containing 'plan' or 'messages'.
-        
+
     Returns:
         State updates with 'context' list or 'error'.
     """
@@ -64,7 +64,9 @@ def retrieval_agent(state: AgentState) -> Dict[str, Any]:
                 "content": result["document"],
                 "source": result["metadata"].get("source", "unknown"),
                 "chunk_index": result["metadata"].get("chunk_index", 0),
-                "relevance_score": 1.0 - result["distance"] if result["distance"] else 1.0,
+                "relevance_score": (
+                    1.0 - result["distance"] if result["distance"] else 1.0
+                ),
             }
             for result in results
         ]

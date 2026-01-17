@@ -6,6 +6,7 @@ from enum import Enum
 
 class ContentType(Enum):
     """Supported content types for chunking."""
+
     TEXT = "text"
     MARKDOWN = "markdown"
 
@@ -13,6 +14,7 @@ class ContentType(Enum):
 @dataclass
 class ChunkingConfig:
     """Configuration for text chunking."""
+
     chunk_size: int = 1000
     chunk_overlap: int = 200
     min_chunk_size: int = 100
@@ -22,6 +24,7 @@ class ChunkingConfig:
 @dataclass
 class Chunk:
     """A text chunk with metadata."""
+
     content: str
     index: int
     start_char: int
@@ -32,7 +35,7 @@ class Chunk:
 class TextChunker:
     """
     Semantic text chunker supporting plain text and Markdown.
-    
+
     Handles normalization, whitespace cleanup, and overlap-based chunking.
     """
 
@@ -159,7 +162,7 @@ class TextChunker:
 
         # Fall back to sentence boundaries
         search_start = max(start, target_end - self.config.chunk_overlap)
-        search_text = text[search_start:target_end + self.config.chunk_overlap]
+        search_text = text[search_start : target_end + self.config.chunk_overlap]
 
         # Look for sentence endings
         sentence_ends = list(re.finditer(r"[.!?]\s+", search_text))

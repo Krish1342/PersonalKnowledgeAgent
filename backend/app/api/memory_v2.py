@@ -80,7 +80,7 @@ async def get_memories(
     """Get memories with filtering."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     memories = store.get_history(
         user_id=user_id,
         source=source,
@@ -90,9 +90,9 @@ async def get_memories(
         limit=limit,
         offset=offset,
     )
-    
+
     total = store.count(user_id=user_id, source=source)
-    
+
     return MemoryListResponse(
         memories=[m.to_dict(include_content=False) for m in memories],
         total=total,
@@ -108,7 +108,7 @@ async def get_memory_stats(
     """Get memory statistics with storage savings."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     stats = store.get_stats(user_id=user_id)
     return StatsResponse(**stats)
 
@@ -154,11 +154,11 @@ async def get_memory_by_id(
     """Get a specific memory by ID."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     memory = store.get_by_id(memory_id, user_id=user_id)
     if not memory:
         raise HTTPException(status_code=404, detail="Memory not found")
-    
+
     return memory.to_dict(include_content=True)
 
 
@@ -170,11 +170,11 @@ async def toggle_bookmark(
     """Toggle bookmark status for a memory."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     result = store.toggle_bookmark(request.memory_id, user_id=user_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Memory not found")
-    
+
     return {"memory_id": request.memory_id, "is_bookmarked": result}
 
 
@@ -186,11 +186,11 @@ async def add_tags_to_memory(
     """Add tags to a memory."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     success = store.add_tags(request.memory_id, request.tags, user_id=user_id)
     if not success:
         raise HTTPException(status_code=404, detail="Memory not found")
-    
+
     return {"memory_id": request.memory_id, "tags_added": request.tags}
 
 
@@ -210,7 +210,7 @@ async def export_data(
     """Export all user data for backup."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     return store.export_data(user_id=user_id)
 
 
@@ -222,7 +222,7 @@ async def import_data(
     """Import data from backup."""
     store = get_episodic_store_v2()
     user_id = get_user_id(user)
-    
+
     result = store.import_data(request.data, user_id=user_id)
     return {
         "success": True,

@@ -24,20 +24,22 @@ USER QUESTION: {question}
 Respond with ONLY the optimized search query, nothing else."""
 
 
-PLANNER_PROMPT = ChatPromptTemplate.from_messages([
-    ("system", PLANNER_SYSTEM_PROMPT),
-])
+PLANNER_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        ("system", PLANNER_SYSTEM_PROMPT),
+    ]
+)
 
 
 def planner_agent(state: AgentState) -> Dict[str, Any]:
     """
     Planner agent node.
-    
+
     Analyzes user question and creates an optimized retrieval query.
-    
+
     Args:
         state: Current agent state containing 'messages'.
-        
+
     Returns:
         State updates with 'plan'.
     """

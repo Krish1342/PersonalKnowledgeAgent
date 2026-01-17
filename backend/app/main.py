@@ -14,7 +14,7 @@ from app.auth.clerk import get_clerk_auth
 async def lifespan(app: FastAPI):
     """
     Application lifespan handler.
-    
+
     Handles startup and shutdown events.
     """
     # Startup: ensure data directories exist

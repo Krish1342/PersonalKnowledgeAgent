@@ -34,21 +34,23 @@ Where:
 - 0.0-0.3 = Mostly hallucinated, not grounded"""
 
 
-CRITIC_PROMPT = ChatPromptTemplate.from_messages([
-    ("system", CRITIC_SYSTEM_PROMPT),
-])
+CRITIC_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        ("system", CRITIC_SYSTEM_PROMPT),
+    ]
+)
 
 
 def critic_agent(state: AgentState) -> Dict[str, Any]:
     """
     Critic agent node.
-    
+
     Evaluates if the reasoning agent's answer is grounded in the source context.
     Returns a groundedness score and critique.
-    
+
     Args:
         state: Current agent state containing 'answer' and 'context'.
-        
+
     Returns:
         State updates with 'score' and 'critique'.
     """
@@ -70,10 +72,9 @@ def critic_agent(state: AgentState) -> Dict[str, Any]:
 
     try:
         # Format context
-        formatted_context = "\n\n".join([
-            f"[{c.get('source', 'unknown')}]: {c.get('content', '')}"
-            for c in context
-        ])
+        formatted_context = "\n\n".join(
+            [f"[{c.get('source', 'unknown')}]: {c.get('content', '')}" for c in context]
+        )
 
         # Check for "no information" answers (these are grounded by design)
         no_info_patterns = [
@@ -107,10 +108,12 @@ def critic_agent(state: AgentState) -> Dict[str, Any]:
 
         # Generate critique
         chain = CRITIC_PROMPT | llm
-        response = chain.invoke({
-            "context": formatted_context,
-            "answer": answer,
-        })
+        response = chain.invoke(
+            {
+                "context": formatted_context,
+                "answer": answer,
+            }
+        )
 
         # Parse response
         score, critique = _parse_critic_response(response.content)
@@ -130,10 +133,10 @@ def critic_agent(state: AgentState) -> Dict[str, Any]:
 def _parse_critic_response(response: str) -> tuple[float, str]:
     """
     Parse the critic LLM response to extract score and critique.
-    
+
     Args:
         response: Raw LLM response.
-        
+
     Returns:
         Tuple of (score, critique).
     """
@@ -163,18 +166,16 @@ def _fallback_groundedness_check(
 ) -> tuple[float, str]:
     """
     Simple fallback groundedness check using keyword overlap.
-    
+
     Args:
         answer: Generated answer.
         context: Retrieved context chunks.
-        
+
     Returns:
         Tuple of (score, critique).
     """
     # Extract content from context
-    context_text = " ".join([
-        c.get("content", "").lower() for c in context
-    ])
+    context_text = " ".join([c.get("content", "").lower() for c in context])
 
     # Tokenize (simple word split)
     answer_words = set(re.findall(r"\b\w{4,}\b", answer.lower()))

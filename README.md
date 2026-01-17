@@ -8,12 +8,14 @@ A **production-grade Personal Knowledge Base Agent** powered by RAG (Retrieval A
 ## ✨ Features
 
 ### Core Features
+
 - 🔍 **RAG-Powered Search** - Query your knowledge base with natural language
 - 📥 **Smart Ingestion** - Upload files or paste text with automatic chunking
 - 🤖 **Agent Workflow** - Plan → Retrieve → Reason → Critique → Reflect
 - 📊 **Memory Management** - View, search, and organize your memories
 
 ### New in v2.0
+
 - 🔐 **Clerk Authentication** - Secure user authentication and data isolation
 - 📦 **Data Compression** - Gzip compression saves 60-80% storage space
 - 🏷️ **Smart Tagging** - AI-powered automatic content categorization
@@ -51,6 +53,7 @@ A **production-grade Personal Knowledge Base Agent** powered by RAG (Retrieval A
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.11+
 - Node.js 18+
 - Groq API Key ([Get one free](https://console.groq.com))
@@ -59,44 +62,48 @@ A **production-grade Personal Knowledge Base Agent** powered by RAG (Retrieval A
 ### Option 1: Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/yourusername/second-brain.git
    cd second-brain
    ```
 
 2. **Set up the backend**
+
    ```bash
    cd backend
    python -m venv venv
-   
+
    # Windows
    .\venv\Scripts\activate
    # macOS/Linux
    source venv/bin/activate
-   
+
    pip install -r requirements.txt
-   
+
    # Copy and edit environment variables
    cp .env.example .env
    # Edit .env and add your GROQ_API_KEY
    ```
 
 3. **Set up the frontend**
+
    ```bash
    cd ../frontend
    npm install
-   
+
    # Copy and edit environment variables
    cp .env.example .env.local
    # Edit .env.local and add your Clerk keys
    ```
 
 4. **Start the services**
+
    ```bash
    # Terminal 1: Backend
    cd backend
    uvicorn app.main:app --reload --port 8000
-   
+
    # Terminal 2: Frontend
    cd frontend
    npm run dev
@@ -170,12 +177,14 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 ### Deploy Backend
 
 **Option A: Railway/Render**
+
 1. Connect your GitHub repo
 2. Set the build command: `pip install -r requirements.txt`
 3. Set the start command: `gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT`
 4. Add environment variables
 
 **Option B: Docker**
+
 ```bash
 docker build -t second-brain-backend ./backend
 docker run -p 8000:8000 --env-file .env second-brain-backend
@@ -187,15 +196,18 @@ Use the provided Dockerfile with your preferred container service (ECS, Cloud Ru
 ## 📊 Data Storage
 
 ### Compression Benefits
+
 - **Average compression ratio**: 3-5x
 - **Typical savings**: 60-80%
 - **Example**: 1MB of text → ~250KB stored
 
 ### Storage Locations
+
 - **Vector Store**: `backend/data/vector_store/` (ChromaDB)
 - **Episodic Memory**: `backend/data/episodic_v2.db` (SQLite with compression)
 
 ### Backup & Restore
+
 ```bash
 # Export via API
 curl http://localhost:8000/api/v2/memory/export > backup.json
@@ -213,23 +225,25 @@ curl http://localhost:8000/api/v2/memory/export > backup.json
 ## 📖 API Documentation
 
 Once running, visit:
+
 - **Swagger UI**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
 
 ### Key Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/ingest` | Ingest new content |
-| POST | `/api/query` | Query knowledge base |
-| GET | `/api/v2/memory` | List memories (with filters) |
-| POST | `/api/v2/memory/bookmark` | Toggle bookmark |
-| GET | `/api/v2/memory/export` | Export all data |
-| POST | `/api/v2/memory/import` | Import backup |
+| Method | Endpoint                  | Description                  |
+| ------ | ------------------------- | ---------------------------- |
+| POST   | `/api/ingest`             | Ingest new content           |
+| POST   | `/api/query`              | Query knowledge base         |
+| GET    | `/api/v2/memory`          | List memories (with filters) |
+| POST   | `/api/v2/memory/bookmark` | Toggle bookmark              |
+| GET    | `/api/v2/memory/export`   | Export all data              |
+| POST   | `/api/v2/memory/import`   | Import backup                |
 
 ## 🛠️ Tech Stack
 
 ### Backend
+
 - **FastAPI** - Modern Python web framework
 - **LangGraph** - Agent orchestration
 - **LangChain** - LLM integration
@@ -239,6 +253,7 @@ Once running, visit:
 - **Groq** - Fast LLM inference
 
 ### Frontend
+
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Styling

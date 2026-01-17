@@ -30,22 +30,22 @@ class Settings(BaseSettings):
 
     # Groq model name
     GROQ_MODEL_NAME: str = "llama-3.1-8b-instant"
-    
+
     # Clerk Authentication
     CLERK_PUBLISHABLE_KEY: Optional[str] = None
     CLERK_SECRET_KEY: Optional[str] = None
-    
+
     # CORS settings for deployment
     CORS_ORIGINS: str = "http://localhost:3000"  # Comma-separated list
-    
+
     # Environment
     ENVIRONMENT: str = "development"  # development, staging, production
-    
+
     @property
     def cors_origins_list(self) -> List[str]:
         """Parse CORS origins from comma-separated string."""
         return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
-    
+
     @property
     def is_production(self) -> bool:
         """Check if running in production."""

@@ -137,12 +137,20 @@ class VectorStore:
         formatted_results: List[Dict[str, Any]] = []
         if results["ids"] and results["ids"][0]:
             for i, doc_id in enumerate(results["ids"][0]):
-                formatted_results.append({
-                    "id": doc_id,
-                    "document": results["documents"][0][i] if results["documents"] else None,
-                    "metadata": results["metadatas"][0][i] if results["metadatas"] else {},
-                    "distance": results["distances"][0][i] if results["distances"] else None,
-                })
+                formatted_results.append(
+                    {
+                        "id": doc_id,
+                        "document": (
+                            results["documents"][0][i] if results["documents"] else None
+                        ),
+                        "metadata": (
+                            results["metadatas"][0][i] if results["metadatas"] else {}
+                        ),
+                        "distance": (
+                            results["distances"][0][i] if results["distances"] else None
+                        ),
+                    }
+                )
 
         return formatted_results
 

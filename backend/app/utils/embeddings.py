@@ -11,7 +11,7 @@ from app.config import settings
 class EmbeddingModel:
     """
     Thread-safe singleton wrapper for sentence-transformers model.
-    
+
     Ensures model is loaded only once and reused across the application.
     """
 

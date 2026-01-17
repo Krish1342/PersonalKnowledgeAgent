@@ -24,22 +24,24 @@ CONTEXT:
 Answer the user's question based ONLY on the context above."""
 
 
-REASONING_PROMPT = ChatPromptTemplate.from_messages([
-    ("system", REASONING_SYSTEM_PROMPT),
-    ("human", "{question}"),
-])
+REASONING_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        ("system", REASONING_SYSTEM_PROMPT),
+        ("human", "{question}"),
+    ]
+)
 
 
 def reasoning_agent(state: AgentState) -> Dict[str, Any]:
     """
     Reasoning agent node.
-    
+
     Uses LLM to synthesize an answer based ONLY on retrieved context.
     Enforces RAG-only behavior (no hallucination).
-    
+
     Args:
         state: Current agent state containing 'context' and 'messages'.
-        
+
     Returns:
         State updates with 'answer' and updated 'messages'.
     """
@@ -73,10 +75,12 @@ def reasoning_agent(state: AgentState) -> Dict[str, Any]:
 
     try:
         # Format context for prompt
-        formatted_context = "\n\n".join([
-            f"[Source: {c.get('source', 'unknown')}]\n{c.get('content', '')}"
-            for c in context
-        ])
+        formatted_context = "\n\n".join(
+            [
+                f"[Source: {c.get('source', 'unknown')}]\n{c.get('content', '')}"
+                for c in context
+            ]
+        )
 
         # Initialize LLM
         if not settings.GROQ_API_KEY:
@@ -96,10 +100,12 @@ def reasoning_agent(state: AgentState) -> Dict[str, Any]:
 
         # Generate response
         chain = REASONING_PROMPT | llm
-        response = chain.invoke({
-            "context": formatted_context,
-            "question": question,
-        })
+        response = chain.invoke(
+            {
+                "context": formatted_context,
+                "question": question,
+            }
+        )
 
         answer = response.content
 
@@ -121,11 +127,11 @@ def reasoning_agent(state: AgentState) -> Dict[str, Any]:
 def _construct_fallback_answer(context: list, question: str) -> str:
     """
     Construct a basic answer from context when LLM is unavailable.
-    
+
     Args:
         context: Retrieved context chunks.
         question: User question.
-        
+
     Returns:
         Fallback answer string.
     """
@@ -138,8 +144,7 @@ def _construct_fallback_answer(context: list, question: str) -> str:
     source = top_context.get("source", "unknown")
 
     return (
-        f"Based on my knowledge base (source: {source}):\n\n"
-        f"{content[:500]}..."
+        f"Based on my knowledge base (source: {source}):\n\n" f"{content[:500]}..."
         if len(content) > 500
         else f"Based on my knowledge base (source: {source}):\n\n{content}"
     )

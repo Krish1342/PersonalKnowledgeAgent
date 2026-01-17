@@ -5,7 +5,7 @@ from langchain_core.messages import BaseMessage
 class AgentState(TypedDict, total=False):
     """
     Shared state for the LangGraph agent workflow.
-    
+
     All agent nodes read from and write to this state.
     """
 
