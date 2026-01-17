@@ -1,34 +1,14 @@
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-pydantic==2.5.0
-pydantic-settings==2.1.0
-python-dotenv==1.0.0
-
-# Vector store and embeddings
-faiss-cpu==1.7.4
-sentence-transformers==2.2.2
-
-# Database and ORM
-sqlalchemy==2.0.23
-psycopg2-binary==2.9.9
-alembic==1.13.1
-
-# Text processing and NLP
-nltk==3.8.1
-spacy==3.7.2
-langchain==0.1.0
-tiktoken==0.5.2
-
-# LangGraph for agents
-langgraph==0.0.29
-langsmith==0.1.0
-
-# Groq API
-groq==0.4.2
-
-# Document processing
-PyPDF2==3.0.1
-python-docx==0.8.11
-
-# Supabase client
-supabase==2.3.3
+fastapi>=0.109.0
+uvicorn>=0.27.0
+langgraph>=0.0.40
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-groq>=0.0.1
+chromadb>=0.4.22
+sentence-transformers>=2.3.0
+pydantic-settings>=2.1.0
+sqlalchemy>=2.0.25
+python-multipart>=0.0.6
+PyJWT>=2.8.0
+httpx>=0.26.0
+gunicorn>=21.2.0

@@ -1,387 +1,259 @@
-# 🎯 LangGraph Ingestion Agent - Project Complete
+# Second Brain 🧠
 
-## ✅ Implementation Summary
+A **production-grade Personal Knowledge Base Agent** powered by RAG (Retrieval Augmented Generation) and LangGraph agents.
 
-A complete, production-ready document ingestion pipeline using LangGraph and Groq API for the Personal Knowledge Agent.
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## 📊 Project Stats
+## ✨ Features
 
-- **Files Created**: 8 new files
-- **Files Modified**: 3 existing files
-- **Lines of Code**: 1,200+ lines of production code
-- **Documentation**: 6 comprehensive guides
-- **API Endpoints**: 4 fully functional endpoints
-- **Test Coverage**: 15+ unit tests
-- **Dependencies**: 5 new packages integrated
+### Core Features
+- 🔍 **RAG-Powered Search** - Query your knowledge base with natural language
+- 📥 **Smart Ingestion** - Upload files or paste text with automatic chunking
+- 🤖 **Agent Workflow** - Plan → Retrieve → Reason → Critique → Reflect
+- 📊 **Memory Management** - View, search, and organize your memories
+
+### New in v2.0
+- 🔐 **Clerk Authentication** - Secure user authentication and data isolation
+- 📦 **Data Compression** - Gzip compression saves 60-80% storage space
+- 🏷️ **Smart Tagging** - AI-powered automatic content categorization
+- ⭐ **Bookmarks** - Star important memories for quick access
+- 🌐 **Knowledge Graph** - Visualize connections between memories
+- 📤 **Export/Import** - Backup and restore your knowledge base
+- 🔍 **Search History** - Track your queries
+- 🌙 **Dark Theme** - Beautiful dark mode UI
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────┐
-│           FastAPI Application               │
-│                                             │
-│  ┌──────────────────────────────────────┐  │
-│  │     REST API Endpoints                │  │
-│  │  ✓ POST /documents/ingest             │  │
-│  │  ✓ POST /documents/ingest/upload      │  │
-│  │  ✓ POST /documents/ingest/batch       │  │
-│  │  ✓ GET  /documents/ingest/status      │  │
-│  └──────────────────────────────────────┘  │
-│                   ▼                         │
-│  ┌──────────────────────────────────────┐  │
-│  │  LangGraph Orchestration (5 nodes)    │  │
-│  │                                       │  │
-│  │  1️⃣  CLEAN    → Extract & normalize  │  │
-│  │  2️⃣  SPLIT    → Semantic chunking    │  │
-│  │  3️⃣  ENRICH   → Groq AI analysis     │  │
-│  │  4️⃣  STORE    → Persistence          │  │
-│  │  5️⃣  FINALIZE → Result aggregation   │  │
-│  └──────────────────────────────────────┘  │
-│     ▼              ▼              ▼         │
-│  FAISS        PostgreSQL      Groq API    │
-└─────────────────────────────────────────────┘
-```
-
-## 📁 Files Delivered
-
-### Core Implementation
-
-```
-✅ app/agents/ingestion_agent.py        (670+ lines)
-   - IngestionAgent orchestrator
-   - DocumentCleaner extractor
-   - LangGraph workflow (5 nodes)
-   - Async/await support
-
-✅ app/api/ingest.py                    (280+ lines)
-   - 4 REST endpoints
-   - Pydantic models
-   - File upload handling
-   - Error handling
-
-✅ app/main.py                          (updated)
-   - Router integration
-   - Import statements
-```
-
-### Documentation
-
-```
-✅ docs/INGESTION_AGENT.md              (comprehensive guide)
-✅ docs/API.md                          (endpoint reference)
-✅ docs/INGESTION_SYSTEM.md             (system overview)
-✅ docs/IMPLEMENTATION.md               (checklist)
-✅ docs/DEPLOYMENT.md                   (deployment guide)
-✅ INGESTION_COMPLETE.md                (summary)
-```
-
-### Examples & Tests
-
-```
-✅ examples/ingestion_example.py        (3 runnable examples)
-✅ tests/test_ingestion_agent.py        (15+ unit tests)
-```
-
-### Configuration
-
-```
-✅ requirements.txt                     (+5 packages)
-✅ .env / .env.example                  (+2 variables)
-```
-
-## 🚀 Key Features
-
-### Document Processing
-
-- ✅ PDF extraction (PyPDF2)
-- ✅ DOCX parsing (python-docx)
-- ✅ Markdown handling
-- ✅ Plain text support
-- ✅ Automatic format detection
-
-### Intelligent Processing
-
-- ✅ Semantic chunking with boundary preservation
-- ✅ Section heading preservation
-- ✅ Configurable chunk size & overlap
-- ✅ Context continuity
-
-### Content Enrichment
-
-- ✅ Groq API integration for analysis
-- ✅ Topic classification (8 topics)
-- ✅ Domain categorization (6 domains)
-- ✅ Difficulty assessment (3 levels)
-- ✅ Key term extraction
-- ✅ Intelligent fallback to local analysis
-
-### Storage & Retrieval
-
-- ✅ 384-dimensional embeddings
-- ✅ FAISS vector persistence
-- ✅ PostgreSQL metadata storage
-- ✅ Document ID tracking
-- ✅ Rich metadata (tags, topics, domain, difficulty)
-
-### REST API
-
-- ✅ Text ingestion
-- ✅ File upload (PDF, DOCX, MD, TXT)
-- ✅ Batch processing
-- ✅ Status monitoring
-- ✅ Consistent response format
-- ✅ Comprehensive error handling
-
-## 📈 Performance Metrics
-
-| Operation            | Performance        |
-| -------------------- | ------------------ |
-| Text extraction      | 100-500 tokens/sec |
-| Semantic chunking    | < 100ms per 10KB   |
-| Embedding generation | 10-50ms per chunk  |
-| Groq enrichment      | 1-3 sec per chunk  |
-| Storage operations   | < 100ms per chunk  |
-
-## 🔌 Integration
-
-The ingestion agent seamlessly integrates with:
-
-- **Memory Layer**
-
-  - SemanticChunker for intelligent splitting
-  - ContentTagger for enrichment fallback
-  - MemoryManager for unified interface
-  - FAISS vector store
-  - PostgreSQL metadata store
-
-- **FastAPI**
-
-  - Registered routers
-  - Async/await support
-  - Automatic API documentation
-  - Pydantic validation
-
-- **External Services**
-  - Groq API for AI analysis
-  - Supabase for PostgreSQL
-  - PyPDF2 for PDF extraction
-  - python-docx for Word documents
-
-## 📚 Documentation Quality
-
-Each component includes:
-
-- 📖 Architecture overview
-- 🔌 Integration points
-- 💻 Code examples
-- 📝 Configuration reference
-- ⚠️ Error handling
-- 🔧 Troubleshooting guide
-- 🚀 Deployment instructions
-- 📊 Performance metrics
-
-## 🧪 Testing
-
-Includes:
-
-- Unit tests for each component
-- Integration test templates
-- Runnable examples
-- Error scenario coverage
-
-Run: `pytest tests/test_ingestion_agent.py -v`
-
-## 💾 API Endpoints
-
-### Text Ingestion
-
-```
-POST /documents/ingest
-```
-
-Process raw text or markdown content directly.
-
-### File Upload
-
-```
-POST /documents/ingest/upload
-```
-
-Upload and process PDF, DOCX, Markdown, or text files.
-
-### Batch Processing
-
-```
-POST /documents/ingest/batch
-```
-
-Process multiple documents efficiently.
-
-### Status Check
-
-```
-GET /documents/ingest/status
-```
-
-Monitor agent availability.
-
-## 🎓 Usage Examples
-
-### Python
-
-```python
-from app.agents.ingestion_agent import IngestionAgent
-
-agent = IngestionAgent()
-result = await agent.ingest(
-    content="# Document\n\nContent here",
-    source="doc.md",
-    input_type="markdown"
-)
-print(f"Chunks created: {result.chunks_created}")
-```
-
-### REST API
-
-```bash
-curl -X POST http://localhost:8000/documents/ingest \
-  -H "Content-Type: application/json" \
-  -d '{
-    "content": "# My Doc\n\nContent",
-    "source": "doc.md",
-    "input_type": "markdown"
-  }'
-```
-
-### File Upload
-
-```bash
-curl -X POST http://localhost:8000/documents/ingest/upload \
-  -F "file=@document.pdf" \
-  -F "source=my_doc"
-```
-
-## 🛠️ Configuration
-
-```bash
-# Groq AI
-GROQ_API_KEY=gsk_xxxxxxxxxxxx
-GROQ_MODEL=mixtral-8x7b-32768
-
-# Storage
-VECTOR_STORE_PATH=./data/vector_store
-SUPABASE_URL=https://xxxxx.supabase.co
-SUPABASE_KEY=xxxxx
-
-# Chunking
-CHUNK_SIZE=512
-CHUNK_OVERLAP=50
+┌─────────────────────────────────────────────────────────────┐
+│                        FRONTEND                             │
+│  Next.js 14 + React + TypeScript + Tailwind + Clerk Auth   │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                        BACKEND                              │
+│                   FastAPI + LangGraph                       │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌──────────┐     │
+│  │ Planner │→ │ Retrieve │→ │ Reason  │→ │ Critique │     │
+│  └─────────┘  └──────────┘  └─────────┘  └──────────┘     │
+│       │                          │              │          │
+│       ▼                          ▼              ▼          │
+│  ┌─────────────────────────────────────────────────────┐  │
+│  │              Memory Layer (Compressed)               │  │
+│  │  ChromaDB (Vectors) + SQLite (Episodic + Tags)      │  │
+│  └─────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- Groq API Key ([Get one free](https://console.groq.com))
+- Clerk Account ([Sign up free](https://dashboard.clerk.com))
+
+### Option 1: Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/second-brain.git
+   cd second-brain
+   ```
+
+2. **Set up the backend**
+   ```bash
+   cd backend
+   python -m venv venv
+   
+   # Windows
+   .\venv\Scripts\activate
+   # macOS/Linux
+   source venv/bin/activate
+   
+   pip install -r requirements.txt
+   
+   # Copy and edit environment variables
+   cp .env.example .env
+   # Edit .env and add your GROQ_API_KEY
+   ```
+
+3. **Set up the frontend**
+   ```bash
+   cd ../frontend
+   npm install
+   
+   # Copy and edit environment variables
+   cp .env.example .env.local
+   # Edit .env.local and add your Clerk keys
+   ```
+
+4. **Start the services**
+   ```bash
+   # Terminal 1: Backend
+   cd backend
+   uvicorn app.main:app --reload --port 8000
+   
+   # Terminal 2: Frontend
+   cd frontend
+   npm run dev
+   ```
+
+5. **Open your browser**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000/docs
+
+### Option 2: Docker Compose
+
 ```bash
-# 1. Install dependencies
-pip install -r requirements.txt
+# Create .env file with your API keys
+cp backend/.env.example .env
 
-# 2. Set environment variables
-export GROQ_API_KEY=gsk_...
-export SUPABASE_URL=...
-export SUPABASE_KEY=...
+# Start all services
+docker-compose up -d
 
-# 3. Initialize database
-python scripts/init_db.py
-
-# 4. Start server
-uvicorn app.main:app --reload
-
-# 5. Access API docs
-# http://localhost:8000/docs
+# View logs
+docker-compose logs -f
 ```
 
-## 📋 Verification Checklist
+### Option 3: Windows Quick Start
 
-All items completed:
+```powershell
+# Run the startup script
+.\start_system.bat
+```
 
-- ✅ Core implementation (2 files, 950+ lines)
-- ✅ API integration (4 endpoints)
-- ✅ Configuration updates (dependencies, env vars)
-- ✅ Comprehensive documentation (6 guides)
-- ✅ Examples and tests (2 files, 15+ tests)
-- ✅ Error handling and fallbacks
-- ✅ Production-grade code quality
+## 🔧 Configuration
 
-## 🎯 Status: COMPLETE ✅
+### Backend Environment Variables (.env)
 
-The ingestion system is:
+```env
+# Required
+GROQ_API_KEY=gsk_your_api_key_here
 
-- ✅ Fully implemented
-- ✅ Thoroughly tested
-- ✅ Well documented
-- ✅ Ready for deployment
-- ✅ Production-grade quality
+# Optional - Clerk Authentication
+CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
 
-## 📖 Documentation
+# Optional - Settings
+CORS_ORIGINS=http://localhost:3000,https://your-app.vercel.app
+ENVIRONMENT=development
+GROQ_MODEL_NAME=llama-3.1-8b-instant
+```
 
-### Quick Reference
+### Frontend Environment Variables (.env.local)
 
-- Start here: [INGESTION_COMPLETE.md](./INGESTION_COMPLETE.md)
-- Architecture: [docs/INGESTION_AGENT.md](./docs/INGESTION_AGENT.md)
-- API Reference: [docs/API.md](./docs/API.md)
-- Deployment: [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)
+```env
+# Required for authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
 
-### Full Index
+# Backend API URL
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
 
-- [docs/INGESTION_SYSTEM.md](./docs/INGESTION_SYSTEM.md) - Complete overview
-- [docs/IMPLEMENTATION.md](./docs/IMPLEMENTATION.md) - Implementation details
-- [VERIFICATION.md](./VERIFICATION.md) - Verification checklist
+## 🌐 Deployment
 
-## 🔗 Integration Points
+### Deploy Frontend to Vercel
 
-The ingestion agent connects to:
+1. Push your code to GitHub
+2. Import your repository in [Vercel](https://vercel.com)
+3. Add environment variables:
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+   - `CLERK_SECRET_KEY`
+   - `NEXT_PUBLIC_API_URL` (your backend URL)
+4. Deploy!
 
-1. **FastAPI** - REST endpoints
-2. **LangGraph** - Workflow orchestration
-3. **Groq API** - AI analysis
-4. **FAISS** - Vector storage
-5. **PostgreSQL** - Metadata storage
-6. **Memory Manager** - Unified interface
+### Deploy Backend
 
-## ⚡ Next Steps
+**Option A: Railway/Render**
+1. Connect your GitHub repo
+2. Set the build command: `pip install -r requirements.txt`
+3. Set the start command: `gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT`
+4. Add environment variables
 
-1. Deploy server: `uvicorn app.main:app`
-2. Test endpoints via Swagger UI: `http://localhost:8000/docs`
-3. Ingest documents via API
-4. Monitor logs: `tail -f logs/app.log`
-5. Review results in database
+**Option B: Docker**
+```bash
+docker build -t second-brain-backend ./backend
+docker run -p 8000:8000 --env-file .env second-brain-backend
+```
 
-## 📞 Support
+**Option C: AWS/GCP/Azure**
+Use the provided Dockerfile with your preferred container service (ECS, Cloud Run, Container Instances)
 
-For help:
+## 📊 Data Storage
 
-- 📖 Check documentation in `docs/` folder
-- 🧪 Run examples: `python examples/ingestion_example.py`
-- ✅ Run tests: `pytest tests/test_ingestion_agent.py -v`
-- 📝 Review code comments in source files
-- 🔧 Check troubleshooting in deployment guide
+### Compression Benefits
+- **Average compression ratio**: 3-5x
+- **Typical savings**: 60-80%
+- **Example**: 1MB of text → ~250KB stored
+
+### Storage Locations
+- **Vector Store**: `backend/data/vector_store/` (ChromaDB)
+- **Episodic Memory**: `backend/data/episodic_v2.db` (SQLite with compression)
+
+### Backup & Restore
+```bash
+# Export via API
+curl http://localhost:8000/api/v2/memory/export > backup.json
+
+# Or use the Settings page in the UI
+```
+
+## 🔐 Security
+
+- **Authentication**: Clerk handles user auth with OAuth providers
+- **Data Isolation**: Each user's data is isolated by user_id
+- **API Security**: Bearer token authentication on protected endpoints
+- **Content Hashing**: SHA-256 hashes for deduplication and integrity
+
+## 📖 API Documentation
+
+Once running, visit:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+
+### Key Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/ingest` | Ingest new content |
+| POST | `/api/query` | Query knowledge base |
+| GET | `/api/v2/memory` | List memories (with filters) |
+| POST | `/api/v2/memory/bookmark` | Toggle bookmark |
+| GET | `/api/v2/memory/export` | Export all data |
+| POST | `/api/v2/memory/import` | Import backup |
+
+## 🛠️ Tech Stack
+
+### Backend
+- **FastAPI** - Modern Python web framework
+- **LangGraph** - Agent orchestration
+- **LangChain** - LLM integration
+- **ChromaDB** - Vector database
+- **SQLite + SQLAlchemy** - Relational data
+- **Sentence-Transformers** - Embeddings
+- **Groq** - Fast LLM inference
+
+### Frontend
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Clerk** - Authentication
+- **Lucide React** - Icons
+- **Framer Motion** - Animations
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our contributing guidelines first.
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
 
 ---
 
-## 🎉 Summary
-
-Your Personal Knowledge Agent now has a complete, intelligent document ingestion pipeline that:
-
-✨ Accepts multiple document formats (PDF, DOCX, MD, TXT)
-✨ Intelligently processes and chunks content
-✨ Enriches with Groq AI analysis
-✨ Stores in scalable vector and metadata databases
-✨ Exposes professional REST API
-✨ Includes comprehensive error handling
-✨ Is fully documented and tested
-✨ Ready for production deployment
-
-**Status**: 🚀 **READY FOR IMMEDIATE USE**
-
----
-
-_Implementation completed in 2024 - Version 1.0.0_
+Built with ❤️ using Second Brain

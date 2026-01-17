@@ -1,266 +1,283 @@
-"""
-Semantic-aware text chunking for document processing.
-Preserves context and structure while creating meaningful chunks.
-"""
-
 import re
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Optional
 from dataclasses import dataclass
+from enum import Enum
 
-from app.config import get_settings
-from app.utils.logging import get_logger
 
-logger = get_logger(__name__)
+class ContentType(Enum):
+    """Supported content types for chunking."""
+    TEXT = "text"
+    MARKDOWN = "markdown"
+
+
+@dataclass
+class ChunkingConfig:
+    """Configuration for text chunking."""
+    chunk_size: int = 1000
+    chunk_overlap: int = 200
+    min_chunk_size: int = 100
+    content_type: ContentType = ContentType.TEXT
 
 
 @dataclass
 class Chunk:
-    """Represents a text chunk with metadata."""
-
-    text: str
+    """A text chunk with metadata."""
+    content: str
+    index: int
     start_char: int
     end_char: int
-    heading: Optional[str] = None
-    section: Optional[str] = None
-    chunk_index: int = 0
-    total_chunks: int = 0
-
-    def to_dict(self) -> Dict[str, Any]:
-        """Convert to dictionary."""
-        return {
-            "text": self.text,
-            "start_char": self.start_char,
-            "end_char": self.end_char,
-            "heading": self.heading,
-            "section": self.section,
-            "chunk_index": self.chunk_index,
-            "total_chunks": self.total_chunks,
-        }
+    metadata: dict
 
 
-class SemanticChunker:
+class TextChunker:
     """
-    Text chunker that preserves semantic boundaries.
-    Respects paragraph, sentence, and heading structure.
+    Semantic text chunker supporting plain text and Markdown.
+    
+    Handles normalization, whitespace cleanup, and overlap-based chunking.
     """
 
-    def __init__(self, chunk_size: int = 512, chunk_overlap: int = 50):
+    # Markdown header patterns for semantic splitting
+    _MD_HEADER_PATTERN = re.compile(r"^(#{1,6})\s+(.+)$", re.MULTILINE)
+    _MD_CODE_BLOCK_PATTERN = re.compile(r"```[\s\S]*?```", re.MULTILINE)
+    _MD_HORIZONTAL_RULE = re.compile(r"^(-{3,}|\*{3,}|_{3,})$", re.MULTILINE)
+
+    def __init__(self, config: Optional[ChunkingConfig] = None) -> None:
         """
-        Initialize chunker.
+        Initialize the chunker.
 
         Args:
-            chunk_size: Target size for chunks (in characters)
-            chunk_overlap: Number of overlapping characters between chunks
+            config: Chunking configuration. Uses defaults if not provided.
         """
-        self.chunk_size = chunk_size
-        self.chunk_overlap = chunk_overlap
-        logger.debug(f"Chunker initialized: size={chunk_size}, overlap={chunk_overlap}")
+        self.config = config or ChunkingConfig()
 
-    @staticmethod
-    def _extract_heading(text: str) -> Tuple[Optional[str], str]:
+    def normalize_text(self, text: str) -> str:
         """
-        Extract heading from text if present.
+        Normalize text by cleaning whitespace and standardizing formatting.
 
         Args:
-            text: Text to process
+            text: Raw input text.
 
         Returns:
-            Tuple of (heading, text_without_heading)
+            Normalized text.
         """
-        # Match markdown or text headings
-        heading_pattern = r"^#+\s+(.+?)$|^(.+?)\n={3,}$|^(.+?)\n-{3,}$"
-        match = re.match(heading_pattern, text, re.MULTILINE)
+        if not text:
+            return ""
 
-        if match:
-            heading = match.group(1) or match.group(2) or match.group(3)
-            # Remove heading from text
-            text = re.sub(
-                heading_pattern, "", text, count=1, flags=re.MULTILINE
-            ).lstrip()
-            return heading.strip(), text
-        return None, text
+        # Replace tabs with spaces
+        text = text.replace("\t", "    ")
 
-    @staticmethod
-    def _is_sentence_end(text: str, pos: int) -> bool:
+        # Normalize line endings
+        text = text.replace("\r\n", "\n").replace("\r", "\n")
+
+        # Remove excessive blank lines (more than 2 consecutive)
+        text = re.sub(r"\n{3,}", "\n\n", text)
+
+        # Remove trailing whitespace from each line
+        text = "\n".join(line.rstrip() for line in text.split("\n"))
+
+        # Remove excessive spaces (more than 2 consecutive, preserve indentation)
+        text = re.sub(r"(?<=\S)  +(?=\S)", " ", text)
+
+        return text.strip()
+
+    def _detect_content_type(self, text: str) -> ContentType:
         """
-        Check if position is at a sentence boundary.
+        Auto-detect if content is Markdown based on patterns.
 
         Args:
-            text: Full text
-            pos: Position to check
+            text: Input text.
 
         Returns:
-            True if at sentence boundary
+            Detected content type.
         """
-        if pos >= len(text):
-            return True
+        md_indicators = [
+            self._MD_HEADER_PATTERN.search(text),
+            self._MD_CODE_BLOCK_PATTERN.search(text),
+            re.search(r"\[.+\]\(.+\)", text),  # Links
+            re.search(r"^\s*[-*+]\s+", text, re.MULTILINE),  # Lists
+            re.search(r"^\s*\d+\.\s+", text, re.MULTILINE),  # Numbered lists
+        ]
 
-        # Look for sentence-ending punctuation followed by space/newline
-        if text[pos] in ".!?" and pos + 1 < len(text):
-            next_char = text[pos + 1]
-            return next_char in (" ", "\n", "\t")
+        if sum(1 for indicator in md_indicators if indicator) >= 2:
+            return ContentType.MARKDOWN
 
-        return False
+        return ContentType.TEXT
 
-    @staticmethod
-    def _is_paragraph_end(text: str, pos: int) -> bool:
+    def _find_semantic_breaks(self, text: str, content_type: ContentType) -> List[int]:
         """
-        Check if position is at a paragraph boundary.
+        Find semantic break points in text.
 
         Args:
-            text: Full text
-            pos: Position to check
+            text: Normalized text.
+            content_type: Type of content.
 
         Returns:
-            True if at paragraph boundary
+            List of character positions for semantic breaks.
         """
-        if pos >= len(text) - 1:
-            return True
+        breaks: List[int] = []
 
-        # Check for double newline
-        return text[pos : pos + 2] == "\n\n"
+        if content_type == ContentType.MARKDOWN:
+            # Headers are strong break points
+            for match in self._MD_HEADER_PATTERN.finditer(text):
+                breaks.append(match.start())
 
-    def _find_split_point(self, text: str, max_size: int) -> int:
+            # Horizontal rules
+            for match in self._MD_HORIZONTAL_RULE.finditer(text):
+                breaks.append(match.start())
+
+        # Paragraph breaks (double newlines) for all content types
+        for match in re.finditer(r"\n\n+", text):
+            breaks.append(match.start())
+
+        return sorted(set(breaks))
+
+    def _find_best_break(
+        self,
+        text: str,
+        start: int,
+        target_end: int,
+        semantic_breaks: List[int],
+    ) -> int:
         """
-        Find optimal split point for chunk.
-        Prioritizes paragraph, then sentence, then word boundaries.
+        Find the best break point near the target end position.
 
         Args:
-            text: Text to split
-            max_size: Maximum size to consider
+            text: Full text.
+            start: Start position of current chunk.
+            target_end: Target end position based on chunk_size.
+            semantic_breaks: List of semantic break positions.
 
         Returns:
-            Position to split at
+            Best break position.
         """
-        if len(text) <= max_size:
-            return len(text)
+        # Look for semantic breaks within range
+        for break_pos in semantic_breaks:
+            if start < break_pos <= target_end:
+                # Prefer semantic break if it's reasonably close to target
+                if break_pos >= target_end - self.config.chunk_overlap:
+                    return break_pos
 
-        # Try to find paragraph boundary
-        for pos in range(max_size, 0, -1):
-            if self._is_paragraph_end(text, pos):
-                return pos
+        # Fall back to sentence boundaries
+        search_start = max(start, target_end - self.config.chunk_overlap)
+        search_text = text[search_start:target_end + self.config.chunk_overlap]
 
-        # Try to find sentence boundary
-        for pos in range(max_size, 0, -1):
-            if self._is_sentence_end(text, pos):
-                return pos + 1
+        # Look for sentence endings
+        sentence_ends = list(re.finditer(r"[.!?]\s+", search_text))
+        if sentence_ends:
+            last_sentence = sentence_ends[-1]
+            return search_start + last_sentence.end()
 
-        # Fall back to word boundary
-        split_pos = max_size
-        while split_pos > 0 and text[split_pos] not in (" ", "\n", "\t"):
-            split_pos -= 1
+        # Fall back to word boundaries
+        word_breaks = list(re.finditer(r"\s+", search_text))
+        if word_breaks:
+            last_word = word_breaks[-1]
+            return search_start + last_word.start()
 
-        return split_pos if split_pos > 0 else max_size
+        # Last resort: hard break at target
+        return min(target_end, len(text))
 
-    def chunk(self, text: str, source: str = "unknown") -> List[Chunk]:
-        """
-        Chunk text into semantic units.
-
-        Args:
-            text: Text to chunk
-            source: Source identifier for tracking
-
-        Returns:
-            List of Chunk objects
-
-        Raises:
-            ValueError: If text is empty
-        """
-        if not text or not text.strip():
-            raise ValueError("Text cannot be empty")
-
-        logger.info(f"Chunking text from {source} ({len(text)} chars)")
-
-        # Extract document-level heading
-        doc_heading, text = self._extract_heading(text)
-
-        chunks: List[Chunk] = []
-        char_pos = 0
-
-        # Split by major sections if they exist
-        sections = re.split(r"\n(?=#{1,3}\s+)", text)
-
-        for section_text in sections:
-            if not section_text.strip():
-                continue
-
-            section_heading, section_body = self._extract_heading(section_text)
-            section_name = section_heading or doc_heading
-
-            # Process section into chunks
-            pos = 0
-            while pos < len(section_body):
-                # Determine chunk boundaries
-                chunk_end = min(pos + self.chunk_size, len(section_body))
-                split_point = self._find_split_point(
-                    section_body[pos:chunk_end], self.chunk_size
-                )
-
-                chunk_text = section_body[pos : pos + split_point].strip()
-
-                if chunk_text:
-                    chunk = Chunk(
-                        text=chunk_text,
-                        start_char=char_pos,
-                        end_char=char_pos + len(chunk_text),
-                        heading=section_heading,
-                        section=section_name,
-                    )
-                    chunks.append(chunk)
-                    char_pos += len(chunk_text)
-
-                # Move position with overlap
-                pos += split_point
-                if pos < len(section_body) and self.chunk_overlap > 0:
-                    pos = max(pos - self.chunk_overlap, 0)
-
-        # Set chunk indices
-        for idx, chunk in enumerate(chunks):
-            chunk.chunk_index = idx
-            chunk.total_chunks = len(chunks)
-
-        logger.info(f"Created {len(chunks)} chunks from {source}")
-        return chunks
-
-    def chunk_documents(
-        self, documents: List[str], source: str = "batch"
+    def chunk(
+        self,
+        text: str,
+        metadata: Optional[dict] = None,
+        auto_detect_type: bool = True,
     ) -> List[Chunk]:
         """
-        Chunk multiple documents.
+        Split text into semantic chunks with overlap.
 
         Args:
-            documents: List of document texts
-            source: Source identifier
+            text: Input text to chunk.
+            metadata: Optional metadata to attach to all chunks.
+            auto_detect_type: Whether to auto-detect Markdown content.
 
         Returns:
-            List of Chunk objects
+            List of Chunk objects.
         """
-        all_chunks = []
-        for i, doc in enumerate(documents):
-            doc_source = f"{source}[doc_{i}]"
-            chunks = self.chunk(doc, source=doc_source)
-            all_chunks.extend(chunks)
+        if not text:
+            return []
 
-        logger.info(f"Chunked {len(documents)} documents into {len(all_chunks)} chunks")
-        return all_chunks
+        # Normalize
+        normalized = self.normalize_text(text)
 
+        if len(normalized) <= self.config.chunk_size:
+            return [
+                Chunk(
+                    content=normalized,
+                    index=0,
+                    start_char=0,
+                    end_char=len(normalized),
+                    metadata=metadata or {},
+                )
+            ]
 
-def create_chunker(
-    chunk_size: Optional[int] = None,
-    chunk_overlap: Optional[int] = None,
-) -> SemanticChunker:
-    """
-    Factory function to create chunker with default settings.
+        # Detect content type
+        content_type = self.config.content_type
+        if auto_detect_type:
+            content_type = self._detect_content_type(normalized)
 
-    Args:
-        chunk_size: Optional override for chunk size
-        chunk_overlap: Optional override for chunk overlap
+        # Find semantic break points
+        semantic_breaks = self._find_semantic_breaks(normalized, content_type)
 
-    Returns:
-        SemanticChunker instance
-    """
-    settings = get_settings()
-    return SemanticChunker(
-        chunk_size=chunk_size or settings.CHUNK_SIZE,
-        chunk_overlap=chunk_overlap or settings.CHUNK_OVERLAP,
-    )
+        # Generate chunks
+        chunks: List[Chunk] = []
+        start = 0
+        chunk_index = 0
+
+        while start < len(normalized):
+            # Calculate target end
+            target_end = start + self.config.chunk_size
+
+            if target_end >= len(normalized):
+                # Last chunk
+                chunk_text = normalized[start:].strip()
+                if len(chunk_text) >= self.config.min_chunk_size or not chunks:
+                    chunks.append(
+                        Chunk(
+                            content=chunk_text,
+                            index=chunk_index,
+                            start_char=start,
+                            end_char=len(normalized),
+                            metadata=metadata or {},
+                        )
+                    )
+                break
+
+            # Find best break point
+            end = self._find_best_break(normalized, start, target_end, semantic_breaks)
+
+            chunk_text = normalized[start:end].strip()
+
+            if len(chunk_text) >= self.config.min_chunk_size:
+                chunks.append(
+                    Chunk(
+                        content=chunk_text,
+                        index=chunk_index,
+                        start_char=start,
+                        end_char=end,
+                        metadata=metadata or {},
+                    )
+                )
+                chunk_index += 1
+
+            # Move start with overlap
+            start = max(start + 1, end - self.config.chunk_overlap)
+
+        return chunks
+
+    def chunk_to_strings(
+        self,
+        text: str,
+        auto_detect_type: bool = True,
+    ) -> List[str]:
+        """
+        Convenience method to get just the chunk content strings.
+
+        Args:
+            text: Input text.
+            auto_detect_type: Whether to auto-detect Markdown content.
+
+        Returns:
+            List of chunk content strings.
+        """
+        chunks = self.chunk(text, auto_detect_type=auto_detect_type)
+        return [c.content for c in chunks]

@@ -1,55 +1,56 @@
-"""
-Configuration management using Pydantic Settings.
-Supports environment-based config with .env file override.
-"""
+from pathlib import Path
+from typing import Optional, List
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from pydantic_settings import BaseSettings
-from functools import lru_cache
+
+# Project root: backend/
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
 
 
 class Settings(BaseSettings):
-    """Application configuration from environment variables."""
+    """Application settings managed via environment variables."""
 
-    # Application
-    APP_NAME: str = "Personal Knowledge Agent"
-    APP_VERSION: str = "0.1.0"
-    ENVIRONMENT: str = "development"  # development, staging, production
-    DEBUG: bool = False
+    model_config = SettingsConfigDict(
+        env_file=PROJECT_ROOT / ".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
-    # Server
-    HOST: str = "0.0.0.0"
-    PORT: int = 8000
-    LOG_LEVEL: str = "INFO"
+    # Vector database path (ChromaDB)
+    VECTOR_DB_PATH: str = str(PROJECT_ROOT / "data" / "vector_store")
 
-    # Logging
-    LOG_FORMAT: str = "json"  # json or text
+    # SQLite database path (Episodic/Procedural memory)
+    SQLITE_DB_PATH: str = str(PROJECT_ROOT / "data" / "episodic.db")
 
-    # Supabase Configuration
-    SUPABASE_URL: str = ""
-    SUPABASE_KEY: str = ""
-    DATABASE_URL: str = ""  # Supabase PostgreSQL connection string
+    # Embedding model name (Sentence-Transformers)
+    MODEL_NAME: str = "all-MiniLM-L6-v2"
 
-    # Vector Store
-    VECTOR_STORE_PATH: str = "./data/vector_store"
-    EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
-
-    # Text Processing
-    CHUNK_SIZE: int = 512
-    CHUNK_OVERLAP: int = 50
-
-    # Groq API Configuration
+    # Groq API key for LLM
     GROQ_API_KEY: str = ""
-    GROQ_MODEL: str = "mixtral-8x7b-32768"
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    # Groq model name
+    GROQ_MODEL_NAME: str = "llama-3.1-8b-instant"
+    
+    # Clerk Authentication
+    CLERK_PUBLISHABLE_KEY: Optional[str] = None
+    CLERK_SECRET_KEY: Optional[str] = None
+    
+    # CORS settings for deployment
+    CORS_ORIGINS: str = "http://localhost:3000"  # Comma-separated list
+    
+    # Environment
+    ENVIRONMENT: str = "development"  # development, staging, production
+    
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Parse CORS origins from comma-separated string."""
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
+    
+    @property
+    def is_production(self) -> bool:
+        """Check if running in production."""
+        return self.ENVIRONMENT == "production"
 
 
-@lru_cache
-def get_settings() -> Settings:
-    """
-    Get cached settings instance.
-    Uses LRU cache to avoid reloading settings multiple times.
-    """
-    return Settings()
+# Singleton instance
+settings = Settings()

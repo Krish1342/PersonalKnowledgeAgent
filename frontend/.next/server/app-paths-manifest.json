@@ -1,0 +1,8 @@
+{
+  "/ingest/page": "app/ingest/page.js",
+  "/sign-in/[[...sign-in]]/page": "app/sign-in/[[...sign-in]]/page.js",
+  "/query/page": "app/query/page.js",
+  "/memory/page": "app/memory/page.js",
+  "/graph/page": "app/graph/page.js",
+  "/settings/page": "app/settings/page.js"
+}

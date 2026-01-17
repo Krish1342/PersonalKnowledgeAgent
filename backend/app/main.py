@@ -1,86 +1,79 @@
-"""
-FastAPI application factory and configuration.
-Entry point for the Personal Knowledge Agent backend.
-"""
-
 from contextlib import asynccontextmanager
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.config import get_settings
-from app.utils.logging import setup_logging, get_logger
-from app.api import health, ingest
-
-logger = get_logger(__name__)
+from app.api import ingest_router, query_router, memory_router
+from app.api.memory_v2 import router as memory_v2_router
+from app.config import settings
+from app.auth.clerk import get_clerk_auth
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Application lifespan context manager.
+    Application lifespan handler.
+    
     Handles startup and shutdown events.
     """
-    # Startup
-    logger.info("Application starting up")
+    # Startup: ensure data directories exist
+    Path(settings.VECTOR_DB_PATH).mkdir(parents=True, exist_ok=True)
+    Path(settings.SQLITE_DB_PATH).parent.mkdir(parents=True, exist_ok=True)
+
     yield
-    # Shutdown
-    logger.info("Application shutting down")
+
+    # Shutdown: cleanup if needed
+    pass
 
 
-def create_app() -> FastAPI:
-    """
-    Application factory function.
-    Creates and configures the FastAPI application.
+# Initialize FastAPI application
+app = FastAPI(
+    title="Personal Knowledge Base Agent",
+    description="A RAG-powered personal knowledge base with LangGraph agent workflow",
+    version="2.0.0",
+    lifespan=lifespan,
+)
 
-    Returns:
-        Configured FastAPI application instance
-    """
-    settings = get_settings()
+# Configure CORS for frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.cors_origins_list,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    # Setup logging
-    setup_logging()
-
-    # Create app instance
-    app = FastAPI(
-        title=settings.APP_NAME,
-        version=settings.APP_VERSION,
-        debug=settings.DEBUG,
-        lifespan=lifespan,
-    )
-
-    # Configure CORS
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],  # TODO: Configure for production
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    # Include routers
-    app.include_router(health.router)
-    app.include_router(ingest.router)
-
-    # Root endpoint
-    @app.get("/")
-    def root() -> dict[str, str]:
-        """Root endpoint."""
-        return {
-            "message": f"Welcome to {settings.APP_NAME}",
-            "version": settings.APP_VERSION,
-        }
-
-    logger.info(
-        f"Application initialized",
-        extra={
-            "app_name": settings.APP_NAME,
-            "environment": settings.ENVIRONMENT,
-            "debug": settings.DEBUG,
-        },
-    )
-
-    return app
+# Include API routers
+app.include_router(ingest_router, prefix="/api")
+app.include_router(query_router, prefix="/api")
+app.include_router(memory_router, prefix="/api")  # Legacy memory API
+app.include_router(memory_v2_router, prefix="/api/v2")  # Enhanced memory API
 
 
-# Application instance
-app = create_app()
+@app.get("/", tags=["health"])
+async def root():
+    """Root endpoint - health check."""
+    clerk = get_clerk_auth()
+    return {
+        "status": "healthy",
+        "service": "Personal Knowledge Base Agent",
+        "version": "2.0.0",
+        "auth_enabled": clerk.is_enabled,
+        "environment": settings.ENVIRONMENT,
+    }
+
+
+@app.get("/health", tags=["health"])
+async def health_check():
+    """Detailed health check endpoint."""
+    clerk = get_clerk_auth()
+    return {
+        "status": "healthy",
+        "vector_db_path": settings.VECTOR_DB_PATH,
+        "sqlite_db_path": settings.SQLITE_DB_PATH,
+        "embedding_model": settings.MODEL_NAME,
+        "llm_configured": bool(settings.GROQ_API_KEY),
+        "auth_enabled": clerk.is_enabled,
+        "environment": settings.ENVIRONMENT,
+    }

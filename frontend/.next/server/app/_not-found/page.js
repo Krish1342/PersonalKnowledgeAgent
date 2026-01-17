@@ -1,0 +1,404 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "app/_not-found/page";
+exports.ids = ["app/_not-found/page"];
+exports.modules = {
+
+/***/ "../../client/components/action-async-storage.external":
+/*!*******************************************************************************!*\
+  !*** external "next/dist/client/components/action-async-storage.external.js" ***!
+  \*******************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/action-async-storage.external.js");
+
+/***/ }),
+
+/***/ "../../client/components/request-async-storage.external":
+/*!********************************************************************************!*\
+  !*** external "next/dist/client/components/request-async-storage.external.js" ***!
+  \********************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/request-async-storage.external.js");
+
+/***/ }),
+
+/***/ "../../client/components/static-generation-async-storage.external":
+/*!******************************************************************************************!*\
+  !*** external "next/dist/client/components/static-generation-async-storage.external.js" ***!
+  \******************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/client/components/static-generation-async-storage.external.js");
+
+/***/ }),
+
+/***/ "next/dist/compiled/next-server/app-page.runtime.dev.js":
+/*!*************************************************************************!*\
+  !*** external "next/dist/compiled/next-server/app-page.runtime.dev.js" ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("next/dist/compiled/next-server/app-page.runtime.dev.js");
+
+/***/ }),
+
+/***/ "buffer":
+/*!*************************!*\
+  !*** external "buffer" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("buffer");
+
+/***/ }),
+
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("crypto");
+
+/***/ }),
+
+/***/ "fs":
+/*!*********************!*\
+  !*** external "fs" ***!
+  \*********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("fs");
+
+/***/ }),
+
+/***/ "process":
+/*!**************************!*\
+  !*** external "process" ***!
+  \**************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("process");
+
+/***/ }),
+
+/***/ "stream":
+/*!*************************!*\
+  !*** external "stream" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("stream");
+
+/***/ }),
+
+/***/ "worker_threads":
+/*!*********************************!*\
+  !*** external "worker_threads" ***!
+  \*********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("worker_threads");
+
+/***/ }),
+
+/***/ "zlib":
+/*!***********************!*\
+  !*** external "zlib" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("zlib");
+
+/***/ }),
+
+/***/ "node:buffer":
+/*!******************************!*\
+  !*** external "node:buffer" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:buffer");
+
+/***/ }),
+
+/***/ "node:crypto":
+/*!******************************!*\
+  !*** external "node:crypto" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:crypto");
+
+/***/ }),
+
+/***/ "node:fs":
+/*!**************************!*\
+  !*** external "node:fs" ***!
+  \**************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:fs");
+
+/***/ }),
+
+/***/ "node:http":
+/*!****************************!*\
+  !*** external "node:http" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:http");
+
+/***/ }),
+
+/***/ "node:https":
+/*!*****************************!*\
+  !*** external "node:https" ***!
+  \*****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:https");
+
+/***/ }),
+
+/***/ "node:net":
+/*!***************************!*\
+  !*** external "node:net" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:net");
+
+/***/ }),
+
+/***/ "node:path":
+/*!****************************!*\
+  !*** external "node:path" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
+
+/***/ }),
+
+/***/ "node:process":
+/*!*******************************!*\
+  !*** external "node:process" ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:process");
+
+/***/ }),
+
+/***/ "node:stream":
+/*!******************************!*\
+  !*** external "node:stream" ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:stream");
+
+/***/ }),
+
+/***/ "node:stream/web":
+/*!**********************************!*\
+  !*** external "node:stream/web" ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:stream/web");
+
+/***/ }),
+
+/***/ "node:url":
+/*!***************************!*\
+  !*** external "node:url" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:url");
+
+/***/ }),
+
+/***/ "node:util":
+/*!****************************!*\
+  !*** external "node:util" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:util");
+
+/***/ }),
+
+/***/ "node:zlib":
+/*!****************************!*\
+  !*** external "node:zlib" ***!
+  \****************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:zlib");
+
+/***/ }),
+
+/***/ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D!":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D! ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   GlobalError: () => (/* reexport default from dynamic */ next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2___default.a),\n/* harmony export */   __next_app__: () => (/* binding */ __next_app__),\n/* harmony export */   originalPathname: () => (/* binding */ originalPathname),\n/* harmony export */   pages: () => (/* binding */ pages),\n/* harmony export */   routeModule: () => (/* binding */ routeModule),\n/* harmony export */   tree: () => (/* binding */ tree)\n/* harmony export */ });\n/* harmony import */ var next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/server/future/route-modules/app-page/module.compiled */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/module.compiled.js?d969\");\n/* harmony import */ var next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/dist/server/future/route-kind */ \"(rsc)/./node_modules/next/dist/server/future/route-kind.js\");\n/* harmony import */ var next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/dist/client/components/error-boundary */ \"(rsc)/./node_modules/next/dist/client/components/error-boundary.js\");\n/* harmony import */ var next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_dist_client_components_error_boundary__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/dist/server/app-render/entry-base */ \"(rsc)/./node_modules/next/dist/server/app-render/entry-base.js\");\n/* harmony import */ var next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};\n/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__) if([\"default\",\"tree\",\"pages\",\"GlobalError\",\"originalPathname\",\"__next_app__\",\"routeModule\"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => next_dist_server_app_render_entry_base__WEBPACK_IMPORTED_MODULE_3__[__WEBPACK_IMPORT_KEY__]\n/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);\n\"TURBOPACK { transition: next-ssr }\";\n\n\n// We inject the tree and pages here so that we can use them in the route\n// module.\nconst tree = {\n        children: [\n        '',\n        {\n          children: [\"/_not-found\", {\n            children: ['__PAGE__', {}, {\n              page: [\n                () => Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! next/dist/client/components/not-found-error */ \"(rsc)/./node_modules/next/dist/client/components/not-found-error.js\", 23)),\n                \"next/dist/client/components/not-found-error\"\n              ]\n            }]\n          }, {}]\n        },\n        {\n        'layout': [() => Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./app/layout.tsx */ \"(rsc)/./app/layout.tsx\")), \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\"],\n'not-found': [() => Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! next/dist/client/components/not-found-error */ \"(rsc)/./node_modules/next/dist/client/components/not-found-error.js\", 23)), \"next/dist/client/components/not-found-error\"],\n        \n      }\n      ]\n      }.children;\nconst pages = [];\n\n\nconst __next_app_require__ = __webpack_require__\nconst __next_app_load_chunk__ = () => Promise.resolve()\nconst originalPathname = \"/_not-found/page\";\nconst __next_app__ = {\n    require: __next_app_require__,\n    loadChunk: __next_app_load_chunk__\n};\n\n// Create and export the route module that will be consumed.\nconst routeModule = new next_dist_server_future_route_modules_app_page_module_compiled__WEBPACK_IMPORTED_MODULE_0__.AppPageRouteModule({\n    definition: {\n        kind: next_dist_server_future_route_kind__WEBPACK_IMPORTED_MODULE_1__.RouteKind.APP_PAGE,\n        page: \"/_not-found/page\",\n        pathname: \"/_not-found\",\n        // The following aren't used in production.\n        bundlePath: \"\",\n        filename: \"\",\n        appPaths: []\n    },\n    userland: {\n        loaderTree: tree\n    }\n});\n\n//# sourceMappingURL=app-page.js.map//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWFwcC1sb2FkZXIuanM/bmFtZT1hcHAlMkZfbm90LWZvdW5kJTJGcGFnZSZwYWdlPSUyRl9ub3QtZm91bmQlMkZwYWdlJmFwcFBhdGhzPSZwYWdlUGF0aD1ub2RlX21vZHVsZXMlMkZuZXh0JTJGZGlzdCUyRmNsaWVudCUyRmNvbXBvbmVudHMlMkZub3QtZm91bmQtZXJyb3IuanMmYXBwRGlyPUMlM0ElNUNVc2VycyU1Q2Rya2V0JTVDT25lRHJpdmUlNUNEZXNrdG9wJTVDQ29kZXMlNUNQZXJzb25hbEtub3dsZWRnZUFnZW50JTVDZnJvbnRlbmQlNUNhcHAmcGFnZUV4dGVuc2lvbnM9dHN4JnBhZ2VFeHRlbnNpb25zPXRzJnBhZ2VFeHRlbnNpb25zPWpzeCZwYWdlRXh0ZW5zaW9ucz1qcyZyb290RGlyPUMlM0ElNUNVc2VycyU1Q2Rya2V0JTVDT25lRHJpdmUlNUNEZXNrdG9wJTVDQ29kZXMlNUNQZXJzb25hbEtub3dsZWRnZUFnZW50JTVDZnJvbnRlbmQmaXNEZXY9dHJ1ZSZ0c2NvbmZpZ1BhdGg9dHNjb25maWcuanNvbiZiYXNlUGF0aD0mYXNzZXRQcmVmaXg9Jm5leHRDb25maWdPdXRwdXQ9c3RhbmRhbG9uZSZwcmVmZXJyZWRSZWdpb249Jm1pZGRsZXdhcmVDb25maWc9ZTMwJTNEISIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsYUFBYSxzQkFBc0I7QUFDaUU7QUFDckM7QUFDL0Q7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxxQ0FBcUM7QUFDckM7QUFDQSxzQkFBc0IsME5BQWdGO0FBQ3RHO0FBQ0E7QUFDQSxhQUFhO0FBQ2IsV0FBVyxJQUFJO0FBQ2YsU0FBUztBQUNUO0FBQ0EseUJBQXlCLDRJQUFrSTtBQUMzSixvQkFBb0IsME5BQWdGO0FBQ3BHO0FBQ0E7QUFDQTtBQUNBLE9BQU87QUFDUDtBQUN1QjtBQUM2RDtBQUNwRiw2QkFBNkIsbUJBQW1CO0FBQ2hEO0FBQ087QUFDQTtBQUNQO0FBQ0E7QUFDQTtBQUN1RDtBQUN2RDtBQUNPLHdCQUF3Qiw4R0FBa0I7QUFDakQ7QUFDQSxjQUFjLHlFQUFTO0FBQ3ZCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLEtBQUs7QUFDTDtBQUNBO0FBQ0E7QUFDQSxDQUFDOztBQUVEIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcGVyc29uYWwta25vd2xlZGdlLWFnZW50LWZyb250ZW5kLz81MzMzIl0sInNvdXJjZXNDb250ZW50IjpbIlwiVFVSQk9QQUNLIHsgdHJhbnNpdGlvbjogbmV4dC1zc3IgfVwiO1xuaW1wb3J0IHsgQXBwUGFnZVJvdXRlTW9kdWxlIH0gZnJvbSBcIm5leHQvZGlzdC9zZXJ2ZXIvZnV0dXJlL3JvdXRlLW1vZHVsZXMvYXBwLXBhZ2UvbW9kdWxlLmNvbXBpbGVkXCI7XG5pbXBvcnQgeyBSb3V0ZUtpbmQgfSBmcm9tIFwibmV4dC9kaXN0L3NlcnZlci9mdXR1cmUvcm91dGUta2luZFwiO1xuLy8gV2UgaW5qZWN0IHRoZSB0cmVlIGFuZCBwYWdlcyBoZXJlIHNvIHRoYXQgd2UgY2FuIHVzZSB0aGVtIGluIHRoZSByb3V0ZVxuLy8gbW9kdWxlLlxuY29uc3QgdHJlZSA9IHtcbiAgICAgICAgY2hpbGRyZW46IFtcbiAgICAgICAgJycsXG4gICAgICAgIHtcbiAgICAgICAgICBjaGlsZHJlbjogW1wiL19ub3QtZm91bmRcIiwge1xuICAgICAgICAgICAgY2hpbGRyZW46IFsnX19QQUdFX18nLCB7fSwge1xuICAgICAgICAgICAgICBwYWdlOiBbXG4gICAgICAgICAgICAgICAgKCkgPT4gaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCJuZXh0L2Rpc3QvY2xpZW50L2NvbXBvbmVudHMvbm90LWZvdW5kLWVycm9yXCIpLFxuICAgICAgICAgICAgICAgIFwibmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL25vdC1mb3VuZC1lcnJvclwiXG4gICAgICAgICAgICAgIF1cbiAgICAgICAgICAgIH1dXG4gICAgICAgICAgfSwge31dXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgJ2xheW91dCc6IFsoKSA9PiBpbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIkM6XFxcXFVzZXJzXFxcXGRya2V0XFxcXE9uZURyaXZlXFxcXERlc2t0b3BcXFxcQ29kZXNcXFxcUGVyc29uYWxLbm93bGVkZ2VBZ2VudFxcXFxmcm9udGVuZFxcXFxhcHBcXFxcbGF5b3V0LnRzeFwiKSwgXCJDOlxcXFxVc2Vyc1xcXFxkcmtldFxcXFxPbmVEcml2ZVxcXFxEZXNrdG9wXFxcXENvZGVzXFxcXFBlcnNvbmFsS25vd2xlZGdlQWdlbnRcXFxcZnJvbnRlbmRcXFxcYXBwXFxcXGxheW91dC50c3hcIl0sXG4nbm90LWZvdW5kJzogWygpID0+IGltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwibmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL25vdC1mb3VuZC1lcnJvclwiKSwgXCJuZXh0L2Rpc3QvY2xpZW50L2NvbXBvbmVudHMvbm90LWZvdW5kLWVycm9yXCJdLFxuICAgICAgICBcbiAgICAgIH1cbiAgICAgIF1cbiAgICAgIH0uY2hpbGRyZW47XG5jb25zdCBwYWdlcyA9IFtdO1xuZXhwb3J0IHsgdHJlZSwgcGFnZXMgfTtcbmV4cG9ydCB7IGRlZmF1bHQgYXMgR2xvYmFsRXJyb3IgfSBmcm9tIFwibmV4dC9kaXN0L2NsaWVudC9jb21wb25lbnRzL2Vycm9yLWJvdW5kYXJ5XCI7XG5jb25zdCBfX25leHRfYXBwX3JlcXVpcmVfXyA9IF9fd2VicGFja19yZXF1aXJlX19cbmNvbnN0IF9fbmV4dF9hcHBfbG9hZF9jaHVua19fID0gKCkgPT4gUHJvbWlzZS5yZXNvbHZlKClcbmV4cG9ydCBjb25zdCBvcmlnaW5hbFBhdGhuYW1lID0gXCIvX25vdC1mb3VuZC9wYWdlXCI7XG5leHBvcnQgY29uc3QgX19uZXh0X2FwcF9fID0ge1xuICAgIHJlcXVpcmU6IF9fbmV4dF9hcHBfcmVxdWlyZV9fLFxuICAgIGxvYWRDaHVuazogX19uZXh0X2FwcF9sb2FkX2NodW5rX19cbn07XG5leHBvcnQgKiBmcm9tIFwibmV4dC9kaXN0L3NlcnZlci9hcHAtcmVuZGVyL2VudHJ5LWJhc2VcIjtcbi8vIENyZWF0ZSBhbmQgZXhwb3J0IHRoZSByb3V0ZSBtb2R1bGUgdGhhdCB3aWxsIGJlIGNvbnN1bWVkLlxuZXhwb3J0IGNvbnN0IHJvdXRlTW9kdWxlID0gbmV3IEFwcFBhZ2VSb3V0ZU1vZHVsZSh7XG4gICAgZGVmaW5pdGlvbjoge1xuICAgICAgICBraW5kOiBSb3V0ZUtpbmQuQVBQX1BBR0UsXG4gICAgICAgIHBhZ2U6IFwiL19ub3QtZm91bmQvcGFnZVwiLFxuICAgICAgICBwYXRobmFtZTogXCIvX25vdC1mb3VuZFwiLFxuICAgICAgICAvLyBUaGUgZm9sbG93aW5nIGFyZW4ndCB1c2VkIGluIHByb2R1Y3Rpb24uXG4gICAgICAgIGJ1bmRsZVBhdGg6IFwiXCIsXG4gICAgICAgIGZpbGVuYW1lOiBcIlwiLFxuICAgICAgICBhcHBQYXRoczogW11cbiAgICB9LFxuICAgIHVzZXJsYW5kOiB7XG4gICAgICAgIGxvYWRlclRyZWU6IHRyZWVcbiAgICB9XG59KTtcblxuLy8jIHNvdXJjZU1hcHBpbmdVUkw9YXBwLXBhZ2UuanMubWFwIl0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cglobals.css%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cproviders.tsx%22%2C%22ids%22%3A%5B%22Providers%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Ccomponents%5C%5CNavigation.tsx%22%2C%22ids%22%3A%5B%22Navigation%22%5D%7D&server=true!":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cglobals.css%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cproviders.tsx%22%2C%22ids%22%3A%5B%22Providers%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Ccomponents%5C%5CNavigation.tsx%22%2C%22ids%22%3A%5B%22Navigation%22%5D%7D&server=true! ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./app/providers.tsx */ \"(ssr)/./app/providers.tsx\"));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.bind(__webpack_require__, /*! ./components/Navigation.tsx */ \"(ssr)/./components/Navigation.tsx\"));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMkMlM0ElNUMlNUNVc2VycyU1QyU1Q2Rya2V0JTVDJTVDT25lRHJpdmUlNUMlNUNEZXNrdG9wJTVDJTVDQ29kZXMlNUMlNUNQZXJzb25hbEtub3dsZWRnZUFnZW50JTVDJTVDZnJvbnRlbmQlNUMlNUNhcHAlNUMlNUNnbG9iYWxzLmNzcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjJDJTNBJTVDJTVDVXNlcnMlNUMlNUNkcmtldCU1QyU1Q09uZURyaXZlJTVDJTVDRGVza3RvcCU1QyU1Q0NvZGVzJTVDJTVDUGVyc29uYWxLbm93bGVkZ2VBZ2VudCU1QyU1Q2Zyb250ZW5kJTVDJTVDYXBwJTVDJTVDcHJvdmlkZXJzLnRzeCUyMiUyQyUyMmlkcyUyMiUzQSU1QiUyMlByb3ZpZGVycyUyMiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjJDJTNBJTVDJTVDVXNlcnMlNUMlNUNkcmtldCU1QyU1Q09uZURyaXZlJTVDJTVDRGVza3RvcCU1QyU1Q0NvZGVzJTVDJTVDUGVyc29uYWxLbm93bGVkZ2VBZ2VudCU1QyU1Q2Zyb250ZW5kJTVDJTVDY29tcG9uZW50cyU1QyU1Q05hdmlnYXRpb24udHN4JTIyJTJDJTIyaWRzJTIyJTNBJTVCJTIyTmF2aWdhdGlvbiUyMiU1RCU3RCZzZXJ2ZXI9dHJ1ZSEiLCJtYXBwaW5ncyI6IkFBQUEsa0pBQW9LO0FBQ3BLO0FBQ0Esa0tBQTZLIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcGVyc29uYWwta25vd2xlZGdlLWFnZW50LWZyb250ZW5kLz85YzUzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiLCB3ZWJwYWNrRXhwb3J0czogW1wiUHJvdmlkZXJzXCJdICovIFwiQzpcXFxcVXNlcnNcXFxcZHJrZXRcXFxcT25lRHJpdmVcXFxcRGVza3RvcFxcXFxDb2Rlc1xcXFxQZXJzb25hbEtub3dsZWRnZUFnZW50XFxcXGZyb250ZW5kXFxcXGFwcFxcXFxwcm92aWRlcnMudHN4XCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIsIHdlYnBhY2tFeHBvcnRzOiBbXCJOYXZpZ2F0aW9uXCJdICovIFwiQzpcXFxcVXNlcnNcXFxcZHJrZXRcXFxcT25lRHJpdmVcXFxcRGVza3RvcFxcXFxDb2Rlc1xcXFxQZXJzb25hbEtub3dsZWRnZUFnZW50XFxcXGZyb250ZW5kXFxcXGNvbXBvbmVudHNcXFxcTmF2aWdhdGlvbi50c3hcIik7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cglobals.css%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Capp%5C%5Cproviders.tsx%22%2C%22ids%22%3A%5B%22Providers%22%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Ccomponents%5C%5CNavigation.tsx%22%2C%22ids%22%3A%5B%22Navigation%22%5D%7D&server=true!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Capp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cerror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Clayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Crender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Capp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cerror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Clayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Crender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true! ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("Promise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/app-router.js */ \"(ssr)/./node_modules/next/dist/client/components/app-router.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/client-page.js */ \"(ssr)/./node_modules/next/dist/client/components/client-page.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/error-boundary.js */ \"(ssr)/./node_modules/next/dist/client/components/error-boundary.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/layout-router.js */ \"(ssr)/./node_modules/next/dist/client/components/layout-router.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/not-found-boundary.js */ \"(ssr)/./node_modules/next/dist/client/components/not-found-boundary.js\", 23));\n;\nPromise.resolve(/*! import() eager */).then(__webpack_require__.t.bind(__webpack_require__, /*! ./node_modules/next/dist/client/components/render-from-template-context.js */ \"(ssr)/./node_modules/next/dist/client/components/render-from-template-context.js\", 23));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvbmV4dC9kaXN0L2J1aWxkL3dlYnBhY2svbG9hZGVycy9uZXh0LWZsaWdodC1jbGllbnQtZW50cnktbG9hZGVyLmpzP21vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMkMlM0ElNUMlNUNVc2VycyU1QyU1Q2Rya2V0JTVDJTVDT25lRHJpdmUlNUMlNUNEZXNrdG9wJTVDJTVDQ29kZXMlNUMlNUNQZXJzb25hbEtub3dsZWRnZUFnZW50JTVDJTVDZnJvbnRlbmQlNUMlNUNub2RlX21vZHVsZXMlNUMlNUNuZXh0JTVDJTVDZGlzdCU1QyU1Q2NsaWVudCU1QyU1Q2NvbXBvbmVudHMlNUMlNUNhcHAtcm91dGVyLmpzJTIyJTJDJTIyaWRzJTIyJTNBJTVCJTVEJTdEJm1vZHVsZXM9JTdCJTIycmVxdWVzdCUyMiUzQSUyMkMlM0ElNUMlNUNVc2VycyU1QyU1Q2Rya2V0JTVDJTVDT25lRHJpdmUlNUMlNUNEZXNrdG9wJTVDJTVDQ29kZXMlNUMlNUNQZXJzb25hbEtub3dsZWRnZUFnZW50JTVDJTVDZnJvbnRlbmQlNUMlNUNub2RlX21vZHVsZXMlNUMlNUNuZXh0JTVDJTVDZGlzdCU1QyU1Q2NsaWVudCU1QyU1Q2NvbXBvbmVudHMlNUMlNUNjbGllbnQtcGFnZS5qcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjJDJTNBJTVDJTVDVXNlcnMlNUMlNUNkcmtldCU1QyU1Q09uZURyaXZlJTVDJTVDRGVza3RvcCU1QyU1Q0NvZGVzJTVDJTVDUGVyc29uYWxLbm93bGVkZ2VBZ2VudCU1QyU1Q2Zyb250ZW5kJTVDJTVDbm9kZV9tb2R1bGVzJTVDJTVDbmV4dCU1QyU1Q2Rpc3QlNUMlNUNjbGllbnQlNUMlNUNjb21wb25lbnRzJTVDJTVDZXJyb3ItYm91bmRhcnkuanMlMjIlMkMlMjJpZHMlMjIlM0ElNUIlNUQlN0QmbW9kdWxlcz0lN0IlMjJyZXF1ZXN0JTIyJTNBJTIyQyUzQSU1QyU1Q1VzZXJzJTVDJTVDZHJrZXQlNUMlNUNPbmVEcml2ZSU1QyU1Q0Rlc2t0b3AlNUMlNUNDb2RlcyU1QyU1Q1BlcnNvbmFsS25vd2xlZGdlQWdlbnQlNUMlNUNmcm9udGVuZCU1QyU1Q25vZGVfbW9kdWxlcyU1QyU1Q25leHQlNUMlNUNkaXN0JTVDJTVDY2xpZW50JTVDJTVDY29tcG9uZW50cyU1QyU1Q2xheW91dC1yb3V0ZXIuanMlMjIlMkMlMjJpZHMlMjIlM0ElNUIlNUQlN0QmbW9kdWxlcz0lN0IlMjJyZXF1ZXN0JTIyJTNBJTIyQyUzQSU1QyU1Q1VzZXJzJTVDJTVDZHJrZXQlNUMlNUNPbmVEcml2ZSU1QyU1Q0Rlc2t0b3AlNUMlNUNDb2RlcyU1QyU1Q1BlcnNvbmFsS25vd2xlZGdlQWdlbnQlNUMlNUNmcm9udGVuZCU1QyU1Q25vZGVfbW9kdWxlcyU1QyU1Q25leHQlNUMlNUNkaXN0JTVDJTVDY2xpZW50JTVDJTVDY29tcG9uZW50cyU1QyU1Q25vdC1mb3VuZC1ib3VuZGFyeS5qcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZtb2R1bGVzPSU3QiUyMnJlcXVlc3QlMjIlM0ElMjJDJTNBJTVDJTVDVXNlcnMlNUMlNUNkcmtldCU1QyU1Q09uZURyaXZlJTVDJTVDRGVza3RvcCU1QyU1Q0NvZGVzJTVDJTVDUGVyc29uYWxLbm93bGVkZ2VBZ2VudCU1QyU1Q2Zyb250ZW5kJTVDJTVDbm9kZV9tb2R1bGVzJTVDJTVDbmV4dCU1QyU1Q2Rpc3QlNUMlNUNjbGllbnQlNUMlNUNjb21wb25lbnRzJTVDJTVDcmVuZGVyLWZyb20tdGVtcGxhdGUtY29udGV4dC5qcyUyMiUyQyUyMmlkcyUyMiUzQSU1QiU1RCU3RCZzZXJ2ZXI9dHJ1ZSEiLCJtYXBwaW5ncyI6IkFBQUEsa09BQThLO0FBQzlLO0FBQ0Esb09BQStLO0FBQy9LO0FBQ0EsME9BQWtMO0FBQ2xMO0FBQ0Esd09BQWlMO0FBQ2pMO0FBQ0Esa1BBQXNMO0FBQ3RMO0FBQ0Esc1FBQWdNIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcGVyc29uYWwta25vd2xlZGdlLWFnZW50LWZyb250ZW5kLz83MWFkIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwiQzpcXFxcVXNlcnNcXFxcZHJrZXRcXFxcT25lRHJpdmVcXFxcRGVza3RvcFxcXFxDb2Rlc1xcXFxQZXJzb25hbEtub3dsZWRnZUFnZW50XFxcXGZyb250ZW5kXFxcXG5vZGVfbW9kdWxlc1xcXFxuZXh0XFxcXGRpc3RcXFxcY2xpZW50XFxcXGNvbXBvbmVudHNcXFxcYXBwLXJvdXRlci5qc1wiKTtcbjtcbmltcG9ydCgvKiB3ZWJwYWNrTW9kZTogXCJlYWdlclwiICovIFwiQzpcXFxcVXNlcnNcXFxcZHJrZXRcXFxcT25lRHJpdmVcXFxcRGVza3RvcFxcXFxDb2Rlc1xcXFxQZXJzb25hbEtub3dsZWRnZUFnZW50XFxcXGZyb250ZW5kXFxcXG5vZGVfbW9kdWxlc1xcXFxuZXh0XFxcXGRpc3RcXFxcY2xpZW50XFxcXGNvbXBvbmVudHNcXFxcY2xpZW50LXBhZ2UuanNcIik7XG47XG5pbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIkM6XFxcXFVzZXJzXFxcXGRya2V0XFxcXE9uZURyaXZlXFxcXERlc2t0b3BcXFxcQ29kZXNcXFxcUGVyc29uYWxLbm93bGVkZ2VBZ2VudFxcXFxmcm9udGVuZFxcXFxub2RlX21vZHVsZXNcXFxcbmV4dFxcXFxkaXN0XFxcXGNsaWVudFxcXFxjb21wb25lbnRzXFxcXGVycm9yLWJvdW5kYXJ5LmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCJDOlxcXFxVc2Vyc1xcXFxkcmtldFxcXFxPbmVEcml2ZVxcXFxEZXNrdG9wXFxcXENvZGVzXFxcXFBlcnNvbmFsS25vd2xlZGdlQWdlbnRcXFxcZnJvbnRlbmRcXFxcbm9kZV9tb2R1bGVzXFxcXG5leHRcXFxcZGlzdFxcXFxjbGllbnRcXFxcY29tcG9uZW50c1xcXFxsYXlvdXQtcm91dGVyLmpzXCIpO1xuO1xuaW1wb3J0KC8qIHdlYnBhY2tNb2RlOiBcImVhZ2VyXCIgKi8gXCJDOlxcXFxVc2Vyc1xcXFxkcmtldFxcXFxPbmVEcml2ZVxcXFxEZXNrdG9wXFxcXENvZGVzXFxcXFBlcnNvbmFsS25vd2xlZGdlQWdlbnRcXFxcZnJvbnRlbmRcXFxcbm9kZV9tb2R1bGVzXFxcXG5leHRcXFxcZGlzdFxcXFxjbGllbnRcXFxcY29tcG9uZW50c1xcXFxub3QtZm91bmQtYm91bmRhcnkuanNcIik7XG47XG5pbXBvcnQoLyogd2VicGFja01vZGU6IFwiZWFnZXJcIiAqLyBcIkM6XFxcXFVzZXJzXFxcXGRya2V0XFxcXE9uZURyaXZlXFxcXERlc2t0b3BcXFxcQ29kZXNcXFxcUGVyc29uYWxLbm93bGVkZ2VBZ2VudFxcXFxmcm9udGVuZFxcXFxub2RlX21vZHVsZXNcXFxcbmV4dFxcXFxkaXN0XFxcXGNsaWVudFxcXFxjb21wb25lbnRzXFxcXHJlbmRlci1mcm9tLXRlbXBsYXRlLWNvbnRleHQuanNcIik7XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/next/dist/build/webpack/loaders/next-flight-client-entry-loader.js?modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Capp-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cclient-page.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cerror-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Clayout-router.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Cnot-found-boundary.js%22%2C%22ids%22%3A%5B%5D%7D&modules=%7B%22request%22%3A%22C%3A%5C%5CUsers%5C%5Cdrket%5C%5COneDrive%5C%5CDesktop%5C%5CCodes%5C%5CPersonalKnowledgeAgent%5C%5Cfrontend%5C%5Cnode_modules%5C%5Cnext%5C%5Cdist%5C%5Cclient%5C%5Ccomponents%5C%5Crender-from-template-context.js%22%2C%22ids%22%3A%5B%5D%7D&server=true!\n");
+
+/***/ }),
+
+/***/ "(ssr)/./app/providers.tsx":
+/*!***************************!*\
+  !*** ./app/providers.tsx ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Providers: () => (/* binding */ Providers)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _clerk_nextjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @clerk/nextjs */ \"(ssr)/./node_modules/@clerk/nextjs/dist/esm/index.js\");\n/* __next_internal_client_entry_do_not_use__ Providers auto */ \n\nfunction Providers({ children }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_clerk_nextjs__WEBPACK_IMPORTED_MODULE_1__.ClerkProvider, {\n        appearance: {\n            elements: {\n                formButtonPrimary: \"bg-indigo-600 hover:bg-indigo-700 text-white\",\n                card: \"bg-gray-900 border border-gray-800\",\n                headerTitle: \"text-white\",\n                headerSubtitle: \"text-gray-400\",\n                socialButtonsBlockButton: \"bg-gray-800 border-gray-700 text-white hover:bg-gray-700\",\n                formFieldLabel: \"text-gray-300\",\n                formFieldInput: \"bg-gray-800 border-gray-700 text-white\",\n                footerActionLink: \"text-indigo-400 hover:text-indigo-300\",\n                identityPreviewEditButton: \"text-indigo-400\",\n                formFieldAction: \"text-indigo-400\",\n                alertText: \"text-gray-300\",\n                userButtonPopoverCard: \"bg-gray-900 border-gray-800\",\n                userButtonPopoverActionButton: \"text-gray-300 hover:bg-gray-800\",\n                userButtonPopoverActionButtonText: \"text-gray-300\",\n                userButtonPopoverFooter: \"hidden\"\n            },\n            variables: {\n                colorPrimary: \"#6366f1\",\n                colorBackground: \"#111827\",\n                colorText: \"#ffffff\",\n                colorTextSecondary: \"#9ca3af\",\n                colorInputBackground: \"#1f2937\",\n                colorInputText: \"#ffffff\"\n            }\n        },\n        children: children\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\providers.tsx\",\n        lineNumber: 12,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9hcHAvcHJvdmlkZXJzLnRzeCIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUU4QztBQU92QyxTQUFTQyxVQUFVLEVBQUVDLFFBQVEsRUFBa0I7SUFDcEQscUJBQ0UsOERBQUNGLHdEQUFhQTtRQUNaRyxZQUFZO1lBQ1ZDLFVBQVU7Z0JBQ1JDLG1CQUNFO2dCQUNGQyxNQUFNO2dCQUNOQyxhQUFhO2dCQUNiQyxnQkFBZ0I7Z0JBQ2hCQywwQkFDRTtnQkFDRkMsZ0JBQWdCO2dCQUNoQkMsZ0JBQ0U7Z0JBQ0ZDLGtCQUFrQjtnQkFDbEJDLDJCQUEyQjtnQkFDM0JDLGlCQUFpQjtnQkFDakJDLFdBQVc7Z0JBQ1hDLHVCQUF1QjtnQkFDdkJDLCtCQUErQjtnQkFDL0JDLG1DQUFtQztnQkFDbkNDLHlCQUF5QjtZQUMzQjtZQUNBQyxXQUFXO2dCQUNUQyxjQUFjO2dCQUNkQyxpQkFBaUI7Z0JBQ2pCQyxXQUFXO2dCQUNYQyxvQkFBb0I7Z0JBQ3BCQyxzQkFBc0I7Z0JBQ3RCQyxnQkFBZ0I7WUFDbEI7UUFDRjtrQkFFQ3hCOzs7Ozs7QUFHUCIsInNvdXJjZXMiOlsid2VicGFjazovL3BlcnNvbmFsLWtub3dsZWRnZS1hZ2VudC1mcm9udGVuZC8uL2FwcC9wcm92aWRlcnMudHN4P2NlNDYiXSwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBjbGllbnQnO1xyXG5cclxuaW1wb3J0IHsgQ2xlcmtQcm92aWRlciB9IGZyb20gJ0BjbGVyay9uZXh0anMnO1xyXG5pbXBvcnQgeyBSZWFjdE5vZGUgfSBmcm9tICdyZWFjdCc7XHJcblxyXG5pbnRlcmZhY2UgUHJvdmlkZXJzUHJvcHMge1xyXG4gIGNoaWxkcmVuOiBSZWFjdE5vZGU7XHJcbn1cclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBQcm92aWRlcnMoeyBjaGlsZHJlbiB9OiBQcm92aWRlcnNQcm9wcykge1xyXG4gIHJldHVybiAoXHJcbiAgICA8Q2xlcmtQcm92aWRlclxyXG4gICAgICBhcHBlYXJhbmNlPXt7XHJcbiAgICAgICAgZWxlbWVudHM6IHtcclxuICAgICAgICAgIGZvcm1CdXR0b25QcmltYXJ5OiBcclxuICAgICAgICAgICAgJ2JnLWluZGlnby02MDAgaG92ZXI6YmctaW5kaWdvLTcwMCB0ZXh0LXdoaXRlJyxcclxuICAgICAgICAgIGNhcmQ6ICdiZy1ncmF5LTkwMCBib3JkZXIgYm9yZGVyLWdyYXktODAwJyxcclxuICAgICAgICAgIGhlYWRlclRpdGxlOiAndGV4dC13aGl0ZScsXHJcbiAgICAgICAgICBoZWFkZXJTdWJ0aXRsZTogJ3RleHQtZ3JheS00MDAnLFxyXG4gICAgICAgICAgc29jaWFsQnV0dG9uc0Jsb2NrQnV0dG9uOiBcclxuICAgICAgICAgICAgJ2JnLWdyYXktODAwIGJvcmRlci1ncmF5LTcwMCB0ZXh0LXdoaXRlIGhvdmVyOmJnLWdyYXktNzAwJyxcclxuICAgICAgICAgIGZvcm1GaWVsZExhYmVsOiAndGV4dC1ncmF5LTMwMCcsXHJcbiAgICAgICAgICBmb3JtRmllbGRJbnB1dDogXHJcbiAgICAgICAgICAgICdiZy1ncmF5LTgwMCBib3JkZXItZ3JheS03MDAgdGV4dC13aGl0ZScsXHJcbiAgICAgICAgICBmb290ZXJBY3Rpb25MaW5rOiAndGV4dC1pbmRpZ28tNDAwIGhvdmVyOnRleHQtaW5kaWdvLTMwMCcsXHJcbiAgICAgICAgICBpZGVudGl0eVByZXZpZXdFZGl0QnV0dG9uOiAndGV4dC1pbmRpZ28tNDAwJyxcclxuICAgICAgICAgIGZvcm1GaWVsZEFjdGlvbjogJ3RleHQtaW5kaWdvLTQwMCcsXHJcbiAgICAgICAgICBhbGVydFRleHQ6ICd0ZXh0LWdyYXktMzAwJyxcclxuICAgICAgICAgIHVzZXJCdXR0b25Qb3BvdmVyQ2FyZDogJ2JnLWdyYXktOTAwIGJvcmRlci1ncmF5LTgwMCcsXHJcbiAgICAgICAgICB1c2VyQnV0dG9uUG9wb3ZlckFjdGlvbkJ1dHRvbjogJ3RleHQtZ3JheS0zMDAgaG92ZXI6YmctZ3JheS04MDAnLFxyXG4gICAgICAgICAgdXNlckJ1dHRvblBvcG92ZXJBY3Rpb25CdXR0b25UZXh0OiAndGV4dC1ncmF5LTMwMCcsXHJcbiAgICAgICAgICB1c2VyQnV0dG9uUG9wb3ZlckZvb3RlcjogJ2hpZGRlbicsXHJcbiAgICAgICAgfSxcclxuICAgICAgICB2YXJpYWJsZXM6IHtcclxuICAgICAgICAgIGNvbG9yUHJpbWFyeTogJyM2MzY2ZjEnLFxyXG4gICAgICAgICAgY29sb3JCYWNrZ3JvdW5kOiAnIzExMTgyNycsXHJcbiAgICAgICAgICBjb2xvclRleHQ6ICcjZmZmZmZmJyxcclxuICAgICAgICAgIGNvbG9yVGV4dFNlY29uZGFyeTogJyM5Y2EzYWYnLFxyXG4gICAgICAgICAgY29sb3JJbnB1dEJhY2tncm91bmQ6ICcjMWYyOTM3JyxcclxuICAgICAgICAgIGNvbG9ySW5wdXRUZXh0OiAnI2ZmZmZmZicsXHJcbiAgICAgICAgfSxcclxuICAgICAgfX1cclxuICAgID5cclxuICAgICAge2NoaWxkcmVufVxyXG4gICAgPC9DbGVya1Byb3ZpZGVyPlxyXG4gICk7XHJcbn1cclxuIl0sIm5hbWVzIjpbIkNsZXJrUHJvdmlkZXIiLCJQcm92aWRlcnMiLCJjaGlsZHJlbiIsImFwcGVhcmFuY2UiLCJlbGVtZW50cyIsImZvcm1CdXR0b25QcmltYXJ5IiwiY2FyZCIsImhlYWRlclRpdGxlIiwiaGVhZGVyU3VidGl0bGUiLCJzb2NpYWxCdXR0b25zQmxvY2tCdXR0b24iLCJmb3JtRmllbGRMYWJlbCIsImZvcm1GaWVsZElucHV0IiwiZm9vdGVyQWN0aW9uTGluayIsImlkZW50aXR5UHJldmlld0VkaXRCdXR0b24iLCJmb3JtRmllbGRBY3Rpb24iLCJhbGVydFRleHQiLCJ1c2VyQnV0dG9uUG9wb3ZlckNhcmQiLCJ1c2VyQnV0dG9uUG9wb3ZlckFjdGlvbkJ1dHRvbiIsInVzZXJCdXR0b25Qb3BvdmVyQWN0aW9uQnV0dG9uVGV4dCIsInVzZXJCdXR0b25Qb3BvdmVyRm9vdGVyIiwidmFyaWFibGVzIiwiY29sb3JQcmltYXJ5IiwiY29sb3JCYWNrZ3JvdW5kIiwiY29sb3JUZXh0IiwiY29sb3JUZXh0U2Vjb25kYXJ5IiwiY29sb3JJbnB1dEJhY2tncm91bmQiLCJjb2xvcklucHV0VGV4dCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./app/providers.tsx\n");
+
+/***/ }),
+
+/***/ "(ssr)/./components/Navigation.tsx":
+/*!***********************************!*\
+  !*** ./components/Navigation.tsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Navigation: () => (/* binding */ Navigation),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"(ssr)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/ssr/react.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/link */ \"(ssr)/./node_modules/next/dist/api/link.js\");\n/* harmony import */ var next_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/navigation */ \"(ssr)/./node_modules/next/dist/api/navigation.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/home.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/upload.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/search.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/database.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/network.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/settings.js\");\n/* harmony import */ var _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! __barrel_optimize__?names=Brain,Database,Home,Network,Search,Settings,Upload!=!lucide-react */ \"(ssr)/./node_modules/lucide-react/dist/esm/icons/brain.js\");\n/* harmony import */ var _clerk_nextjs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @clerk/nextjs */ \"(ssr)/./node_modules/@clerk/nextjs/dist/esm/index.js\");\n/* harmony import */ var _clerk_nextjs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @clerk/nextjs */ \"(ssr)/./node_modules/@clerk/clerk-react/dist/esm/index.js\");\n/* __next_internal_client_entry_do_not_use__ Navigation,default auto */ \n\n\n\n\n\nconst navItems = [\n    {\n        href: \"/\",\n        label: \"Home\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_4__[\"default\"]\n    },\n    {\n        href: \"/ingest\",\n        label: \"Ingest\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_5__[\"default\"]\n    },\n    {\n        href: \"/query\",\n        label: \"Query\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_6__[\"default\"]\n    },\n    {\n        href: \"/memory\",\n        label: \"Memory\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_7__[\"default\"]\n    },\n    {\n        href: \"/graph\",\n        label: \"Graph\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_8__[\"default\"]\n    },\n    {\n        href: \"/settings\",\n        label: \"Settings\",\n        icon: _barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_9__[\"default\"]\n    }\n];\nfunction Navigation() {\n    const pathname = (0,next_navigation__WEBPACK_IMPORTED_MODULE_3__.usePathname)();\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"nav\", {\n        className: \"fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            className: \"max-w-7xl mx-auto px-4\",\n            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"flex items-center justify-between h-16\",\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                        href: \"/\",\n                        className: \"flex items-center gap-2 group\",\n                        children: [\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_barrel_optimize_names_Brain_Database_Home_Network_Search_Settings_Upload_lucide_react__WEBPACK_IMPORTED_MODULE_10__[\"default\"], {\n                                className: \"w-8 h-8 text-indigo-500 group-hover:text-indigo-400 transition-colors\"\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                lineNumber: 27,\n                                columnNumber: 13\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                className: \"font-bold text-lg text-white hidden sm:block\",\n                                children: \"Second Brain\"\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                lineNumber: 28,\n                                columnNumber: 13\n                            }, this)\n                        ]\n                    }, void 0, true, {\n                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                        lineNumber: 26,\n                        columnNumber: 11\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"flex items-center gap-1\",\n                        children: navItems.map((item)=>{\n                            const Icon = item.icon;\n                            const isActive = pathname === item.href;\n                            return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(next_link__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                href: item.href,\n                                className: `\r\n                    flex items-center gap-2 px-3 py-2 rounded-lg transition-all\r\n                    ${isActive ? \"bg-indigo-600 text-white\" : \"text-gray-400 hover:text-white hover:bg-gray-800\"}\r\n                  `,\n                                children: [\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(Icon, {\n                                        className: \"w-4 h-4\"\n                                    }, void 0, false, {\n                                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                        lineNumber: 52,\n                                        columnNumber: 19\n                                    }, this),\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                        className: \"hidden md:block text-sm font-medium\",\n                                        children: item.label\n                                    }, void 0, false, {\n                                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                        lineNumber: 53,\n                                        columnNumber: 19\n                                    }, this)\n                                ]\n                            }, item.href, true, {\n                                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                lineNumber: 40,\n                                columnNumber: 17\n                            }, this);\n                        })\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                        lineNumber: 34,\n                        columnNumber: 11\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"flex items-center gap-3\",\n                        children: [\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_clerk_nextjs__WEBPACK_IMPORTED_MODULE_11__.SignedIn, {\n                                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_clerk_nextjs__WEBPACK_IMPORTED_MODULE_12__.UserButton, {\n                                    afterSignOutUrl: \"/\",\n                                    appearance: {\n                                        elements: {\n                                            avatarBox: \"w-9 h-9\"\n                                        }\n                                    }\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                    lineNumber: 64,\n                                    columnNumber: 15\n                                }, this)\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                lineNumber: 63,\n                                columnNumber: 13\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_clerk_nextjs__WEBPACK_IMPORTED_MODULE_11__.SignedOut, {\n                                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_clerk_nextjs__WEBPACK_IMPORTED_MODULE_12__.SignInButton, {\n                                    mode: \"modal\",\n                                    children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                                        className: \"px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors\",\n                                        children: \"Sign In\"\n                                    }, void 0, false, {\n                                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                        lineNumber: 75,\n                                        columnNumber: 17\n                                    }, this)\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                    lineNumber: 74,\n                                    columnNumber: 15\n                                }, this)\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                                lineNumber: 73,\n                                columnNumber: 13\n                            }, this)\n                        ]\n                    }, void 0, true, {\n                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                        lineNumber: 62,\n                        columnNumber: 11\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n                lineNumber: 24,\n                columnNumber: 9\n            }, this)\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n            lineNumber: 23,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\components\\\\Navigation.tsx\",\n        lineNumber: 22,\n        columnNumber: 5\n    }, this);\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navigation);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9jb21wb25lbnRzL05hdmlnYXRpb24udHN4IiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUUwQjtBQUNHO0FBQ2lCO0FBQzBDO0FBQ1Y7QUFFOUUsTUFBTWMsV0FBVztJQUNmO1FBQUVDLE1BQU07UUFBS0MsT0FBTztRQUFRQyxNQUFNViw4SEFBSUE7SUFBQztJQUN2QztRQUFFUSxNQUFNO1FBQVdDLE9BQU87UUFBVUMsTUFBTWIsOEhBQU1BO0lBQUM7SUFDakQ7UUFBRVcsTUFBTTtRQUFVQyxPQUFPO1FBQVNDLE1BQU1aLDhIQUFNQTtJQUFDO0lBQy9DO1FBQUVVLE1BQU07UUFBV0MsT0FBTztRQUFVQyxNQUFNWCw4SEFBUUE7SUFBQztJQUNuRDtRQUFFUyxNQUFNO1FBQVVDLE9BQU87UUFBU0MsTUFBTVQsOEhBQU9BO0lBQUM7SUFDaEQ7UUFBRU8sTUFBTTtRQUFhQyxPQUFPO1FBQVlDLE1BQU1SLDhIQUFRQTtJQUFDO0NBQ3hEO0FBRU0sU0FBU1M7SUFDZCxNQUFNQyxXQUFXakIsNERBQVdBO0lBRTVCLHFCQUNFLDhEQUFDa0I7UUFBSUMsV0FBVTtrQkFDYiw0RUFBQ0M7WUFBSUQsV0FBVTtzQkFDYiw0RUFBQ0M7Z0JBQUlELFdBQVU7O2tDQUViLDhEQUFDcEIsaURBQUlBO3dCQUFDYyxNQUFLO3dCQUFJTSxXQUFVOzswQ0FDdkIsOERBQUNsQiwrSEFBS0E7Z0NBQUNrQixXQUFVOzs7Ozs7MENBQ2pCLDhEQUFDRTtnQ0FBS0YsV0FBVTswQ0FBK0M7Ozs7Ozs7Ozs7OztrQ0FNakUsOERBQUNDO3dCQUFJRCxXQUFVO2tDQUNaUCxTQUFTVSxHQUFHLENBQUMsQ0FBQ0M7NEJBQ2IsTUFBTUMsT0FBT0QsS0FBS1IsSUFBSTs0QkFDdEIsTUFBTVUsV0FBV1IsYUFBYU0sS0FBS1YsSUFBSTs0QkFFdkMscUJBQ0UsOERBQUNkLGlEQUFJQTtnQ0FFSGMsTUFBTVUsS0FBS1YsSUFBSTtnQ0FDZk0sV0FBVyxDQUFDOztvQkFFVixFQUNFTSxXQUNJLDZCQUNBLG1EQUNMO2tCQUNILENBQUM7O2tEQUVELDhEQUFDRDt3Q0FBS0wsV0FBVTs7Ozs7O2tEQUNoQiw4REFBQ0U7d0NBQUtGLFdBQVU7a0RBQ2JJLEtBQUtULEtBQUs7Ozs7Ozs7K0JBYlJTLEtBQUtWLElBQUk7Ozs7O3dCQWlCcEI7Ozs7OztrQ0FJRiw4REFBQ087d0JBQUlELFdBQVU7OzBDQUNiLDhEQUFDVixvREFBUUE7MENBQ1AsNEVBQUNELHNEQUFVQTtvQ0FDVGtCLGlCQUFnQjtvQ0FDaEJDLFlBQVk7d0NBQ1ZDLFVBQVU7NENBQ1JDLFdBQVc7d0NBQ2I7b0NBQ0Y7Ozs7Ozs7Ozs7OzBDQUdKLDhEQUFDbkIscURBQVNBOzBDQUNSLDRFQUFDQyx3REFBWUE7b0NBQUNtQixNQUFLOzhDQUNqQiw0RUFBQ0M7d0NBQU9aLFdBQVU7a0RBQTBHOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQVU1STtBQUVBLGlFQUFlSCxVQUFVQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vcGVyc29uYWwta25vd2xlZGdlLWFnZW50LWZyb250ZW5kLy4vY29tcG9uZW50cy9OYXZpZ2F0aW9uLnRzeD84M2VmIl0sInNvdXJjZXNDb250ZW50IjpbIlwidXNlIGNsaWVudFwiO1xyXG5cclxuaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgTGluayBmcm9tIFwibmV4dC9saW5rXCI7XHJcbmltcG9ydCB7IHVzZVBhdGhuYW1lIH0gZnJvbSBcIm5leHQvbmF2aWdhdGlvblwiO1xyXG5pbXBvcnQgeyBCcmFpbiwgVXBsb2FkLCBTZWFyY2gsIERhdGFiYXNlLCBIb21lLCBOZXR3b3JrLCBTZXR0aW5ncyB9IGZyb20gXCJsdWNpZGUtcmVhY3RcIjtcclxuaW1wb3J0IHsgVXNlckJ1dHRvbiwgU2lnbmVkSW4sIFNpZ25lZE91dCwgU2lnbkluQnV0dG9uIH0gZnJvbSBcIkBjbGVyay9uZXh0anNcIjtcclxuXHJcbmNvbnN0IG5hdkl0ZW1zID0gW1xyXG4gIHsgaHJlZjogXCIvXCIsIGxhYmVsOiBcIkhvbWVcIiwgaWNvbjogSG9tZSB9LFxyXG4gIHsgaHJlZjogXCIvaW5nZXN0XCIsIGxhYmVsOiBcIkluZ2VzdFwiLCBpY29uOiBVcGxvYWQgfSxcclxuICB7IGhyZWY6IFwiL3F1ZXJ5XCIsIGxhYmVsOiBcIlF1ZXJ5XCIsIGljb246IFNlYXJjaCB9LFxyXG4gIHsgaHJlZjogXCIvbWVtb3J5XCIsIGxhYmVsOiBcIk1lbW9yeVwiLCBpY29uOiBEYXRhYmFzZSB9LFxyXG4gIHsgaHJlZjogXCIvZ3JhcGhcIiwgbGFiZWw6IFwiR3JhcGhcIiwgaWNvbjogTmV0d29yayB9LFxyXG4gIHsgaHJlZjogXCIvc2V0dGluZ3NcIiwgbGFiZWw6IFwiU2V0dGluZ3NcIiwgaWNvbjogU2V0dGluZ3MgfSxcclxuXTtcclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBOYXZpZ2F0aW9uKCkge1xyXG4gIGNvbnN0IHBhdGhuYW1lID0gdXNlUGF0aG5hbWUoKTtcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxuYXYgY2xhc3NOYW1lPVwiZml4ZWQgdG9wLTAgbGVmdC0wIHJpZ2h0LTAgei01MCBiZy1ncmF5LTkwMC85NSBiYWNrZHJvcC1ibHVyLXNtIGJvcmRlci1iIGJvcmRlci1ncmF5LTgwMFwiPlxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm1heC13LTd4bCBteC1hdXRvIHB4LTRcIj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktYmV0d2VlbiBoLTE2XCI+XHJcbiAgICAgICAgICB7LyogTG9nbyAqL31cclxuICAgICAgICAgIDxMaW5rIGhyZWY9XCIvXCIgY2xhc3NOYW1lPVwiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgZ3JvdXBcIj5cclxuICAgICAgICAgICAgPEJyYWluIGNsYXNzTmFtZT1cInctOCBoLTggdGV4dC1pbmRpZ28tNTAwIGdyb3VwLWhvdmVyOnRleHQtaW5kaWdvLTQwMCB0cmFuc2l0aW9uLWNvbG9yc1wiIC8+XHJcbiAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cImZvbnQtYm9sZCB0ZXh0LWxnIHRleHQtd2hpdGUgaGlkZGVuIHNtOmJsb2NrXCI+XHJcbiAgICAgICAgICAgICAgU2Vjb25kIEJyYWluXHJcbiAgICAgICAgICAgIDwvc3Bhbj5cclxuICAgICAgICAgIDwvTGluaz5cclxuXHJcbiAgICAgICAgICB7LyogTmF2IExpbmtzICovfVxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMVwiPlxyXG4gICAgICAgICAgICB7bmF2SXRlbXMubWFwKChpdGVtKSA9PiB7XHJcbiAgICAgICAgICAgICAgY29uc3QgSWNvbiA9IGl0ZW0uaWNvbjtcclxuICAgICAgICAgICAgICBjb25zdCBpc0FjdGl2ZSA9IHBhdGhuYW1lID09PSBpdGVtLmhyZWY7XHJcblxyXG4gICAgICAgICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgICA8TGlua1xyXG4gICAgICAgICAgICAgICAgICBrZXk9e2l0ZW0uaHJlZn1cclxuICAgICAgICAgICAgICAgICAgaHJlZj17aXRlbS5ocmVmfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2BcclxuICAgICAgICAgICAgICAgICAgICBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiBweC0zIHB5LTIgcm91bmRlZC1sZyB0cmFuc2l0aW9uLWFsbFxyXG4gICAgICAgICAgICAgICAgICAgICR7XHJcbiAgICAgICAgICAgICAgICAgICAgICBpc0FjdGl2ZVxyXG4gICAgICAgICAgICAgICAgICAgICAgICA/IFwiYmctaW5kaWdvLTYwMCB0ZXh0LXdoaXRlXCJcclxuICAgICAgICAgICAgICAgICAgICAgICAgOiBcInRleHQtZ3JheS00MDAgaG92ZXI6dGV4dC13aGl0ZSBob3ZlcjpiZy1ncmF5LTgwMFwiXHJcbiAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgICBgfVxyXG4gICAgICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgICAgICA8SWNvbiBjbGFzc05hbWU9XCJ3LTQgaC00XCIgLz5cclxuICAgICAgICAgICAgICAgICAgPHNwYW4gY2xhc3NOYW1lPVwiaGlkZGVuIG1kOmJsb2NrIHRleHQtc20gZm9udC1tZWRpdW1cIj5cclxuICAgICAgICAgICAgICAgICAgICB7aXRlbS5sYWJlbH1cclxuICAgICAgICAgICAgICAgICAgPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgPC9MaW5rPlxyXG4gICAgICAgICAgICAgICk7XHJcbiAgICAgICAgICAgIH0pfVxyXG4gICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgey8qIFVzZXIgQnV0dG9uICovfVxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGl0ZW1zLWNlbnRlciBnYXAtM1wiPlxyXG4gICAgICAgICAgICA8U2lnbmVkSW4+XHJcbiAgICAgICAgICAgICAgPFVzZXJCdXR0b24gXHJcbiAgICAgICAgICAgICAgICBhZnRlclNpZ25PdXRVcmw9XCIvXCJcclxuICAgICAgICAgICAgICAgIGFwcGVhcmFuY2U9e3tcclxuICAgICAgICAgICAgICAgICAgZWxlbWVudHM6IHtcclxuICAgICAgICAgICAgICAgICAgICBhdmF0YXJCb3g6IFwidy05IGgtOVwiLFxyXG4gICAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgICAgICB9fVxyXG4gICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgIDwvU2lnbmVkSW4+XHJcbiAgICAgICAgICAgIDxTaWduZWRPdXQ+XHJcbiAgICAgICAgICAgICAgPFNpZ25JbkJ1dHRvbiBtb2RlPVwibW9kYWxcIj5cclxuICAgICAgICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPVwicHgtNCBweS0yIGJnLWluZGlnby02MDAgaG92ZXI6YmctaW5kaWdvLTcwMCB0ZXh0LXdoaXRlIHRleHQtc20gZm9udC1tZWRpdW0gcm91bmRlZC1sZyB0cmFuc2l0aW9uLWNvbG9yc1wiPlxyXG4gICAgICAgICAgICAgICAgICBTaWduIEluXHJcbiAgICAgICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICAgICA8L1NpZ25JbkJ1dHRvbj5cclxuICAgICAgICAgICAgPC9TaWduZWRPdXQ+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgPC9kaXY+XHJcbiAgICA8L25hdj5cclxuICApO1xyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBOYXZpZ2F0aW9uO1xyXG4iXSwibmFtZXMiOlsiUmVhY3QiLCJMaW5rIiwidXNlUGF0aG5hbWUiLCJCcmFpbiIsIlVwbG9hZCIsIlNlYXJjaCIsIkRhdGFiYXNlIiwiSG9tZSIsIk5ldHdvcmsiLCJTZXR0aW5ncyIsIlVzZXJCdXR0b24iLCJTaWduZWRJbiIsIlNpZ25lZE91dCIsIlNpZ25JbkJ1dHRvbiIsIm5hdkl0ZW1zIiwiaHJlZiIsImxhYmVsIiwiaWNvbiIsIk5hdmlnYXRpb24iLCJwYXRobmFtZSIsIm5hdiIsImNsYXNzTmFtZSIsImRpdiIsInNwYW4iLCJtYXAiLCJpdGVtIiwiSWNvbiIsImlzQWN0aXZlIiwiYWZ0ZXJTaWduT3V0VXJsIiwiYXBwZWFyYW5jZSIsImVsZW1lbnRzIiwiYXZhdGFyQm94IiwibW9kZSIsImJ1dHRvbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(ssr)/./components/Navigation.tsx\n");
+
+/***/ }),
+
+/***/ "(rsc)/./app/globals.css":
+/*!*************************!*\
+  !*** ./app/globals.css ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"658138b48f07\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9hcHAvZ2xvYmFscy5jc3MiLCJtYXBwaW5ncyI6Ijs7OztBQUFBLGlFQUFlLGNBQWM7QUFDN0IsSUFBSSxLQUFVLEVBQUUsRUFBdUIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9wZXJzb25hbC1rbm93bGVkZ2UtYWdlbnQtZnJvbnRlbmQvLi9hcHAvZ2xvYmFscy5jc3M/ZDZkOCJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcIjY1ODEzOGI0OGYwN1wiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(rsc)/./app/globals.css\n");
+
+/***/ }),
+
+/***/ "(rsc)/./app/layout.tsx":
+/*!************************!*\
+  !*** ./app/layout.tsx ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ RootLayout),\n/* harmony export */   metadata: () => (/* binding */ metadata)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"(rsc)/./node_modules/next/dist/server/future/route-modules/app-page/vendored/rsc/react-jsx-dev-runtime.js\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _globals_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./globals.css */ \"(rsc)/./app/globals.css\");\n/* harmony import */ var _providers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./providers */ \"(rsc)/./app/providers.tsx\");\n/* harmony import */ var _components_Navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Navigation */ \"(rsc)/./components/Navigation.tsx\");\n\n\n\n\nconst metadata = {\n    title: \"Second Brain | Personal Knowledge Base\",\n    description: \"RAG-powered personal knowledge base with LangGraph agents\"\n};\nfunction RootLayout({ children }) {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"html\", {\n        lang: \"en\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"body\", {\n            className: \"min-h-screen bg-gray-950\",\n            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_providers__WEBPACK_IMPORTED_MODULE_2__.Providers, {\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_Navigation__WEBPACK_IMPORTED_MODULE_3__.Navigation, {}, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\",\n                        lineNumber: 20,\n                        columnNumber: 11\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"main\", {\n                        className: \"pt-16\",\n                        children: children\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\",\n                        lineNumber: 21,\n                        columnNumber: 11\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\",\n                lineNumber: 19,\n                columnNumber: 9\n            }, this)\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\",\n            lineNumber: 18,\n            columnNumber: 7\n        }, this)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\drket\\\\OneDrive\\\\Desktop\\\\Codes\\\\PersonalKnowledgeAgent\\\\frontend\\\\app\\\\layout.tsx\",\n        lineNumber: 17,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHJzYykvLi9hcHAvbGF5b3V0LnRzeCIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUN1QjtBQUNpQjtBQUNhO0FBRTlDLE1BQU1FLFdBQXFCO0lBQ2hDQyxPQUFPO0lBQ1BDLGFBQWE7QUFDZixFQUFFO0FBRWEsU0FBU0MsV0FBVyxFQUNqQ0MsUUFBUSxFQUdUO0lBQ0MscUJBQ0UsOERBQUNDO1FBQUtDLE1BQUs7a0JBQ1QsNEVBQUNDO1lBQUtDLFdBQVU7c0JBQ2QsNEVBQUNWLGlEQUFTQTs7a0NBQ1IsOERBQUNDLDhEQUFVQTs7Ozs7a0NBQ1gsOERBQUNVO3dCQUFLRCxXQUFVO2tDQUFTSjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUtuQyIsInNvdXJjZXMiOlsid2VicGFjazovL3BlcnNvbmFsLWtub3dsZWRnZS1hZ2VudC1mcm9udGVuZC8uL2FwcC9sYXlvdXQudHN4Pzk5ODgiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHR5cGUgeyBNZXRhZGF0YSB9IGZyb20gXCJuZXh0XCI7XHJcbmltcG9ydCBcIi4vZ2xvYmFscy5jc3NcIjtcclxuaW1wb3J0IHsgUHJvdmlkZXJzIH0gZnJvbSBcIi4vcHJvdmlkZXJzXCI7XHJcbmltcG9ydCB7IE5hdmlnYXRpb24gfSBmcm9tIFwiQC9jb21wb25lbnRzL05hdmlnYXRpb25cIjtcclxuXHJcbmV4cG9ydCBjb25zdCBtZXRhZGF0YTogTWV0YWRhdGEgPSB7XHJcbiAgdGl0bGU6IFwiU2Vjb25kIEJyYWluIHwgUGVyc29uYWwgS25vd2xlZGdlIEJhc2VcIixcclxuICBkZXNjcmlwdGlvbjogXCJSQUctcG93ZXJlZCBwZXJzb25hbCBrbm93bGVkZ2UgYmFzZSB3aXRoIExhbmdHcmFwaCBhZ2VudHNcIixcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFJvb3RMYXlvdXQoe1xyXG4gIGNoaWxkcmVuLFxyXG59OiB7XHJcbiAgY2hpbGRyZW46IFJlYWN0LlJlYWN0Tm9kZTtcclxufSkge1xyXG4gIHJldHVybiAoXHJcbiAgICA8aHRtbCBsYW5nPVwiZW5cIj5cclxuICAgICAgPGJvZHkgY2xhc3NOYW1lPVwibWluLWgtc2NyZWVuIGJnLWdyYXktOTUwXCI+XHJcbiAgICAgICAgPFByb3ZpZGVycz5cclxuICAgICAgICAgIDxOYXZpZ2F0aW9uIC8+XHJcbiAgICAgICAgICA8bWFpbiBjbGFzc05hbWU9XCJwdC0xNlwiPntjaGlsZHJlbn08L21haW4+XHJcbiAgICAgICAgPC9Qcm92aWRlcnM+XHJcbiAgICAgIDwvYm9keT5cclxuICAgIDwvaHRtbD5cclxuICApO1xyXG59XHJcbiJdLCJuYW1lcyI6WyJQcm92aWRlcnMiLCJOYXZpZ2F0aW9uIiwibWV0YWRhdGEiLCJ0aXRsZSIsImRlc2NyaXB0aW9uIiwiUm9vdExheW91dCIsImNoaWxkcmVuIiwiaHRtbCIsImxhbmciLCJib2R5IiwiY2xhc3NOYW1lIiwibWFpbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(rsc)/./app/layout.tsx\n");
+
+/***/ }),
+
+/***/ "(rsc)/./app/providers.tsx":
+/*!***************************!*\
+  !*** ./app/providers.tsx ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Providers: () => (/* binding */ e0)
+/* harmony export */ });
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
+
+
+const e0 = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\drket\OneDrive\Desktop\Codes\PersonalKnowledgeAgent\frontend\app\providers.tsx#Providers`);
+
+
+/***/ }),
+
+/***/ "(rsc)/./components/Navigation.tsx":
+/*!***********************************!*\
+  !*** ./components/Navigation.tsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Navigation: () => (/* binding */ e0),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/dist/build/webpack/loaders/next-flight-loader/module-proxy */ "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-loader/module-proxy.js");
+
+
+const e0 = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\drket\OneDrive\Desktop\Codes\PersonalKnowledgeAgent\frontend\components\Navigation.tsx#Navigation`);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`C:\Users\drket\OneDrive\Desktop\Codes\PersonalKnowledgeAgent\frontend\components\Navigation.tsx#default`));
+
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc","vendor-chunks/node-fetch-native","vendor-chunks/@clerk","vendor-chunks/@peculiar","vendor-chunks/asn1js","vendor-chunks/swr","vendor-chunks/webcrypto-core","vendor-chunks/tslib","vendor-chunks/lucide-react","vendor-chunks/pvtsutils","vendor-chunks/pvutils","vendor-chunks/cookie","vendor-chunks/deepmerge","vendor-chunks/use-sync-external-store","vendor-chunks/map-obj","vendor-chunks/no-case","vendor-chunks/lower-case","vendor-chunks/snakecase-keys","vendor-chunks/snake-case","vendor-chunks/dot-case"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2F_not-found%2Fpage&page=%2F_not-found%2Fpage&appPaths=&pagePath=node_modules%2Fnext%2Fdist%2Fclient%2Fcomponents%2Fnot-found-error.js&appDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cdrket%5COneDrive%5CDesktop%5CCodes%5CPersonalKnowledgeAgent%5Cfrontend&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D!")));
+module.exports = __webpack_exports__;
+
+})();
