@@ -6,6 +6,8 @@ import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Alert } from '@/components/Alert';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 interface MemoryNode {
   id: string;
   label: string;
@@ -62,15 +64,15 @@ export default function GraphPage() {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:8000/api/v2/memory?limit=200');
+      const response = await fetch(`${API_BASE_URL}/api/v2/memory?limit=200`);
       if (!response.ok) throw new Error('Failed to fetch memories');
       
       const data = await response.json();
       const memories = data.memories || [];
       
       // Extract unique sources
-      const uniqueSources = [...new Set(memories.map((m: any) => m.source))];
-      setSources(uniqueSources as string[]);
+      const uniqueSources = Array.from(new Set<string>(memories.map((m: any) => m.source || 'unknown')));
+      setSources(uniqueSources);
       
       // Build nodes
       const nodes: MemoryNode[] = memories.map((memory: any) => ({

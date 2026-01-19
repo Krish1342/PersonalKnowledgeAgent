@@ -19,6 +19,8 @@ import { Card, CardHeader, CardContent } from '@/components/Card';
 import { Button } from '@/components/Button';
 import { Alert } from '@/components/Alert';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
 interface StorageStats {
   total_memories: number;
   bookmarked_count: number;
@@ -45,7 +47,7 @@ export default function SettingsPage() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/v2/memory/stats');
+      const response = await fetch(`${API_BASE_URL}/api/v2/memory/stats`);
       if (response.ok) {
         const data = await response.json();
         setStats(data);
@@ -68,7 +70,7 @@ export default function SettingsPage() {
   const handleExport = async () => {
     setExporting(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v2/memory/export');
+      const response = await fetch(`${API_BASE_URL}/api/v2/memory/export`);
       if (!response.ok) throw new Error('Export failed');
       
       const data = await response.json();
@@ -99,7 +101,7 @@ export default function SettingsPage() {
       const text = await file.text();
       const data = JSON.parse(text);
       
-      const response = await fetch('http://localhost:8000/api/v2/memory/import', {
+      const response = await fetch(`${API_BASE_URL}/api/v2/memory/import`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data }),
