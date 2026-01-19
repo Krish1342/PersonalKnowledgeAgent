@@ -1,15 +1,15 @@
 from typing import List, Dict, Any, Optional
 from pathlib import Path
-
-import chromadb
-from chromadb.config import Settings as ChromaSettings
-from sentence_transformers import SentenceTransformer
+import os
 
 from app.config import settings
 
 
 class VectorStore:
-    """ChromaDB vector store with sentence-transformers embeddings."""
+    """ChromaDB vector store with sentence-transformers embeddings.
+    
+    Uses lazy loading to reduce memory usage on startup.
+    """
 
     def __init__(
         self,
@@ -32,23 +32,41 @@ class VectorStore:
         # Ensure directory exists
         Path(self._persist_directory).mkdir(parents=True, exist_ok=True)
 
-        # Initialize embedding model
-        self._embedding_model = SentenceTransformer(self._model_name)
+        # Lazy-loaded components (initialized on first use)
+        self._embedding_model = None
+        self._client = None
+        self._collection = None
 
-        # Initialize ChromaDB client with persistence
-        self._client = chromadb.PersistentClient(
-            path=self._persist_directory,
-            settings=ChromaSettings(
-                anonymized_telemetry=False,
-                allow_reset=True,
-            ),
-        )
+    def _get_embedding_model(self):
+        """Lazy load the embedding model."""
+        if self._embedding_model is None:
+            # Import here to avoid loading at startup
+            from sentence_transformers import SentenceTransformer
+            self._embedding_model = SentenceTransformer(self._model_name)
+        return self._embedding_model
 
-        # Get or create collection
-        self._collection = self._client.get_or_create_collection(
-            name=self._collection_name,
-            metadata={"hnsw:space": "cosine"},
-        )
+    def _get_client(self):
+        """Lazy load the ChromaDB client."""
+        if self._client is None:
+            import chromadb
+            from chromadb.config import Settings as ChromaSettings
+            self._client = chromadb.PersistentClient(
+                path=self._persist_directory,
+                settings=ChromaSettings(
+                    anonymized_telemetry=False,
+                    allow_reset=True,
+                ),
+            )
+        return self._client
+
+    def _get_collection(self):
+        """Lazy load the ChromaDB collection."""
+        if self._collection is None:
+            self._collection = self._get_client().get_or_create_collection(
+                name=self._collection_name,
+                metadata={"hnsw:space": "cosine"},
+            )
+        return self._collection
 
     def _generate_embeddings(self, texts: List[str]) -> List[List[float]]:
         """
@@ -60,7 +78,7 @@ class VectorStore:
         Returns:
             List of embedding vectors.
         """
-        embeddings = self._embedding_model.encode(texts, convert_to_numpy=True)
+        embeddings = self._get_embedding_model().encode(texts, convert_to_numpy=True)
         return embeddings.tolist()
 
     def add_documents(
@@ -85,7 +103,7 @@ class VectorStore:
 
         # Generate IDs if not provided
         if ids is None:
-            existing_count = self._collection.count()
+            existing_count = self._get_collection().count()
             ids = [f"doc_{existing_count + i}" for i in range(len(documents))]
 
         # Generate embeddings
@@ -96,7 +114,7 @@ class VectorStore:
             metadatas = [{} for _ in documents]
 
         # Add to collection
-        self._collection.add(
+        self._get_collection().add(
             ids=ids,
             embeddings=embeddings,
             documents=documents,
@@ -126,7 +144,7 @@ class VectorStore:
         query_embedding = self._generate_embeddings([query])[0]
 
         # Perform search
-        results = self._collection.query(
+        results = self._get_collection().query(
             query_embeddings=[query_embedding],
             n_results=k,
             where=filter_metadata,
@@ -162,7 +180,7 @@ class VectorStore:
             ids: List of document IDs to delete.
         """
         if ids:
-            self._collection.delete(ids=ids)
+            self._get_collection().delete(ids=ids)
 
     def count(self) -> int:
         """
@@ -171,12 +189,12 @@ class VectorStore:
         Returns:
             Document count.
         """
-        return self._collection.count()
+        return self._get_collection().count()
 
     def reset(self) -> None:
         """Delete all documents from the collection."""
-        self._client.delete_collection(self._collection_name)
-        self._collection = self._client.get_or_create_collection(
+        self._get_client().delete_collection(self._collection_name)
+        self._collection = self._get_client().get_or_create_collection(
             name=self._collection_name,
             metadata={"hnsw:space": "cosine"},
         )
