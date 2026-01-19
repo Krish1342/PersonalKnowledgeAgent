@@ -363,9 +363,7 @@ export default function GraphPage() {
         </div>
 
         {error && (
-          <Alert type="error" onClose={() => setError(null)} className="mb-4">
-            {error}
-          </Alert>
+          <Alert type="error" message={error} onClose={() => setError(null)} />
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">

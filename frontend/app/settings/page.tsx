@@ -138,9 +138,7 @@ export default function SettingsPage() {
         </div>
 
         {alert && (
-          <Alert type={alert.type} onClose={() => setAlert(null)} className="mb-6">
-            {alert.message}
-          </Alert>
+          <Alert type={alert.type} message={alert.message} onClose={() => setAlert(null)} />
         )}
 
         <div className="space-y-6">
@@ -271,7 +269,7 @@ export default function SettingsPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     onClick={handleExport}
-                    loading={exporting}
+                    isLoading={exporting}
                     variant="secondary"
                     className="flex-1"
                   >
@@ -287,15 +285,14 @@ export default function SettingsPage() {
                       className="hidden"
                       disabled={importing}
                     />
-                    <Button
-                      as="span"
-                      loading={importing}
-                      variant="secondary"
-                      className="w-full cursor-pointer"
-                    >
-                      <Upload className="w-4 h-4 mr-2" />
+                    <span className="inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors px-4 py-2 text-sm bg-gray-800 hover:bg-gray-700 text-gray-100 border border-gray-700 w-full cursor-pointer">
+                      {importing ? (
+                        <div className="w-4 h-4 animate-spin rounded-full border-2 border-gray-400 border-t-white"></div>
+                      ) : (
+                        <Upload className="w-4 h-4" />
+                      )}
                       Import Data
-                    </Button>
+                    </span>
                   </label>
                 </div>
                 
