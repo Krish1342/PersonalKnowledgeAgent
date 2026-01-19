@@ -355,7 +355,7 @@ export default function GraphPage() {
               variant="secondary"
               size="sm"
               onClick={fetchGraphData}
-              loading={loading}
+              isLoading={loading}
             >
               <RefreshCw className="w-4 h-4" />
             </Button>
