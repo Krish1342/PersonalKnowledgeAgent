@@ -7,7 +7,7 @@ from app.config import settings
 
 class VectorStore:
     """ChromaDB vector store with sentence-transformers embeddings.
-    
+
     Uses lazy loading to reduce memory usage on startup.
     """
 
@@ -42,6 +42,7 @@ class VectorStore:
         if self._embedding_model is None:
             # Import here to avoid loading at startup
             from sentence_transformers import SentenceTransformer
+
             self._embedding_model = SentenceTransformer(self._model_name)
         return self._embedding_model
 
@@ -50,6 +51,7 @@ class VectorStore:
         if self._client is None:
             import chromadb
             from chromadb.config import Settings as ChromaSettings
+
             self._client = chromadb.PersistentClient(
                 path=self._persist_directory,
                 settings=ChromaSettings(

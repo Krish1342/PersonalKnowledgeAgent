@@ -43,6 +43,7 @@ git push -u origin main
 ### 1.2 Verify Project Structure
 
 Your project should have this structure:
+
 ```
 PersonalKnowledgeAgent/
 ├── backend/
@@ -81,29 +82,29 @@ PersonalKnowledgeAgent/
 
 ### 2.2 Configure Build Settings
 
-| Setting | Value |
-|---------|-------|
-| **Name** | `second-brain-api` |
-| **Region** | Oregon (US West) or closest to you |
-| **Branch** | `main` |
-| **Root Directory** | `backend` |
-| **Runtime** | Python 3 |
-| **Build Command** | `pip install -r requirements.txt` |
-| **Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
-| **Plan** | Free |
+| Setting            | Value                                              |
+| ------------------ | -------------------------------------------------- |
+| **Name**           | `second-brain-api`                                 |
+| **Region**         | Oregon (US West) or closest to you                 |
+| **Branch**         | `main`                                             |
+| **Root Directory** | `backend`                                          |
+| **Runtime**        | Python 3                                           |
+| **Build Command**  | `pip install -r requirements.txt`                  |
+| **Start Command**  | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| **Plan**           | Free                                               |
 
 ### 2.3 Add Environment Variables
 
 Click **"Advanced"** → **"Add Environment Variable"** and add:
 
-| Key | Value |
-|-----|-------|
-| `GROQ_API_KEY` | `gsk_your_groq_api_key_here` |
-| `CLERK_PUBLISHABLE_KEY` | `pk_test_your_clerk_key` |
-| `CLERK_SECRET_KEY` | `sk_test_your_clerk_secret` |
-| `CORS_ORIGINS` | `https://your-app.vercel.app` (update after frontend deploy) |
-| `ENVIRONMENT` | `production` |
-| `PYTHON_VERSION` | `3.11.0` |
+| Key                     | Value                                                        |
+| ----------------------- | ------------------------------------------------------------ |
+| `GROQ_API_KEY`          | `gsk_your_groq_api_key_here`                                 |
+| `CLERK_PUBLISHABLE_KEY` | `pk_test_your_clerk_key`                                     |
+| `CLERK_SECRET_KEY`      | `sk_test_your_clerk_secret`                                  |
+| `CORS_ORIGINS`          | `https://your-app.vercel.app` (update after frontend deploy) |
+| `ENVIRONMENT`           | `production`                                                 |
+| `PYTHON_VERSION`        | `3.11.0`                                                     |
 
 ### 2.4 Deploy
 
@@ -116,6 +117,7 @@ Click **"Advanced"** → **"Add Environment Variable"** and add:
 Open in browser: `https://your-backend-url.onrender.com/health`
 
 You should see:
+
 ```json
 {
   "status": "healthy",
@@ -137,27 +139,27 @@ You should see:
 
 ### 3.2 Configure Project Settings
 
-| Setting | Value |
-|---------|-------|
-| **Project Name** | `second-brain` (or your choice) |
-| **Framework Preset** | `Next.js` (auto-detected) |
-| **Root Directory** | `frontend` ← **IMPORTANT!** Click "Edit" and set this |
-| **Build Command** | `next build` (default) |
-| **Output Directory** | `.next` (default) |
+| Setting              | Value                                                 |
+| -------------------- | ----------------------------------------------------- |
+| **Project Name**     | `second-brain` (or your choice)                       |
+| **Framework Preset** | `Next.js` (auto-detected)                             |
+| **Root Directory**   | `frontend` ← **IMPORTANT!** Click "Edit" and set this |
+| **Build Command**    | `next build` (default)                                |
+| **Output Directory** | `.next` (default)                                     |
 
 ### 3.3 Add Environment Variables
 
 In the **Environment Variables** section, add:
 
-| Key | Value |
-|-----|-------|
-| `NEXT_PUBLIC_API_URL` | `https://second-brain-api.onrender.com` (your Render URL) |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | `pk_test_your_clerk_key` |
-| `CLERK_SECRET_KEY` | `sk_test_your_clerk_secret` |
-| `NEXT_PUBLIC_CLERK_SIGN_IN_URL` | `/sign-in` |
-| `NEXT_PUBLIC_CLERK_SIGN_UP_URL` | `/sign-up` |
-| `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL` | `/` |
-| `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL` | `/` |
+| Key                                   | Value                                                     |
+| ------------------------------------- | --------------------------------------------------------- |
+| `NEXT_PUBLIC_API_URL`                 | `https://second-brain-api.onrender.com` (your Render URL) |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`   | `pk_test_your_clerk_key`                                  |
+| `CLERK_SECRET_KEY`                    | `sk_test_your_clerk_secret`                               |
+| `NEXT_PUBLIC_CLERK_SIGN_IN_URL`       | `/sign-in`                                                |
+| `NEXT_PUBLIC_CLERK_SIGN_UP_URL`       | `/sign-up`                                                |
+| `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL` | `/`                                                       |
+| `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL` | `/`                                                       |
 
 ### 3.4 Deploy
 
@@ -192,6 +194,7 @@ After frontend deployment, update the backend CORS:
 ### 5.2 Update Redirect URLs
 
 In Clerk Dashboard → **"Paths"**:
+
 - **Sign-in URL**: `/sign-in`
 - **Sign-up URL**: `/sign-up`
 - **After sign-in URL**: `/`
@@ -200,6 +203,7 @@ In Clerk Dashboard → **"Paths"**:
 ### 5.3 Production Keys (Optional)
 
 For production, switch from test to live keys:
+
 1. Toggle to **"Production"** in Clerk Dashboard
 2. Copy new `CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
 3. Update both Vercel and Render environment variables
@@ -209,17 +213,20 @@ For production, switch from test to live keys:
 ## ✅ Step 6: Verify Deployment
 
 ### 6.1 Test Frontend
+
 1. Open your Vercel URL
 2. You should see the login page
 3. Sign up/Sign in with Clerk
 
 ### 6.2 Test Backend Connection
+
 1. After login, navigate to **"Ingest"**
 2. Add some test content
 3. Navigate to **"Query"** and search
 4. Check **"Settings"** to see storage stats
 
 ### 6.3 Test API Directly
+
 ```bash
 curl https://your-backend.onrender.com/health
 curl https://your-backend.onrender.com/api/v2/memory/stats
@@ -232,25 +239,30 @@ curl https://your-backend.onrender.com/api/v2/memory/stats
 ### Frontend Build Fails
 
 **Error: "Type 'Set<unknown>' can only be iterated..."**
+
 - Already fixed in the codebase
 - Make sure you pushed the latest changes
 
 **Error: "Module not found: @clerk/themes"**
+
 - Already fixed - push latest changes
 
 ### Backend Issues
 
 **CORS Errors**
+
 - Ensure `CORS_ORIGINS` includes your exact Vercel URL
 - Don't include trailing slash
 
 **Database Errors on Render Free Tier**
+
 - Free tier has ephemeral storage - data resets on redeploy
 - For persistent data, use Render's paid tier or external database
 
 ### Clerk Authentication
 
 **"Clerk: Invalid API key"**
+
 - Verify keys match between Clerk Dashboard and env vars
 - Check you're using the right environment (development/production)
 
@@ -259,6 +271,7 @@ curl https://your-backend.onrender.com/api/v2/memory/stats
 ## 📊 Environment Variables Summary
 
 ### Backend (Render)
+
 ```env
 GROQ_API_KEY=gsk_your_key_here
 CLERK_PUBLISHABLE_KEY=pk_test_xxx
@@ -269,6 +282,7 @@ PYTHON_VERSION=3.11.0
 ```
 
 ### Frontend (Vercel)
+
 ```env
 NEXT_PUBLIC_API_URL=https://your-api.onrender.com
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_xxx
@@ -284,10 +298,12 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 ## 🎉 You're Done!
 
 Your Second Brain is now live at:
+
 - **Frontend**: `https://your-app.vercel.app`
 - **Backend API**: `https://your-api.onrender.com`
 
 ### Next Steps
+
 1. Set up a custom domain (optional)
 2. Enable Clerk production mode for better security
 3. Consider Render paid tier for persistent storage
