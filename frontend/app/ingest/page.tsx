@@ -120,14 +120,14 @@ export default function IngestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 py-8">
-      <div className="max-w-3xl mx-auto px-4">
+    <div className="min-h-screen bg-gray-950 py-6 sm:py-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Page Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Add Knowledge
           </h1>
-          <p className="text-gray-400">
+          <p className="text-sm sm:text-base text-gray-400">
             Upload documents or paste text to add to your knowledge base
           </p>
         </div>

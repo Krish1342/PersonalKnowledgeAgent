@@ -27,3 +27,54 @@ body {
     Arial,
     sans-serif;
 }
+
+/* Mobile optimizations */
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Improve scrolling on mobile */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better button touch targets for mobile */
+button, 
+a[role="button"],
+input[type="button"],
+input[type="submit"] {
+  min-height: 44px; /* iOS recommended touch target */
+  touch-action: manipulation;
+}
+
+/* Prevent text size adjustment on mobile */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus states for accessibility */
+@media (hover: none) and (pointer: coarse) {
+  /* Mobile/touch devices */
+  *:focus {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+  .hover\:bg-gray-700:hover,
+  .hover\:bg-gray-800:hover,
+  .hover\:text-white:hover {
+    /* These will be handled by active states instead */
+  }
+}

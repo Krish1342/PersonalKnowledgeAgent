@@ -6,6 +6,12 @@ import { Navigation } from "@/components/Navigation";
 export const metadata: Metadata = {
   title: "Second Brain | Personal Knowledge Base",
   description: "RAG-powered personal knowledge base with LangGraph agents",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 };
 
 export default function RootLayout({

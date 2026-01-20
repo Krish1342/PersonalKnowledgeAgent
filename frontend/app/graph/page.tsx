@@ -299,26 +299,26 @@ export default function GraphPage() {
   }, [graphData, zoom, filter, selectedNode]);
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] p-4 md:p-6">
+    <div className="min-h-[calc(100vh-4rem)] p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-              <Network className="w-7 h-7 text-indigo-500" />
+            <h1 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+              <Network className="w-6 h-6 sm:w-7 sm:h-7 text-indigo-500" />
               Knowledge Graph
             </h1>
-            <p className="text-gray-400 mt-1">
+            <p className="text-sm sm:text-base text-gray-400 mt-1">
               Visualize connections between your memories
             </p>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {/* Filter */}
             <select
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              className="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm"
+              className="px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white text-xs sm:text-sm touch-manipulation flex-grow sm:flex-grow-0"
             >
               <option value="all">All Sources</option>
               {sources.map(source => (
@@ -327,37 +327,39 @@ export default function GraphPage() {
             </select>
             
             {/* Zoom controls */}
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setZoom(z => Math.max(0.5, z - 0.1))}
-            >
-              <ZoomOut className="w-4 h-4" />
-            </Button>
-            <span className="text-gray-400 text-sm w-12 text-center">
-              {Math.round(zoom * 100)}%
-            </span>
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setZoom(z => Math.min(2, z + 0.1))}
-            >
-              <ZoomIn className="w-4 h-4" />
-            </Button>
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setZoom(1)}
-            >
-              <Maximize2 className="w-4 h-4" />
-            </Button>
+            <div className="flex items-center gap-2 bg-gray-900 rounded-lg p-1">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setZoom(z => Math.max(0.5, z - 0.1))}
+              >
+                <ZoomOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </Button>
+              <span className="text-gray-400 text-xs sm:text-sm w-10 sm:w-12 text-center">
+                {Math.round(zoom * 100)}%
+              </span>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setZoom(z => Math.min(2, z + 0.1))}
+              >
+                <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setZoom(1)}
+              >
+                <Maximize2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </Button>
+            </div>
             <Button
               variant="secondary"
               size="sm"
               onClick={fetchGraphData}
               isLoading={loading}
             >
-              <RefreshCw className="w-4 h-4" />
+              <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </Button>
           </div>
         </div>
@@ -371,21 +373,21 @@ export default function GraphPage() {
           <div className="lg:col-span-3">
             <Card>
               <CardContent className="p-0">
-                <div className="relative h-[600px] bg-gray-950 rounded-lg overflow-hidden">
+                <div className="relative h-[400px] sm:h-[500px] md:h-[600px] bg-gray-950 rounded-lg overflow-hidden">
                   {loading ? (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
                     </div>
                   ) : graphData.nodes.length === 0 ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
-                      <Network className="w-16 h-16 mb-4 opacity-50" />
-                      <p>No memories to visualize</p>
-                      <p className="text-sm">Ingest some content to see the graph</p>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400 p-4">
+                      <Network className="w-12 h-12 sm:w-16 sm:h-16 mb-4 opacity-50" />
+                      <p className="text-sm sm:text-base">No memories to visualize</p>
+                      <p className="text-xs sm:text-sm">Ingest some content to see the graph</p>
                     </div>
                   ) : (
                     <canvas
                       ref={canvasRef}
-                      className="w-full h-full cursor-pointer"
+                      className="w-full h-full cursor-pointer touch-none"
                     />
                   )}
                 </div>

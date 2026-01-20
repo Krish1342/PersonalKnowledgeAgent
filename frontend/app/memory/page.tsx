@@ -78,13 +78,13 @@ export default function MemoryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 py-8">
-      <div className="max-w-6xl mx-auto px-4">
+    <div className="min-h-screen bg-gray-950 py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Page Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Memory</h1>
-            <p className="text-gray-400">Browse all your stored knowledge</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Memory</h1>
+            <p className="text-sm sm:text-base text-gray-400">Browse all your stored knowledge</p>
           </div>
           <Button
             variant="secondary"
@@ -104,29 +104,29 @@ export default function MemoryPage() {
 
         {/* Stats Cards */}
         {stats && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
             <Card>
-              <CardContent className="py-4">
-                <p className="text-sm text-gray-400 mb-1">Total Entries</p>
-                <p className="text-2xl font-bold text-white">{stats.total_memories}</p>
+              <CardContent className="py-3 sm:py-4">
+                <p className="text-xs sm:text-sm text-gray-400 mb-1">Total Entries</p>
+                <p className="text-xl sm:text-2xl font-bold text-white">{stats.total_memories}</p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="py-4">
-                <p className="text-sm text-gray-400 mb-1">Sources</p>
-                <p className="text-2xl font-bold text-white">{stats.sources.length}</p>
+              <CardContent className="py-3 sm:py-4">
+                <p className="text-xs sm:text-sm text-gray-400 mb-1">Sources</p>
+                <p className="text-xl sm:text-2xl font-bold text-white">{stats.sources.length}</p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="py-4">
-                <p className="text-sm text-gray-400 mb-1">Filtered</p>
-                <p className="text-2xl font-bold text-white">{filteredItems.length}</p>
+              <CardContent className="py-3 sm:py-4">
+                <p className="text-xs sm:text-sm text-gray-400 mb-1">Filtered</p>
+                <p className="text-xl sm:text-2xl font-bold text-white">{filteredItems.length}</p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="py-4">
-                <p className="text-sm text-gray-400 mb-1">Active Filter</p>
-                <p className="text-2xl font-bold text-white truncate">
+              <CardContent className="py-3 sm:py-4">
+                <p className="text-xs sm:text-sm text-gray-400 mb-1">Active Filter</p>
+                <p className="text-xl sm:text-2xl font-bold text-white truncate">
                   {selectedSource || "All"}
                 </p>
               </CardContent>
@@ -135,9 +135,9 @@ export default function MemoryPage() {
         )}
 
         {/* Filters */}
-        <Card className="mb-6">
-          <CardContent className="py-4">
-            <div className="flex flex-col md:flex-row gap-4">
+        <Card className="mb-4 sm:mb-6">
+          <CardContent className="py-3 sm:py-4">
+            <div className="flex flex-col md:flex-row gap-3 sm:gap-4">
               {/* Search */}
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
@@ -147,9 +147,10 @@ export default function MemoryPage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search memories..."
                   className="
-                    w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg
+                    w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-sm sm:text-base
                     text-white placeholder-gray-500
                     focus:outline-none focus:border-green-500
+                    touch-manipulation
                   "
                 />
               </div>
@@ -160,10 +161,10 @@ export default function MemoryPage() {
                   <button
                     onClick={() => setSelectedSource(null)}
                     className={`
-                      px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                      px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors touch-manipulation
                       ${selectedSource === null
                         ? "bg-green-600 text-white"
-                        : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                        : "bg-gray-800 text-gray-300 hover:bg-gray-700 active:bg-gray-900"
                       }
                     `}
                   >
@@ -174,10 +175,10 @@ export default function MemoryPage() {
                       key={source}
                       onClick={() => setSelectedSource(source)}
                       className={`
-                        px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                        px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors touch-manipulation
                         ${selectedSource === source
                           ? "bg-green-600 text-white"
-                          : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                          : "bg-gray-800 text-gray-300 hover:bg-gray-700 active:bg-gray-900"
                         }
                       `}
                     >

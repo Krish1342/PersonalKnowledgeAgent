@@ -1,9 +1,10 @@
 import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-  // Public routes that don't require authentication
+  // Only landing page and auth routes are public
+  // All other routes require authentication
   publicRoutes: [
-    '/',
+    '/', // Landing page only
     '/sign-in(.*)',
     '/sign-up(.*)',
     '/api/health(.*)',

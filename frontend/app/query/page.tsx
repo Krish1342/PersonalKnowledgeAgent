@@ -111,24 +111,24 @@ export default function QueryPage() {
     <div className="min-h-screen bg-gray-950 flex flex-col">
       {/* Page Header */}
       <div className="border-b border-gray-800 bg-gray-900/50">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <h1 className="text-xl font-bold text-white">Ask Your Knowledge Base</h1>
-          <p className="text-sm text-gray-400">Get answers grounded in your stored knowledge</p>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <h1 className="text-lg sm:text-xl font-bold text-white">Ask Your Knowledge Base</h1>
+          <p className="text-xs sm:text-sm text-gray-400">Get answers grounded in your stored knowledge</p>
         </div>
       </div>
 
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
           {messages.length === 0 ? (
-            <div className="text-center py-20">
+            <div className="text-center py-12 sm:py-20 px-4">
               <div className="inline-flex p-4 rounded-full bg-gray-800 mb-4">
                 <MessageSquare className="w-8 h-8 text-gray-500" />
               </div>
-              <h2 className="text-xl font-semibold text-white mb-2">
+              <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">
                 Start a conversation
               </h2>
-              <p className="text-gray-400 max-w-md mx-auto">
+              <p className="text-sm sm:text-base text-gray-400 max-w-md mx-auto">
                 Ask a question about your ingested knowledge. Your answers will be grounded in your actual data.
               </p>
               <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -136,7 +136,7 @@ export default function QueryPage() {
                   <button
                     key={suggestion}
                     onClick={() => setInput(suggestion)}
-                    className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm rounded-lg transition-colors"
+                    className="px-3 sm:px-4 py-2 bg-gray-800 hover:bg-gray-700 active:bg-gray-900 text-gray-300 text-xs sm:text-sm rounded-lg transition-colors touch-manipulation"
                   >
                     {suggestion}
                   </button>
@@ -144,29 +144,29 @@ export default function QueryPage() {
               </div>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {messages.map((message) => (
                 <div key={message.id}>
                   {message.role === "user" ? (
                     // User Message
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <User className="w-4 h-4 text-white" />
+                    <div className="flex gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                        <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <p className="text-sm text-gray-400 mb-1">You</p>
-                        <p className="text-white">{message.content}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm text-gray-400 mb-1">You</p>
+                        <p className="text-sm sm:text-base text-white break-words">{message.content}</p>
                       </div>
                     </div>
                   ) : (
                     // Assistant Message
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                        <Bot className="w-4 h-4 text-white" />
+                    <div className="flex gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-green-600 rounded-full flex items-center justify-center">
+                        <Bot className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-1">
-                          <p className="text-sm text-gray-400">Assistant</p>
+                        <div className="flex items-center gap-2 sm:gap-3 mb-1 flex-wrap">
+                          <p className="text-xs sm:text-sm text-gray-400">Assistant</p>
                           {message.metadata?.score !== undefined && (
                             <span className={`text-xs px-2 py-0.5 rounded-full ${getScoreInfo(message.metadata.score).bg} ${getScoreInfo(message.metadata.score).color}`}>
                               <Shield className="w-3 h-3 inline mr-1" />
@@ -177,7 +177,7 @@ export default function QueryPage() {
                         
                         <Card className="mb-3">
                           <CardContent>
-                            <p className="text-gray-100 whitespace-pre-wrap leading-relaxed">
+                            <p className="text-sm sm:text-base text-gray-100 whitespace-pre-wrap leading-relaxed break-words">
                               {message.content}
                             </p>
                           </CardContent>
@@ -187,7 +187,7 @@ export default function QueryPage() {
                         {message.metadata && (message.metadata.context.length > 0 || message.metadata.critique) && (
                           <button
                             onClick={() => toggleExpanded(message.id)}
-                            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                            className="flex items-center gap-2 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors touch-manipulation py-2"
                           >
                             {expandedMessage === message.id ? (
                               <ChevronUp className="w-4 h-4" />
@@ -272,8 +272,8 @@ export default function QueryPage() {
 
       {/* Input Area */}
       <div className="border-t border-gray-800 bg-gray-900/80 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <form onSubmit={handleSubmit} className="flex gap-3">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <form onSubmit={handleSubmit} className="flex gap-2 sm:gap-3">
             <input
               ref={inputRef}
               type="text"
@@ -281,25 +281,27 @@ export default function QueryPage() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a question..."
               className="
-                flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl
+                flex-1 px-3 sm:px-4 py-2.5 sm:py-3 bg-gray-800 border border-gray-700 rounded-xl text-sm sm:text-base
                 text-white placeholder-gray-500
                 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500
+                touch-manipulation
               "
             />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
               className="
-                px-6 py-3 bg-green-600 hover:bg-green-500 disabled:bg-gray-700
+                px-4 sm:px-6 py-2.5 sm:py-3 bg-green-600 hover:bg-green-500 active:bg-green-700 disabled:bg-gray-700
                 disabled:cursor-not-allowed text-white rounded-xl transition-colors
-                flex items-center gap-2
+                flex items-center gap-2 touch-manipulation flex-shrink-0
               "
             >
               {isLoading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
               ) : (
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
+              <span className="hidden sm:inline">Send</span>
             </button>
           </form>
         </div>
