@@ -64,25 +64,38 @@ export default function GraphPage() {
     setError(null);
     
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v2/memory?limit=200`);
+      const response = await fetch(`${API_BASE_URL}/api/memory?limit=200`);
       if (!response.ok) throw new Error('Failed to fetch memories');
       
       const data = await response.json();
-      const memories = data.memories || [];
+      const memories = data.items || [];
       
       // Extract unique sources
       const uniqueSources = Array.from(new Set<string>(memories.map((m: any) => m.source || 'unknown')));
       setSources(uniqueSources);
       
-      // Build nodes
-      const nodes: MemoryNode[] = memories.map((memory: any) => ({
-        id: `memory-${memory.id}`,
-        label: memory.title?.substring(0, 30) || `Memory ${memory.id}`,
-        source: memory.source,
-        tags: memory.tags?.map((t: any) => t.name) || [],
-        size: Math.min(20, Math.max(8, Math.log(memory.original_size || 100) * 2)),
-        color: sourceColors[memory.source] || sourceColors.default,
-      }));
+      // Build nodes - extract label from content
+      const nodes: MemoryNode[] = memories.map((memory: any) => {
+        // Extract first meaningful words from content as label
+        const contentPreview = (memory.content || '').substring(0, 40).trim();
+        const label = contentPreview.length > 35 ? contentPreview.substring(0, 35) + '...' : contentPreview || `Memory ${memory.id}`;
+        
+        // Extract keywords from content for linking
+        const contentLower = (memory.content || '').toLowerCase();
+        const extractedTags: string[] = [];
+        Object.keys(tagColors).forEach(tag => {
+          if (contentLower.includes(tag)) extractedTags.push(tag);
+        });
+        
+        return {
+          id: `memory-${memory.id}`,
+          label,
+          source: memory.source || 'unknown',
+          tags: extractedTags,
+          size: Math.min(20, Math.max(8, Math.log((memory.content?.length || 100)) * 2)),
+          color: sourceColors[memory.source] || sourceColors.default,
+        };
+      });
       
       // Build links based on shared tags
       const links: MemoryLink[] = [];

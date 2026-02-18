@@ -23,13 +23,8 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 interface StorageStats {
   total_memories: number;
-  bookmarked_count: number;
-  total_original_bytes: number;
-  total_compressed_bytes: number;
-  storage_saved_bytes: number;
-  storage_saved_percent: number;
-  average_compression_ratio: number;
-  sources: Record<string, number>;
+  sources: string[];
+  source_counts: Record<string, number>;
 }
 
 export default function SettingsPage() {
@@ -47,7 +42,7 @@ export default function SettingsPage() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v2/memory/stats`);
+      const response = await fetch(`${API_BASE_URL}/api/memory/stats`);
       if (response.ok) {
         const data = await response.json();
         setStats(data);
@@ -195,50 +190,27 @@ export default function SettingsPage() {
                 </div>
               ) : stats ? (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="bg-gray-800/50 rounded-lg p-3">
                       <p className="text-xs text-gray-400">Total Memories</p>
                       <p className="text-xl font-bold text-white">{stats.total_memories}</p>
                     </div>
                     <div className="bg-gray-800/50 rounded-lg p-3">
-                      <p className="text-xs text-gray-400">Bookmarked</p>
-                      <p className="text-xl font-bold text-yellow-500">{stats.bookmarked_count}</p>
+                      <p className="text-xs text-gray-400">Sources</p>
+                      <p className="text-xl font-bold text-indigo-500">{stats.sources?.length || 0}</p>
                     </div>
                     <div className="bg-gray-800/50 rounded-lg p-3">
-                      <p className="text-xs text-gray-400">Original Size</p>
-                      <p className="text-xl font-bold text-white">{formatBytes(stats.total_original_bytes)}</p>
+                      <p className="text-xs text-gray-400">Status</p>
+                      <p className="text-xl font-bold text-green-500">Active</p>
                     </div>
-                    <div className="bg-gray-800/50 rounded-lg p-3">
-                      <p className="text-xs text-gray-400">Compressed</p>
-                      <p className="text-xl font-bold text-green-500">{formatBytes(stats.total_compressed_bytes)}</p>
-                    </div>
-                  </div>
-                  
-                  {/* Compression savings bar */}
-                  <div className="bg-gray-800/50 rounded-lg p-4">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-gray-400">Storage Efficiency</span>
-                      <span className="text-green-500 font-medium">
-                        {stats.storage_saved_percent}% saved
-                      </span>
-                    </div>
-                    <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-indigo-500 to-green-500 rounded-full transition-all"
-                        style={{ width: `${100 - (stats.total_compressed_bytes / stats.total_original_bytes * 100)}%` }}
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2">
-                      Compression ratio: {stats.average_compression_ratio}x
-                    </p>
                   </div>
 
                   {/* Sources breakdown */}
-                  {Object.keys(stats.sources).length > 0 && (
+                  {stats.source_counts && Object.keys(stats.source_counts).length > 0 && (
                     <div>
                       <p className="text-sm text-gray-400 mb-2">By Source</p>
                       <div className="flex flex-wrap gap-2">
-                        {Object.entries(stats.sources).map(([source, count]) => (
+                        {Object.entries(stats.source_counts).map(([source, count]) => (
                           <span 
                             key={source}
                             className="px-3 py-1 bg-gray-800 rounded-full text-sm text-gray-300"
