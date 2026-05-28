@@ -6,22 +6,31 @@ from langchain_groq import ChatGroq
 
 from app.agents.state import AgentState
 from app.config import settings
+from app.utils.response_formatting import detect_query_intent, format_response
 
 
-# System prompt enforcing RAG-only behavior
-REASONING_SYSTEM_PROMPT = """You are a knowledge assistant that answers questions based ONLY on the provided context.
+BASE_SYSTEM_PROMPT = """You are [User]'s personal knowledge agent. You have access to their notes, PDFs, and documents. When they ask about something, answer from their materials directly and naturally -- like a study partner who has read everything they've saved. Be concise, warm, and format your response to match what they actually asked for. Never say 'based on the provided context'. Just answer."""
 
-STRICT RULES:
+FORMAT_SYSTEM_PROMPT = """You are a personal knowledge assistant. Respond naturally and conversationally. Never use robotic preambles. Match your format to what was asked: prose paragraphs for summaries and explanations, direct sentences for definitions, tables only for comparisons with many attributes, numbered lists only when explicitly asked to list things. Write like a knowledgeable friend, not a database."""
+
+RAG_SYSTEM_RULES = """STRICT RULES:
 1. ONLY use information from the provided context to answer.
 2. If the context doesn't contain enough information, say "I don't have enough information in my knowledge base to answer this."
 3. NEVER make up information or use external knowledge.
 4. Cite the source when providing information.
-5. Be concise and direct.
+5. Be concise and direct."""
 
-CONTEXT:
-{context}
 
-Answer the user's question based ONLY on the context above."""
+# System prompt enforcing RAG-only behavior with formatting guidance
+REASONING_SYSTEM_PROMPT = (
+    BASE_SYSTEM_PROMPT
+    + "\n\n"
+    + FORMAT_SYSTEM_PROMPT
+    + "\n\n"
+    + RAG_SYSTEM_RULES
+    + "\n\nCONTEXT:\n{context}\n\n"
+    + "Answer the user's question based ONLY on the context above."
+)
 
 
 REASONING_PROMPT = ChatPromptTemplate.from_messages(
@@ -86,6 +95,8 @@ def reasoning_agent(state: AgentState) -> Dict[str, Any]:
         if not settings.GROQ_API_KEY:
             # Fallback: construct answer from context without LLM
             fallback_answer = _construct_fallback_answer(context, question)
+            intent = detect_query_intent(question)
+            fallback_answer = format_response(fallback_answer, intent)
             return {
                 "answer": fallback_answer,
                 "messages": messages + [AIMessage(content=fallback_answer)],
@@ -108,6 +119,8 @@ def reasoning_agent(state: AgentState) -> Dict[str, Any]:
         )
 
         answer = response.content
+        intent = detect_query_intent(question)
+        answer = format_response(answer, intent)
 
         return {
             "answer": answer,
@@ -143,8 +156,7 @@ def _construct_fallback_answer(context: list, question: str) -> str:
     content = top_context.get("content", "")
     source = top_context.get("source", "unknown")
 
-    return (
-        f"Based on my knowledge base (source: {source}):\n\n" f"{content[:500]}..."
-        if len(content) > 500
-        else f"Based on my knowledge base (source: {source}):\n\n{content}"
-    )
+    if len(content) > 500:
+        return f"From {source}:\n\n{content[:500]}..."
+
+    return f"From {source}:\n\n{content}"

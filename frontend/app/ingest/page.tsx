@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   Upload,
   FileText,
@@ -9,7 +9,7 @@ import {
   X,
   HelpCircle,
 } from "lucide-react";
-import { ingestContent } from "@/lib/api";
+import { ingestContent, ingestPdf, getPdfIngestStatus } from "@/lib/api";
 import { Card, CardContent, CardHeader } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { Alert } from "@/components/Alert";
@@ -28,6 +28,9 @@ export default function IngestPage() {
   const [error, setError] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [progressMessage, setProgressMessage] = useState<string | null>(null);
+  const [pdfJobId, setPdfJobId] = useState<string | null>(null);
+  const [isPdf, setIsPdf] = useState(false);
 
   const handleSubmit = async () => {
     if (!textContent.trim()) {
@@ -92,12 +95,20 @@ export default function IngestPage() {
   };
 
   const handleFile = (file: File) => {
+    if (file.name.toLowerCase().endsWith(".pdf")) {
+      handlePdfFile(file);
+      return;
+    }
+
     if (!file.type.startsWith("text/") && !file.name.endsWith(".md") && !file.name.endsWith(".txt")) {
-      setError("Please upload a text file (.txt, .md)");
+      setError("Please upload a text file (.txt, .md) or PDF");
       return;
     }
 
     setFileName(file.name);
+    setIsPdf(false);
+    setPdfJobId(null);
+    setProgressMessage(null);
     if (!source) {
       setSource(file.name.replace(/\.[^/.]+$/, ""));
     }
@@ -117,7 +128,87 @@ export default function IngestPage() {
   const clearFile = () => {
     setFileName(null);
     setTextContent("");
+    setPdfJobId(null);
+    setProgressMessage(null);
+    setIsPdf(false);
   };
+
+  const handlePdfFile = async (file: File) => {
+    setIsLoading(true);
+    setError(null);
+    setResult(null);
+    setProgressMessage("Uploading PDF...");
+    setFileName(file.name);
+    setIsPdf(true);
+
+    const sourceLabel = source || file.name.replace(/\.[^/.]+$/, "");
+    if (!source) {
+      setSource(sourceLabel);
+    }
+
+    try {
+      const response = await ingestPdf(file, sourceLabel || undefined);
+      setPdfJobId(response.job_id);
+      setProgressMessage(response.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to ingest PDF");
+      setIsLoading(false);
+      setProgressMessage(null);
+      setIsPdf(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!pdfJobId) return;
+
+    let isCancelled = false;
+    const poll = async () => {
+      try {
+        const status = await getPdfIngestStatus(pdfJobId);
+        if (isCancelled) return;
+
+        setProgressMessage(status.message);
+
+        if (status.status === "completed") {
+          setResult({
+            success: true,
+            message: status.message,
+            chunks: status.chunks_ingested,
+          });
+          setIsLoading(false);
+          setPdfJobId(null);
+          setProgressMessage(null);
+          setFileName(null);
+          setTextContent("");
+          setSource("");
+          setIsPdf(false);
+        }
+
+        if (status.status === "error") {
+          setError(status.message);
+          setIsLoading(false);
+          setPdfJobId(null);
+          setProgressMessage(null);
+          setIsPdf(false);
+        }
+      } catch (err) {
+        if (isCancelled) return;
+        setError(err instanceof Error ? err.message : "Failed to fetch PDF status");
+        setIsLoading(false);
+        setPdfJobId(null);
+        setProgressMessage(null);
+        setIsPdf(false);
+      }
+    };
+
+    const interval = setInterval(poll, 1000);
+    poll();
+
+    return () => {
+      isCancelled = true;
+      clearInterval(interval);
+    };
+  }, [pdfJobId]);
 
   return (
     <div className="min-h-screen bg-gray-950 py-6 sm:py-8">
@@ -133,6 +224,15 @@ export default function IngestPage() {
         </div>
 
         {/* Status Messages */}
+        {progressMessage && (
+          <div className="mb-6">
+            <Alert
+              type="info"
+              message={progressMessage}
+            />
+          </div>
+        )}
+
         {result && (
           <div className="mb-6">
             <Alert
@@ -179,7 +279,7 @@ export default function IngestPage() {
               >
                 <input
                   type="file"
-                  accept=".txt,.md,text/*"
+                  accept=".txt,.md,.pdf,text/*,application/pdf"
                   onChange={handleFileInput}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
@@ -205,7 +305,7 @@ export default function IngestPage() {
                       Drag and drop a file here, or click to browse
                     </p>
                     <p className="text-gray-500 text-sm">
-                      Supports .txt and .md files
+                      Supports .txt, .md, and .pdf files
                     </p>
                   </>
                 )}
@@ -228,6 +328,7 @@ export default function IngestPage() {
                 value={textContent}
                 onChange={(e) => setTextContent(e.target.value)}
                 placeholder="Paste or type your knowledge here..."
+                disabled={isPdf}
                 className="
                   w-full h-48 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg
                   text-white placeholder-gray-500 text-sm
@@ -270,7 +371,7 @@ export default function IngestPage() {
         <div className="mt-6">
           <Button
             onClick={handleSubmit}
-            disabled={isLoading || !textContent.trim()}
+            disabled={isLoading || (!textContent.trim() && !isPdf)}
             isLoading={isLoading}
             size="lg"
             className="w-full"
@@ -288,6 +389,7 @@ export default function IngestPage() {
           <ul className="text-sm text-gray-500 space-y-1">
             <li>• Your content is split into smaller chunks for better retrieval</li>
             <li>• Each chunk is converted into a searchable embedding</li>
+            <li>• PDFs are processed page by page with OCR fallback when needed</li>
             <li>• When you ask questions, relevant chunks are retrieved automatically</li>
           </ul>
         </div>

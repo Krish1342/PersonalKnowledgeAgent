@@ -1,5 +1,5 @@
 {
-  "/graph/page": "app/graph/page.js",
   "/memory/page": "app/memory/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/page": "app/page.js",
+  "/graph/page": "app/graph/page.js"
 }

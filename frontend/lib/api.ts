@@ -24,6 +24,25 @@ export interface IngestResponse {
   source: string;
 }
 
+/** PDF ingest start response */
+export interface PdfIngestStartResponse {
+  job_id: string;
+  status: string;
+  message: string;
+  source: string;
+}
+
+/** PDF ingest status response */
+export interface PdfIngestStatusResponse {
+  job_id: string;
+  status: string;
+  message: string;
+  source: string;
+  current_page: number;
+  total_pages: number;
+  chunks_ingested: number;
+}
+
 /** Query request payload */
 export interface QueryRequest {
   question: string;
@@ -149,6 +168,40 @@ export async function ingestContent(
     body: JSON.stringify(request),
   });
   return handleResponse<IngestResponse>(response);
+}
+
+/**
+ * Start PDF ingestion.
+ */
+export async function ingestPdf(
+  file: File,
+  source?: string
+): Promise<PdfIngestStartResponse> {
+  const formData = new FormData();
+  formData.append("file", file);
+  if (source) {
+    formData.append("source", source);
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/ingest/pdf`, {
+    method: "POST",
+    body: formData,
+  });
+
+  return handleResponse<PdfIngestStartResponse>(response);
+}
+
+/**
+ * Get PDF ingestion status.
+ */
+export async function getPdfIngestStatus(
+  jobId: string
+): Promise<PdfIngestStatusResponse> {
+  const response = await fetch(`${API_BASE_URL}/api/ingest/pdf/${jobId}`, {
+    method: "GET",
+  });
+
+  return handleResponse<PdfIngestStatusResponse>(response);
 }
 
 /**
